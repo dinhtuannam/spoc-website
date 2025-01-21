@@ -27,7 +27,7 @@ const config: Config = {
             },
             // ************* Shadcn config ************
             colors: {
-                'app-primary-blue': '#00B4C5',
+                'app-primary-blue': '#1E4077',
                 'app-primary': '#FE8F1C',
                 'app-primary-hover': '#FF7900',
                 background: 'hsl(var(--background))',

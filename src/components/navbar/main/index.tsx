@@ -9,9 +9,9 @@ function MainNavbar() {
             <Link href={'/'}>
                 <Image
                     src={'/images/logo.png'}
-                    alt="happy way logo"
+                    alt="spoc logo"
                     className="cursor-pointer hover:scale-105"
-                    width={100}
+                    width={140}
                     height={32}
                     style={{ height: 'auto' }}
                 />

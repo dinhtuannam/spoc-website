@@ -3,24 +3,28 @@ import Image from 'next/image';
 import React from 'react';
 import './index.css';
 import FooterContact from './footer-contact';
+import { Separator } from '@radix-ui/react-separator';
 
 function MainFooter() {
     return (
         <div className="flex flex-col items-center page-container relative mt-36">
             <FooterContact />
 
-            <div className="w-full bg-gray-900 text-white py-8 app-padding pt-28">
+            <div className="w-full bg-app-primary-blue text-white py-8 app-padding pt-28">
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-20">
-                        <div className="mb-8 laptop:mb-0 laptop:max-w-[300px]">
+                        <div className="flex items-center justify-center mb-4 laptop:mb-0">
                             <Image
-                                src="/images/logo.png"
-                                alt="happy-way-logo"
-                                width={153}
-                                height={48}
+                                src="/images/logo-blur.png"
+                                alt="spoc-logo"
+                                width={117}
+                                height={117}
                                 quality={100}
-                                className="mx-auto laptop:m-0"
+                                className="h-auto laptop:m-0"
                             />
+                        </div>
+                        <div className="mb-8 laptop:mb-0 laptop:max-w-[260px]">
+                            <h3 className="footer__content-title text-center laptop:text-left">Thông tin liên lạc</h3>
                             <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
                                 <MailIcon className="min-w-[20px]" />
                                 <p className="text-xs mobile:text-sm laptop:text-base">happyway@gmail.vn</p>
@@ -69,8 +73,8 @@ function MainFooter() {
                             </div>
                         </div>
                     </div>
-
-                    <div className="mt-8 flex flex-col tablet:flex-row justify-between items-center border-t border-gray-700 pt-8">
+                    <Separator className="h-[1px] w-full bg-gray-50 mt-6" />
+                    <div className=" flex flex-col tablet:flex-row justify-between items-center border-t border-gray-700 pt-8">
                         <div className="flex justify-center tablet:justify-start space-x-4">
                             <Image src="/icons/tiktok.svg" alt="tiktok" width={20} height={20} />
                             <Image src="/icons/facebook.svg" alt="facebook" width={20} height={20} />
