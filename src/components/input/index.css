@@ -1,0 +1,8 @@
+.search-bar {
+    border: 1px solid #8d8d8d;
+    transition: border-color 0.2s ease;
+}
+
+.search-bar:focus-within {
+    border-color: black; /* Màu đen khi Input được focus */
+}

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer__content_item {
+    @apply mb-8 laptop:mb-0 text-center laptop:text-left;
+}
+
+.footer__content-title {
+    @apply font-bold text-lg tablet:text-lg laptop:text-xl ultra:text-2xl mb-4;
+}
+
+.footer__content-list {
+    @apply space-y-2;
+}
+
+.footer__content-list li {
+    @apply text-sm laptop:text-base cursor-pointer hover:text-primary transition-colors duration-200;
+    @apply whitespace-normal;
+    @apply py-1;
+}

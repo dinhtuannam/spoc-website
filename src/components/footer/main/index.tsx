@@ -1,0 +1,89 @@
+import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
+import './index.css';
+import FooterContact from './footer-contact';
+
+function MainFooter() {
+    return (
+        <div className="flex flex-col items-center page-container relative mt-36">
+            <FooterContact />
+
+            <div className="w-full bg-gray-900 text-white py-8 app-padding pt-28">
+                <div className="max-w-[1200px] mx-auto">
+                    <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-20">
+                        <div className="mb-8 laptop:mb-0 laptop:max-w-[300px]">
+                            <Image
+                                src="/images/logo.png"
+                                alt="happy-way-logo"
+                                width={153}
+                                height={48}
+                                quality={100}
+                                className="mx-auto laptop:m-0"
+                            />
+                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
+                                <MailIcon className="min-w-[20px]" />
+                                <p className="text-xs mobile:text-sm laptop:text-base">happyway@gmail.vn</p>
+                            </div>
+                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
+                                <PhoneIcon className="min-w-[20px]" />
+                                <p className="text-xs mobile:text-sm laptop:text-base">0123 123 123</p>
+                            </div>
+                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
+                                <MapPinIcon className="min-w-[20px]" />
+                                <p className="text-xs mobile:text-sm laptop:text-base">
+                                    123 Trần Hưng Đạo, P.12, Q.5, TP.HCM
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 gap-8 laptop:gap-16 flex-1">
+                            <div className="footer__content_item">
+                                <h3 className="footer__content-title">Về chúng tôi</h3>
+                                <ul className="footer__content-list">
+                                    <li>Giới thiệu</li>
+                                    <li>Đội ngũ chuyên gia</li>
+                                    <li>Tin tức</li>
+                                    <li>Liên hệ</li>
+                                </ul>
+                            </div>
+
+                            <div className="footer__content_item">
+                                <h3 className="footer__content-title">Hỗ trợ</h3>
+                                <ul className="footer__content-list">
+                                    <li>Hướng dẫn mua hàng</li>
+                                    <li>Chính sách bảo mật</li>
+                                    <li>Chính sách bảo hành</li>
+                                    <li>Đóng gói và vận chuyển</li>
+                                </ul>
+                            </div>
+
+                            <div className="footer__content_item">
+                                <h3 className="footer__content-title">Sản phẩm</h3>
+                                <ul className="footer__content-list">
+                                    <li>Về sản phẩm</li>
+                                    <li>Về nguyên liệu</li>
+                                    <li>Đồng phục doanh nghiệp</li>
+                                    <li>Tự thiết kế đồng phục</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 flex flex-col tablet:flex-row justify-between items-center border-t border-gray-700 pt-8">
+                        <div className="flex justify-center tablet:justify-start space-x-4">
+                            <Image src="/icons/tiktok.svg" alt="tiktok" width={20} height={20} />
+                            <Image src="/icons/facebook.svg" alt="facebook" width={20} height={20} />
+                            <Image src="/icons/youtube.svg" alt="youtube" width={20} height={20} />
+                        </div>
+                        <p className="text-xs mobile:text-sm laptop:text-base mt-4 tablet:mt-0">
+                            Copyright © 2025. HappyWay
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default MainFooter;
