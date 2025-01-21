@@ -13,7 +13,7 @@ function MainFooter() {
             <div className="w-full bg-app-primary-blue text-white py-8 app-padding pt-28">
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-20">
-                        <div className="flex items-center justify-center mb-4 laptop:mb-0">
+                        <div className="flex items-start justify-center mb-4 laptop:mb-0">
                             <Image
                                 src="/images/logo-blur.png"
                                 alt="spoc-logo"
@@ -81,7 +81,7 @@ function MainFooter() {
                             <Image src="/icons/youtube.svg" alt="youtube" width={20} height={20} />
                         </div>
                         <p className="text-xs mobile:text-sm laptop:text-base mt-4 tablet:mt-0">
-                            Copyright © 2025. HappyWay
+                            Copyright © 2025. SPOC
                         </p>
                     </div>
                 </div>

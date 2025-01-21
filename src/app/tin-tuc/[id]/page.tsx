@@ -5,7 +5,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import React from 'react';
 
 export const metadata = {
-    title: 'Tin tức - HappyWay',
+    title: 'Tin tức - SPOC',
     description: 'Cập nhật tin tức mới nhất về sức khỏe và dinh dưỡng',
 };
 

@@ -5,6 +5,11 @@ import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
 import React from 'react';
 
+export const metadata = {
+    title: 'Giới thiệu - SPOC',
+    description: 'Giới thiệu về SPOC',
+};
+
 function GioiThieuPage() {
     return (
         <div className="page-container">

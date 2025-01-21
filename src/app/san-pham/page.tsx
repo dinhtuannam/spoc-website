@@ -12,6 +12,11 @@ interface Product {
     image: string;
 }
 
+export const metadata = {
+    title: 'Sản phẩm - SPOC',
+    description: 'Viên ngũ cốc dinh dưỡng cho trẻ em',
+};
+
 function SanPham() {
     const breadcrumb: BreadcrumbItem[] = [
         {

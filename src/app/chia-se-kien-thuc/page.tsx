@@ -2,6 +2,11 @@ import KnowledgeCard from '@/components/card/knowledge.card';
 import Image from 'next/image';
 import React from 'react';
 
+export const metadata = {
+    title: 'Chia sẻ kiến thức - SPOC',
+    description: 'Chia sẽ kiến thức cộng đồng',
+};
+
 function ChiaSeKienThuc() {
     return (
         <div className="page-container min-h-screen">
