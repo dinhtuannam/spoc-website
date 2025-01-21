@@ -73,6 +73,7 @@ function MainFooter() {
                             </div>
                         </div>
                     </div>
+                    {/* abc */}
                     <Separator className="h-[1px] w-full bg-gray-50 mt-6" />
                     <div className=" flex flex-col tablet:flex-row justify-between items-center border-t border-gray-700 pt-8">
                         <div className="flex justify-center tablet:justify-start space-x-4">
