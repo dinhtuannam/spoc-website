@@ -1,4 +1,6 @@
+import { RelatedProducts } from './san-pham/[id]/_components/related-products';
 import Banner from '@/components/banner';
+import AppButton from '@/components/button/app.button';
 import NewsCard from '@/components/card/news.card';
 import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
@@ -9,6 +11,13 @@ import Image from 'next/image';
 export default function Home() {
     const imgs: string[] = ['/images/banner.png', '/images/banner.png', '/images/banner.png'];
     const sliders: string[] = ['/images/card-slider.jpeg', '/images/card-slider.jpeg', '/images/card-slider.jpeg'];
+    const relatedProducts = Array(4).fill({
+        id: 'san-pham-khac',
+        name: 'Thực phẩm ngũ ngon',
+        price: 100000,
+        unit: 'Hộp',
+        image: '/images/product.png',
+    });
 
     return (
         <div className="page-container min-h-screen">
@@ -42,6 +51,16 @@ export default function Home() {
                     );
                 })}
             </VeritcalSlider>
+            <div className="mb-8 laptop:mb-16 app-padding">
+                <RelatedProducts
+                    products={relatedProducts}
+                    title="SẢN PHẨM BÁN CHẠY"
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
+                />
+                <div className="center mt-8">
+                    <AppButton className="mx-auto">Khám phá thêm</AppButton>
+                </div>
+            </div>
             <Hero
                 className="mt-4"
                 background="blue"

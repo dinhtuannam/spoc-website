@@ -4,7 +4,6 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    
 }
 
 ::-webkit-scrollbar {
@@ -31,6 +30,9 @@ body {
 }
 
 @layer utilities {
+    .center {
+        @apply flex justify-center items-center;
+    }
     .text-balance {
         text-wrap: balance;
     }

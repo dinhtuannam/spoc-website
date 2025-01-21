@@ -15,14 +15,20 @@ interface RelatedProduct {
 
 interface RelatedProductsProps {
     products: RelatedProduct[];
+    title: string;
+    description?: string;
+    link?: string;
 }
 
-export function RelatedProducts({ products }: RelatedProductsProps) {
+export function RelatedProducts({ products, title, description, link }: RelatedProductsProps) {
     return (
         <div className="mt-10 laptop:mt-16">
-            <h2 className="text-center text-[#00B5D8] font-bold mobile:text-lg tablet:text-xl laptop:text-2xl mb-6 laptop:mb-10">
-                CÁC SẢN PHẨM KHÁC
-            </h2>
+            <div className="mb-6 laptop:mb-10 max-w-[60%] mx-auto">
+                <h2 className="text-center text-app-primary-blue font-bold mobile:text-lg tablet:text-xl laptop:text-2xl">
+                    {title}
+                </h2>
+                {description && <h3 className="text-center mt-2">{description}</h3>}
+            </div>
             <div className="grid mobile:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-4 laptop:gap-6">
                 {products.map((product, index) => (
                     <Card key={index} className="p-3 laptop:p-4 hover:shadow-lg transition-shadow">

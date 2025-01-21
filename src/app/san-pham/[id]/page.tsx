@@ -118,7 +118,7 @@ function ChiTietSanPham() {
                 </div>
 
                 {/* Related Products */}
-                <RelatedProducts products={relatedProducts} />
+                <RelatedProducts products={relatedProducts} title="CÁC SẢN PHẨM KHÁC" />
             </div>
         </div>
     );
