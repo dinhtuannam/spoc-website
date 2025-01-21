@@ -12,11 +12,6 @@ interface CartItem {
     image: string;
 }
 
-export const metadata = {
-    title: 'Giỏ hàng - SPOC',
-    description: 'Giỏ hàng của tôi',
-};
-
 function GioHang() {
     const breadcrumb: BreadcrumbItem[] = [
         {
