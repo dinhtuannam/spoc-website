@@ -12,18 +12,18 @@ function MainFooter() {
 
             <div className="w-full bg-app-primary-blue text-white py-8 app-padding pt-28">
                 <div className="max-w-[1200px] mx-auto">
-                    <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-20">
+                    <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-16">
                         <div className="flex items-start justify-center mb-8 laptop:mb-0">
                             <Image
                                 src="/images/logo-blur.png"
                                 alt="spoc-logo"
-                                width={117}
+                                width={180}
                                 height={117}
                                 quality={100}
                                 className="h-auto laptop:m-0"
                             />
                         </div>
-                        <div className="mb-8 laptop:mb-0 laptop:max-w-[260px]">
+                        <div className="mb-8 laptop:mb-0 laptop:max-w-[300px]">
                             <h3 className="footer__content-title text-center laptop:text-left">Thông tin liên lạc</h3>
                             <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
                                 <MailIcon className="min-w-[20px]" />
@@ -41,7 +41,7 @@ function MainFooter() {
                             </div>
                         </div>
 
-                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 gap-4 laptop:gap-16 flex-1">
+                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-2 gap-2 laptop:gap-0 flex-1">
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Về chúng tôi</h3>
                                 <ul className="footer__content-list">
@@ -49,16 +49,6 @@ function MainFooter() {
                                     <li>Đội ngũ chuyên gia</li>
                                     <li>Tin tức</li>
                                     <li>Liên hệ</li>
-                                </ul>
-                            </div>
-
-                            <div className="footer__content_item">
-                                <h3 className="footer__content-title">Hỗ trợ</h3>
-                                <ul className="footer__content-list">
-                                    <li>Hướng dẫn mua hàng</li>
-                                    <li>Chính sách bảo mật</li>
-                                    <li>Chính sách bảo hành</li>
-                                    <li>Đóng gói và vận chuyển</li>
                                 </ul>
                             </div>
 

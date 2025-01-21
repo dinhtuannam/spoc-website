@@ -17,19 +17,16 @@ export default function Home() {
             <Hero
                 className="mt-4"
                 background="white"
-                title="Sức khỏe toàn diện, mãi mãi trường thọ"
-                description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. SPOC là
-                        kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. SPOC là kênh cung cấp
-                        kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
+                title="Slogan công ty"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 img={'/images/hero.jpeg'}
                 imgPosition="left"
                 link="abc"
             />
             <VeritcalSlider
                 background="gray"
-                title="Lối sống khỏe 3T"
-                description="Xoay quanh lối sống khoẻ 3T, cùng SPOC xây dựng 1 lối sống
-vui tươi, khoẻ mạnh và hạnh phúc"
+                title="Tầm nhìn, sứ mệnh, Gía trị cốt lõi"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
             >
                 {sliders.map((img, index) => {
                     return (
@@ -46,7 +43,6 @@ vui tươi, khoẻ mạnh và hạnh phúc"
                     );
                 })}
             </VeritcalSlider>
-            <HorizontalSlider />
             <Hero
                 className="mt-4"
                 background="blue"

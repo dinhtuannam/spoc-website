@@ -30,7 +30,7 @@ function VerticalSliderSection({
             )}
         >
             {(title || description) && (
-                <div className="text-center mx-auto max-w-[35rem] mb-4 tablet:mb-10">
+                <div className="text-center mx-auto max-w-[60rem] mb-4 tablet:mb-10">
                     {title && <h1 className="text-title text-app-primary-blue">{title}</h1>}
                     {description && <p className="mt-2 tablet:mt-4 text-description">{description}</p>}
                 </div>
