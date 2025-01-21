@@ -32,7 +32,7 @@ function Hero({ background, imgPosition, img, title, description, className, lin
     return (
         <div
             className={cn(
-                'grid grid-cols-10 items-center gap-1 laptop:py-4 app-padding',
+                'grid grid-cols-10 items-center gap-1 py-4 app-padding',
                 className,
                 background === 'blue' ? 'bg-app-primary-blue' : 'bg-white',
             )}
@@ -43,7 +43,7 @@ function Hero({ background, imgPosition, img, title, description, className, lin
                 <div
                     className={cn(
                         'desktop:max-w-[38rem] laptop:max-w-[28rem] w-full laptop:text-left',
-                        imgPosition === 'right' ? 'text-left' : 'text-center mx-auto',
+                        imgPosition === 'right' ? 'text-center laptop:text-left' : 'text-center mx-auto',
                     )}
                 >
                     <h1
@@ -62,7 +62,11 @@ function Hero({ background, imgPosition, img, title, description, className, lin
                     >
                         {description}
                     </p>
-                    {link && <AppButton>Khám phá</AppButton>}
+                    {link && (
+                        <AppButton className={cn(imgPosition === 'right' ? 'mb-4 laptop:mb-0' : '')}>
+                            Khám phá
+                        </AppButton>
+                    )}
                 </div>
             </div>
 

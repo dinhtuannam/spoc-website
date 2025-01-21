@@ -10,7 +10,7 @@ const config: Config = {
     theme: {
         extend: {
             spacing: {
-                'page-padding': '4rem',
+                'page-padding': '6rem',
             },
             screens: {
                 mobile: '0px', // 0 to 480px
@@ -28,7 +28,7 @@ const config: Config = {
             // ************* Shadcn config ************
             colors: {
                 'app-primary-blue': '#1E4077',
-                'app-primary': '#FE8F1C',
+                'app-primary': '#EF5A39',
                 'app-primary-hover': '#FF7900',
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
