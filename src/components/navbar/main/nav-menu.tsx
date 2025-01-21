@@ -12,9 +12,9 @@ interface AppNavlink {
 const navlinks: AppNavlink[] = [
     { label: 'Trang chủ', href: '/' },
     { label: 'Giới thiệu', href: '/gioi-thieu' },
-    { label: 'Chia sẻ kiến thức', href: '/chia-se-kien-thuc' },
     { label: 'Sản phẩm', href: '/san-pham' },
     { label: 'Tin tức', href: '/tin-tuc' },
+    { label: 'Liên hệ', href: '/lien-he' },
 ];
 
 function NavMenu() {

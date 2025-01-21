@@ -15,8 +15,8 @@ function GioiThieuPage() {
         <div className="page-container">
             <Hero
                 background="white"
-                title="Sứ mệnh của Happy Way"
-                description="Happy Way ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, Happy Way mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
+                title="Sứ mệnh của SPOC"
+                description="SPOC ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, SPOC mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
                 img={'/images/hero.jpeg'}
                 imgPosition="left"
                 link="abc"
@@ -24,15 +24,15 @@ function GioiThieuPage() {
             <Hero
                 background="blue"
                 title="Giá trị cốt lõi"
-                description="Happy Way ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, Happy Way mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
+                description="SPOC ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, SPOC mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
                 img={'/images/hero.jpeg'}
                 imgPosition="right"
                 link="abc"
             />
             <Hero
                 background="white"
-                title="Tầm nhìn của Happy Way"
-                description="Happy Way ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, Happy Way mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
+                title="Tầm nhìn của SPOC"
+                description="SPOC ra đời với sứ mệnh cung cấp một phương pháp toàn diện giúp mọi người chăm sóc sức khỏe thể chất và tinh thần một cách cân bằng. Chúng tôi tin rằng một tâm trí an vui, cơ thể khỏe mạnh và chế độ ăn uống lành mạnh là nền tảng của một cuộc sống hạnh phúc. Thông qua các chương trình hỗ trợ, hướng dẫn thực hành và cộng đồng chia sẻ, SPOC mong muốn giúp bạn giảm bớt căng thẳng, đạt được sự bình an trong tâm hồn và có được sức khỏe tối ưu để sống cuộc sống trọn vẹn hơn."
                 img={'/images/hero.jpeg'}
                 imgPosition="left"
                 link="abc"
@@ -41,7 +41,7 @@ function GioiThieuPage() {
                 className="mt-4"
                 background="blue"
                 title="Đội ngũ cố vấn chuyên môn"
-                description="HappyWay là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
+                description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
                 img={'/images/people.png'}
                 imgPosition="right"
                 link="abc"

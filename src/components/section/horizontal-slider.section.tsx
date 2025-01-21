@@ -15,7 +15,7 @@ function HorizontalSliderSection() {
             <div className="text-center desktop:text-left desktop:pl-24 mb-10 col-span-9 desktop:col-span-3 flex-col flex justify-center">
                 <h1 className="text-title text-app-primary-blue">Lối sống khỏe 3T</h1>
                 <p className="mt-1 text-description">
-                    Xoay quanh lối sống khoẻ 3T, cùng HappyWay xây dựng 1 lối sống vui tươi, khoẻ mạnh và hạnh phúc
+                    Xoay quanh lối sống khoẻ 3T, cùng SPOC xây dựng 1 lối sống vui tươi, khoẻ mạnh và hạnh phúc
                 </p>
                 <div className="mt-4 hidden desktop:block">
                     <AppButton>KHÁM PHÁ</AppButton>

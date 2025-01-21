@@ -18,8 +18,8 @@ export default function Home() {
                 className="mt-4"
                 background="white"
                 title="Sức khỏe toàn diện, mãi mãi trường thọ"
-                description="HappyWay là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. HappyWay là
-                        kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. HappyWay là kênh cung cấp
+                description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. SPOC là
+                        kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng. SPOC là kênh cung cấp
                         kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
                 img={'/images/hero.jpeg'}
                 imgPosition="left"
@@ -28,7 +28,7 @@ export default function Home() {
             <VeritcalSlider
                 background="gray"
                 title="Lối sống khỏe 3T"
-                description="Xoay quanh lối sống khoẻ 3T, cùng HappyWay xây dựng 1 lối sống
+                description="Xoay quanh lối sống khoẻ 3T, cùng SPOC xây dựng 1 lối sống
 vui tươi, khoẻ mạnh và hạnh phúc"
             >
                 {sliders.map((img, index) => {
@@ -51,7 +51,7 @@ vui tươi, khoẻ mạnh và hạnh phúc"
                 className="mt-4"
                 background="blue"
                 title="Đội ngũ cố vấn chuyên môn"
-                description="HappyWay là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
+                description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
                 img={'/images/people.png'}
                 imgPosition="right"
                 link="abc"

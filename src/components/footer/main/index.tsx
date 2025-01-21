@@ -13,7 +13,7 @@ function MainFooter() {
             <div className="w-full bg-app-primary-blue text-white py-8 app-padding pt-28">
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-20">
-                        <div className="flex items-start justify-center mb-4 laptop:mb-0">
+                        <div className="flex items-start justify-center mb-8 laptop:mb-0">
                             <Image
                                 src="/images/logo-blur.png"
                                 alt="spoc-logo"
@@ -27,7 +27,7 @@ function MainFooter() {
                             <h3 className="footer__content-title text-center laptop:text-left">Thông tin liên lạc</h3>
                             <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
                                 <MailIcon className="min-w-[20px]" />
-                                <p className="text-xs mobile:text-sm laptop:text-base">happyway@gmail.vn</p>
+                                <p className="text-xs mobile:text-sm laptop:text-base">spoc@gmail.vn</p>
                             </div>
                             <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
                                 <PhoneIcon className="min-w-[20px]" />
@@ -41,7 +41,7 @@ function MainFooter() {
                             </div>
                         </div>
 
-                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 gap-8 laptop:gap-16 flex-1">
+                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 gap-4 laptop:gap-16 flex-1">
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Về chúng tôi</h3>
                                 <ul className="footer__content-list">
