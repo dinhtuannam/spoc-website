@@ -61,6 +61,10 @@ body {
         @apply tracking-wider text-base tablet:text-xl;
     }
 
+    .input-none-border {
+        @apply focus-visible:ring-0 focus-visible:border-white !border-0 rounded-none;
+    }
+
     .roboto-regular {
         font-family: 'Roboto', serif;
         font-weight: 400;

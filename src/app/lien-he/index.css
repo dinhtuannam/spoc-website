@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.lienHe__form_input {
+    @apply bg-transparent !text-xl text-white px-0 placeholder:!text-white/80;
+}
+
+.lienHe__form_item {
+    @apply border-b border-white pb-2;
+}
