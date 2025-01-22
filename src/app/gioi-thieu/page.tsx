@@ -17,7 +17,7 @@ function GioiThieuPage() {
                 background="white"
                 title="Tầm nhìn"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                img={'/images/hero.jpeg'}
+                img={'/images/section-1.png'}
                 imgPosition="left"
                 link="abc"
             />
@@ -25,7 +25,7 @@ function GioiThieuPage() {
                 background="blue"
                 title="Sứ mệnh"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                img={'/images/hero.jpeg'}
+                img={'/images/section-2.png'}
                 imgPosition="right"
                 link="abc"
             />
