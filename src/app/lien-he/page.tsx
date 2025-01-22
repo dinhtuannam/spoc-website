@@ -26,8 +26,10 @@ function LienHe() {
     return (
         <div className="page-container h-[936px] relative">
             {/* Background Image */}
-            <div className="absolute inset-0">
-                <img src="/images/banner-lien-he.jpeg" alt="Contact" className="w-full h-auto object-cover" />
+            <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: 'url(/images/banner-lien-he.jpeg)' }}
+            >
                 <div className="absolute inset-0 " />
             </div>
 
