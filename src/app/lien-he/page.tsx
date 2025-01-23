@@ -2,6 +2,7 @@ import BannerLienHe from './_components/banner';
 import CompanyInfo from './_components/company-info';
 import React from 'react';
 import './index.css';
+import FadeContent from '@/components/animate/fade-content';
 
 export const revalidate = 3600;
 
@@ -14,7 +15,9 @@ async function LienHe() {
     return (
         <div className="page-container height-minus">
             <BannerLienHe />
-            <CompanyInfo />
+            <FadeContent blur={true} duration={800} easing="ease-out" initialOpacity={0}>
+                <CompanyInfo />
+            </FadeContent>
         </div>
     );
 }
