@@ -24,7 +24,7 @@ export default function Home() {
 
     return (
         <div className="page-container height-minus">
-            <Banner images={imgs} />
+            <Banner images={imgs} priority />
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero
                     className="mt-4"
@@ -46,6 +46,7 @@ export default function Home() {
                         return (
                             <CarouselItem key={index} className="basis-1/3 tablet:mx-1">
                                 <Image
+                                    priority
                                     src={img}
                                     alt={`banner-${index}`}
                                     width={0}

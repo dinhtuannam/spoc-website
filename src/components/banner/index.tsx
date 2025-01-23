@@ -3,9 +3,10 @@ import Image from 'next/image';
 
 interface BannerProps {
     images: string[];
+    priority?: boolean;
 }
 
-function Banner({ images }: BannerProps) {
+function Banner({ images, priority = false }: BannerProps) {
     return (
         <Carousel>
             <CarouselContent>
@@ -13,6 +14,7 @@ function Banner({ images }: BannerProps) {
                     return (
                         <CarouselItem key={index}>
                             <Image
+                                priority={priority}
                                 src={img}
                                 alt={`banner-${index}`}
                                 width={0}

@@ -11,13 +11,15 @@ interface HeroProps {
     description: string;
     className?: string;
     link?: string;
+    priority?: boolean;
 }
 
-function Hero({ background, imgPosition, img, title, description, className, link }: HeroProps) {
+function Hero({ background, imgPosition, img, title, description, className, link, priority = false }: HeroProps) {
     const renderImage = () => {
         return (
             <div className="col-span-10 laptop:col-span-4">
                 <Image
+                    priority={priority}
                     src={img}
                     alt="hero"
                     width={0}

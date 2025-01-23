@@ -23,6 +23,7 @@ function GioiThieuPage() {
                 img={'/images/section-1.png'}
                 imgPosition="left"
                 link="abc"
+                priority
             />
             <Hero
                 background="blue"
@@ -31,6 +32,7 @@ function GioiThieuPage() {
                 img={'/images/section-2.png'}
                 imgPosition="right"
                 link="abc"
+                priority
             />
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero

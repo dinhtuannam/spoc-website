@@ -15,7 +15,7 @@ async function LienHe() {
     return (
         <div className="page-container height-minus">
             <BannerLienHe />
-            <FadeContent blur={true} duration={800} easing="ease-out" initialOpacity={0}>
+            <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <CompanyInfo />
             </FadeContent>
         </div>
