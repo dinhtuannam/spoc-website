@@ -35,7 +35,7 @@ function CompanyInfo() {
             </div>
 
             {/* Map Container */}
-            <div className="laptop:col-span-6 w-full h-[400px] tablet:h-[500px] laptop:h-[400px] rounded-app-radius overflow-hidden shadow-lg">
+            <div className="laptop:col-span-6 w-full h-[400px] tablet:h-[500px] laptop:h-[400px] rounded-app-radius overflow-hidden shadow-lg mt-8 laptop:mt-0">
                 <Map />
             </div>
         </div>
