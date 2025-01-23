@@ -5,7 +5,11 @@ import './index.css';
 import FooterContact from './footer-contact';
 import { Separator } from '@radix-ui/react-separator';
 
-function MainFooter() {
+// Thêm revalidate cho ISR
+export const revalidate = 6200; // Revalidate mỗi 1 giờ
+
+async function MainFooter() {
+    // Có thể fetch data ở đây nếu cần
     return (
         <div className="flex flex-col items-center page-container relative mt-36">
             <FooterContact />

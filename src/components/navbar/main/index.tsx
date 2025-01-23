@@ -3,6 +3,9 @@ import { Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Thêm cache cho SSG
+export const dynamic = 'force-static';
+
 function MainNavbar() {
     return (
         <div className="shadow-bottom w-full navbar-sticky">
@@ -15,6 +18,7 @@ function MainNavbar() {
                         width={140}
                         height={32}
                         style={{ height: 'auto' }}
+                        priority
                     />
                 </Link>
                 <div className="flex items-center gap-4">
