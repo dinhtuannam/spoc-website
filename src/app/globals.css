@@ -42,6 +42,9 @@ body {
     .page-container {
         @apply max-w-app-primary mx-auto;
     }
+    .height-minus {
+        @apply min-h-[calc(100vh-73px)];
+    }
     .app-padding {
         @apply px-2 tablet:px-8 laptop:px-page-padding;
     }

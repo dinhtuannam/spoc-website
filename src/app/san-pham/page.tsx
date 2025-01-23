@@ -38,7 +38,7 @@ function SanPham() {
     });
 
     return (
-        <div className="page-container">
+        <div className="page-container height-minus">
             <Image
                 src={'/images/banner-sp.png'}
                 alt={`banner`}

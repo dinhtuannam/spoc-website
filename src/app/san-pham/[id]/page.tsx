@@ -39,7 +39,7 @@ function ChiTietSanPham() {
     });
 
     return (
-        <div className="page-container">
+        <div className="page-container height-minus">
             <div className="app-padding mt-5 laptop:mt-10">
                 <Breadcrumb values={breadcrumb} />
 

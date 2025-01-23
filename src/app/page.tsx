@@ -20,7 +20,7 @@ export default function Home() {
     });
 
     return (
-        <div className="page-container min-h-screen">
+        <div className="page-container height-minus">
             <Banner images={imgs} />
             <Hero
                 className="mt-4"

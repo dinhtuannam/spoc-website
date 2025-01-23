@@ -12,7 +12,7 @@ export const metadata = {
 
 function GioiThieuPage() {
     return (
-        <div className="page-container">
+        <div className="page-container height-minus">
             <Hero
                 background="white"
                 title="Tầm nhìn"
