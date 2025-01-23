@@ -8,6 +8,8 @@ import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
 import Image from 'next/image';
 
+export const revalidate = 3600;
+
 export default function Home() {
     const imgs: string[] = ['/images/banner.png', '/images/banner.png', '/images/banner.png'];
     const sliders: string[] = ['/images/card-slider.jpeg', '/images/card-slider.jpeg', '/images/card-slider.jpeg'];

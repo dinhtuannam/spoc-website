@@ -12,12 +12,16 @@ interface Product {
     image: string;
 }
 
+// Thêm revalidate cho ISR
+export const revalidate = 3600; // Revalidate mỗi 1 giờ
+
 export const metadata = {
     title: 'Sản phẩm - SPOC',
     description: 'Viên ngũ cốc dinh dưỡng cho trẻ em',
 };
 
-function SanPham() {
+// Chuyển thành async function để hỗ trợ data fetching
+async function SanPham() {
     const breadcrumb: BreadcrumbItem[] = [
         {
             title: 'Trang chủ',
@@ -29,6 +33,7 @@ function SanPham() {
         },
     ];
 
+    // Giả lập data, trong thực tế có thể fetch từ API
     const products: Product[] = Array(6).fill({
         id: 'san-pham-sach',
         name: 'Thực phẩm ngũ ngon',
@@ -46,6 +51,7 @@ function SanPham() {
                 height={0}
                 sizes="100vw"
                 style={{ width: '100%', height: 'auto', maxHeight: '615px', objectFit: 'cover' }}
+                priority
             />
             <div className="app-padding flex mobile:flex-col tablet:flex-row justify-between items-center mt-5 laptop:mt-15 desktop:mt-20 mobile:gap-4">
                 <Breadcrumb values={breadcrumb} />

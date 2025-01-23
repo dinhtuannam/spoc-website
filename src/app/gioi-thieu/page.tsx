@@ -5,6 +5,8 @@ import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
 import React from 'react';
 
+export const revalidate = 3600;
+
 export const metadata = {
     title: 'Giới thiệu - SPOC',
     description: 'Giới thiệu về SPOC',
