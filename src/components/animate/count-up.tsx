@@ -1,7 +1,7 @@
 'use client';
 
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 interface CountUpProps {
     suffix?: '-' | '+';
@@ -30,6 +30,7 @@ export default function CountUp({
     onStart,
     onEnd,
 }: CountUpProps) {
+    const [pending, setPending] = useState(true);
     const ref = useRef<HTMLSpanElement>(null);
     const motionValue = useMotionValue(direction === 'down' ? to : from);
 
@@ -81,15 +82,25 @@ export default function CountUp({
                     maximumFractionDigits: 0,
                 };
 
-                const wSuffix = suffix ? suffix : '';
+                const wSuffix = suffix ? ` ${suffix}` : '';
                 const formattedNumber = Intl.NumberFormat('en-US', options).format(Number(latest.toFixed(0))) + wSuffix;
 
                 ref.current.textContent = separator ? formattedNumber.replace(/,/g, separator) : formattedNumber;
+                setPending(false);
             }
         });
 
         return () => unsubscribe();
     }, [springValue, separator]);
 
-    return <span className={`${className}`} ref={ref} />;
+    return (
+        <Fragment>
+            <span className={`${className}`} ref={ref} />
+            {pending && (
+                <span className={`${className}`}>
+                    {from} {suffix ? suffix : ''}
+                </span>
+            )}
+        </Fragment>
+    );
 }

@@ -2,6 +2,7 @@ import FadeContent from '@/components/animate/fade-content';
 import NewsCard from '@/components/card/news.card';
 import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
+import SocialMediaHero from '@/components/hero/social-media';
 import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
 import React from 'react';
@@ -45,15 +46,7 @@ function GioiThieuPage() {
                 />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
-                <Hero
-                    className="mt-4"
-                    background="blue"
-                    title="Đội ngũ cố vấn chuyên môn"
-                    description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
-                    img={'/images/people.png'}
-                    imgPosition="right"
-                    link="abc"
-                />
+                <SocialMediaHero />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <div className="mt-8">
