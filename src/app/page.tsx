@@ -5,6 +5,7 @@ import AppButton from '@/components/button/app.button';
 import NewsCard from '@/components/card/news.card';
 import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
+import SocialMediaHero from '@/components/hero/social-media';
 import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
 import Image from 'next/image';
@@ -24,6 +25,7 @@ export default function Home() {
 
     return (
         <div className="page-container height-minus">
+            <SocialMediaHero />
             <Banner images={imgs} priority />
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero
