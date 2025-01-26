@@ -1,5 +1,6 @@
 import ProductCategories from '@/app/san-pham/_components/product-categories';
 import { Breadcrumb } from '@/components/breadcrumb';
+import ProductCard from '@/components/card/product.card';
 import SearchBar from '@/components/input/search.input';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -64,24 +65,7 @@ async function SanPham() {
                 <div className="mobile:col-span-1 laptop:col-span-3">
                     <div className="grid mobile:grid-cols-2 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
                         {products.map((product, index) => (
-                            <div key={index} className="flex flex-col items-center">
-                                <Link href={`/san-pham/${product.id}`} className="relative w-full aspect-square mb-4">
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        fill
-                                        className="object-contain cursor-pointer hover:scale-105 transition"
-                                    />
-                                </Link>
-                                <h3 className="text-center font-medium mobile:text-sm tablet:text-base">
-                                    {product.name}
-                                </h3>
-                                <div className="flex gap-1 mobile:text-sm tablet:text-base">
-                                    <p className="font-semibold">{product.price.toLocaleString()}đ</p>
-                                    <span className="font-bold">/</span>
-                                    <p>{product.unit}</p>
-                                </div>
-                            </div>
+                            <ProductCard key={index} />
                         ))}
                     </div>
                 </div>
