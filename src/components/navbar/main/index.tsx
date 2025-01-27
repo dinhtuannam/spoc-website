@@ -5,31 +5,14 @@ import NavMenu from './nav-menu';
 import { cn } from '@/lib/utils';
 import { Phone } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 // Thêm cache cho SSG
 export const dynamic = 'force-static';
 
 function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 0);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
-        <header
-            className={cn(
-                'fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300',
-                isScrolled ? 'shadow-md' : '',
-            )}
-        >
-            <div className="max-w-app-primary mx-auto">
+        <div className={cn('navbar-sticky bg-white transition-all duration-300 shadow-md')}>
+            <div className="max-w-app-primary mx-auto h-[73px]">
                 <nav className="flex items-center justify-between h-20 px-4 laptop:px-8">
                     {/* Logo */}
                     <Link href="/" className="relative z-10">
@@ -56,7 +39,7 @@ function Navbar() {
                     </div>
                 </nav>
             </div>
-        </header>
+        </div>
     );
 }
 
