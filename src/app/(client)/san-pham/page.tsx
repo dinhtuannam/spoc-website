@@ -1,9 +1,8 @@
-import ProductCategories from '@/app/san-pham/_components/product-categories';
+import ProductCategories from '@/app/(client)/san-pham/_components/product-categories';
 import { Breadcrumb } from '@/components/breadcrumb';
 import ProductCard from '@/components/card/product.card';
 import SearchBar from '@/components/input/search.input';
 import Image from 'next/image';
-import Link from 'next/link';
 
 interface Product {
     id: string;

@@ -1,4 +1,4 @@
-import { RelatedProducts } from './san-pham/[id]/_components/related-products';
+import { RelatedProducts } from '@/app/(client)/san-pham/[id]/_components/related-products';
 import FadeContent from '@/components/animate/fade-content';
 import Banner from '@/components/banner';
 import AppButton from '@/components/button/app.button';
