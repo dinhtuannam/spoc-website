@@ -8,15 +8,26 @@ function VideoModal() {
     const { videoUrl, isVideoOpen, closeVideo } = useVideo();
 
     useEffect(() => {
+        // Load TikTok embed script một lần khi component mount
+        const script = document.createElement('script');
+        script.src = 'https://www.tiktok.com/embed.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            // Cleanup script khi unmount
+            if (document.body.contains(script)) {
+                document.body.removeChild(script);
+            }
+        };
+    }, []); // Empty dependency array
+
+    useEffect(() => {
         if (isVideoOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
         }
-
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
     }, [isVideoOpen]);
 
     if (!isVideoOpen || !videoUrl) return null;
@@ -48,10 +59,9 @@ function VideoModal() {
                                 style={{ backgroundColor: '#000000' }}
                                 frameBorder="0"
                                 allowFullScreen
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allow="clipboard-write; encrypted-media; picture-in-picture"
                             />
                         </blockquote>
-                        <script async src="https://www.tiktok.com/embed.js"></script>
                     </div>
                 </div>
             </div>
