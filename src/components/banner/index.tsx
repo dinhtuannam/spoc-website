@@ -1,5 +1,10 @@
+'use client';
+
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { type CarouselApi } from '@/components/ui/carousel';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useState, useEffect, Fragment } from 'react';
 
 interface BannerProps {
     images: string[];
@@ -7,11 +12,24 @@ interface BannerProps {
 }
 
 function Banner({ images, priority = false }: BannerProps) {
+    const [api, setApi] = useState<CarouselApi>();
+    const [current, setCurrent] = useState(0);
+
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+
+        api.on('select', () => {
+            setCurrent(api.selectedScrollSnap());
+        });
+    }, [api]);
+
     return (
-        <Carousel>
-            <CarouselContent>
-                {images.map((img, index) => {
-                    return (
+        <div className="relative">
+            <Carousel setApi={setApi}>
+                <CarouselContent>
+                    {images.map((img, index) => (
                         <CarouselItem key={index}>
                             <Image
                                 priority={priority}
@@ -23,13 +41,35 @@ function Banner({ images, priority = false }: BannerProps) {
                                 style={{ width: '100%', height: 'auto', maxHeight: '690px', objectFit: 'cover' }}
                             />
                         </CarouselItem>
-                    );
-                })}
-            </CarouselContent>
+                    ))}
+                </CarouselContent>
 
-            <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full" />
-            <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full" />
-        </Carousel>
+                {images.length > 0 && (
+                    <Fragment>
+                        <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full" />
+                        <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-black/50 text-white p-2 rounded-full" />
+                    </Fragment>
+                )}
+
+                {images.length > 0 && (
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+                        {images.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => api?.scrollTo(index)}
+                                className={cn(
+                                    'w-4 h-4 rounded-full transition-all duration-300 border-2 border-white ',
+                                    current === index
+                                        ? 'bg-app-primary scale-110 border-app-primary'
+                                        : 'bg-transparent hover:bg-app-primary ',
+                                )}
+                                aria-label={`Go to slide ${index + 1}`}
+                            />
+                        ))}
+                    </div>
+                )}
+            </Carousel>
+        </div>
     );
 }
 
