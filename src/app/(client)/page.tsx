@@ -2,6 +2,7 @@ import { RelatedProducts } from '@/app/(client)/san-pham/[id]/_components/relate
 import FadeContent from '@/components/animate/fade-content';
 import Banner from '@/components/banner';
 import AppButton from '@/components/button/app.button';
+import CardSlider from '@/components/card-slider';
 import NewsCard from '@/components/card/news.card';
 import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
@@ -37,27 +38,7 @@ export default function Home() {
                 />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
-                <VeritcalSlider
-                    background="gray"
-                    title="Tầm nhìn, sứ mệnh, Gía trị cốt lõi"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
-                >
-                    {sliders.map((img, index) => {
-                        return (
-                            <CarouselItem key={index} className="basis-1/3 tablet:mx-1">
-                                <Image
-                                    priority
-                                    src={img}
-                                    alt={`banner-${index}`}
-                                    width={0}
-                                    height={0}
-                                    sizes="100vw"
-                                    className="img-hover rounded-lg w-[387px] tablet:h-[262px] laptop:h-[480px] h-[200px] ultra:w-full ultra:h-[700px] object-cover mx-auto"
-                                />
-                            </CarouselItem>
-                        );
-                    })}
-                </VeritcalSlider>
+                <CardSlider />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <div className="mb-8 laptop:mb-16 app-padding">
