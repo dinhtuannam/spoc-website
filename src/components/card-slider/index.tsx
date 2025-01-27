@@ -1,5 +1,7 @@
 'use client';
 
+import VideoModal from '../modal/video-modal';
+import { useVideo } from '@/contexts/video-context';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
@@ -31,6 +33,7 @@ const cardData: CardItem[] = [
 function CardSlider() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [showScrollbar, setShowScrollbar] = useState(false);
+    const { openVideo } = useVideo();
 
     useEffect(() => {
         const checkScroll = () => {
@@ -60,7 +63,7 @@ function CardSlider() {
                 </div>
 
                 {/* Cards Container */}
-                <div className="relative px-4 tablet:px-8 laptop:px-page-padding ">
+                <div className="relative px-4 tablet:px-8 laptop:px-page-padding">
                     <div className="max-w-full mx-auto">
                         <div
                             ref={scrollRef}
@@ -72,6 +75,7 @@ function CardSlider() {
                             {cardData.map((card, index) => (
                                 <div
                                     key={index}
+                                    onClick={() => openVideo('https://www.tiktok.com/embed/v2/7173970009390173442')}
                                     className="cursor-pointer group relative bg-white rounded-app-radius overflow-hidden shadow-lg snap-start h-[400px] tablet:h-[480px] laptop:h-[500px] desktop:h-[560px]"
                                 >
                                     {/* Image with Overlay */}
