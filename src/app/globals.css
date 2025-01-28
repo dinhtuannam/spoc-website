@@ -46,7 +46,10 @@ body {
         @apply min-h-[calc(100vh-73px)];
     }
     .app-padding {
-        @apply px-2 tablet:px-8 laptop:px-page-padding;
+        @apply px-2 tablet:px-8 laptop:px-10 desktop:px-page-padding;
+    }
+    .admin-padding {
+        @apply px-2 tablet:px-4 laptop:px-8;
     }
     .navbar-sticky {
         @apply sticky top-0 z-50 bg-white;

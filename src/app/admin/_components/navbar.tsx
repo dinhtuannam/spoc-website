@@ -6,7 +6,7 @@ import React from 'react';
 function AdminNavbar() {
     return (
         <div className="w-full h-[70px] navbar-sticky bg-white transition-all duration-300 shadow-md">
-            <div className="flex items-center justify-between h-full w-full px-4 laptop:px-6">
+            <div className="flex items-center justify-between h-full w-full admin-padding page-container">
                 <SidebarTrigger />
                 <div className="flex gap-4 items-center">
                     <Bell className="cursor-pointer opacity-70 hover:opacity-100 transition" />

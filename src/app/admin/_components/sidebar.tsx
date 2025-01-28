@@ -4,6 +4,7 @@ import TrangChuIcon from '../../../../public/icons/trang-chu.svg';
 import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
 import { ChevronDown, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const menuItems = [
@@ -11,8 +12,8 @@ const menuItems = [
         title: 'Trang chủ',
         icon: TrangChuIcon,
         children: [
-            { title: 'Banner', url: '/admin/banner' },
-            { title: 'Section 1', url: '/admin/section-1' },
+            { title: 'Banner', url: '/admin/trang-chu/banner' },
+            { title: 'Section 1', url: '/admin/trang-chu/section-1' },
             { title: 'Section 2', url: '/admin/section-2' },
             { title: 'Section 3', url: '/admin/section-3' },
         ],
@@ -71,13 +72,13 @@ export function AdminSidebar() {
                                 >
                                     <div className="py-1">
                                         {item.children.map((child) => (
-                                            <a
+                                            <Link
                                                 key={child.title}
                                                 href={child.url}
                                                 className="block py-2 px-4 text-sm text-gray-600 hover:bg-blue-50 hover:text-app-primary-blue transition-colors duration-200"
                                             >
                                                 {child.title}
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>

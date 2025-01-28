@@ -22,7 +22,7 @@ export default function AdminLayout({
             <body className={`${roboto.className} antialiased `}>
                 <SidebarProvider>
                     <AdminSidebar />
-                    <main className="w-full h-minus">
+                    <main className="w-full h-minus bg-[#F5F6FA]">
                         <AdminNavbar />
                         {children}
                     </main>
