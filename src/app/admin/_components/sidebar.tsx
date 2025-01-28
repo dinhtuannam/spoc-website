@@ -45,7 +45,7 @@ export function AdminSidebar() {
                             <div key={item.title} className="mb-2">
                                 <button
                                     onClick={() => setExpandedItem(expandedItem === item.title ? null : item.title)}
-                                    className="w-full px-4 py-2 flex items-center justify-between text-gray-700 hover:bg-gray-100"
+                                    className="w-full px-4 py-2 flex items-center justify-between text-gray-700 hover:bg-blue-50"
                                 >
                                     <div className="flex items-center gap-2">
                                         <Image
@@ -74,7 +74,7 @@ export function AdminSidebar() {
                                             <a
                                                 key={child.title}
                                                 href={child.url}
-                                                className="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100 hover:text-app-primary-blue transition-colors duration-200"
+                                                className="block py-2 px-4 text-sm text-gray-600 hover:bg-blue-50 hover:text-app-primary-blue transition-colors duration-200"
                                             >
                                                 {child.title}
                                             </a>
