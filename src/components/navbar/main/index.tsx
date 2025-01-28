@@ -12,8 +12,8 @@ export const dynamic = 'force-static';
 function Navbar() {
     return (
         <div className={cn('navbar-sticky bg-white transition-all duration-300 shadow-md')}>
-            <div className="max-w-app-primary mx-auto h-[73px]">
-                <nav className="flex items-center justify-between h-20 px-4 laptop:px-8">
+            <div className="max-w-app-primary mx-auto h-[73px] app-padding">
+                <nav className="flex items-center justify-between h-full">
                     {/* Logo */}
                     <Link href="/" className="relative z-10">
                         <img src="/images/logo.png" alt="Logo" className="h-12" />

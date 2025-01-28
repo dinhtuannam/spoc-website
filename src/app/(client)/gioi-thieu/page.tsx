@@ -23,7 +23,6 @@ function GioiThieuPage() {
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                 img={'/images/section-1.png'}
                 imgPosition="left"
-                link="abc"
                 priority
             />
             <Hero
@@ -32,7 +31,6 @@ function GioiThieuPage() {
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                 img={'/images/section-2.png'}
                 imgPosition="right"
-                link="abc"
                 priority
             />
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
@@ -42,7 +40,6 @@ function GioiThieuPage() {
                     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                     img={'/images/hero.jpeg'}
                     imgPosition="left"
-                    link="abc"
                 />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>

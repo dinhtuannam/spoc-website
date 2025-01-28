@@ -34,7 +34,7 @@ function Hero({ background, imgPosition, img, title, description, className, lin
     return (
         <div
             className={cn(
-                'grid grid-cols-10 items-center gap-1 py-4 app-padding',
+                'grid grid-cols-10 items-center gap-1 py-4 app-padding laptop:py-8 desktop:py-12',
                 className,
                 background === 'blue' ? 'bg-app-primary-blue' : 'bg-white',
             )}

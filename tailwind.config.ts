@@ -20,7 +20,7 @@ const config: Config = {
                 ultra: '1600px',
             },
             maxWidth: {
-                'app-primary': '1600px',
+                'app-primary': '1920px',
             },
             boxShadow: {
                 bottom: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Chỉ có bóng ở phía dưới.

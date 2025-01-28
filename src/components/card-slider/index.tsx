@@ -76,7 +76,7 @@ function CardSlider() {
                                 <div
                                     key={index}
                                     onClick={() => openVideo('https://www.tiktok.com/embed/v2/7173970009390173442')}
-                                    className="cursor-pointer group relative bg-white rounded-app-radius overflow-hidden shadow-lg snap-start h-[400px] tablet:h-[480px] laptop:h-[500px] desktop:h-[560px]"
+                                    className="cursor-pointer group relative bg-white rounded-app-radius overflow-hidden shadow-lg snap-start h-[400px] tablet:h-[480px] laptop:h-[500px] desktop:h-[580px]"
                                 >
                                     {/* Image with Overlay */}
                                     <div className="relative h-full">
