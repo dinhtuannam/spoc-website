@@ -7,7 +7,7 @@ function FooterContact() {
 
     return (
         <div className="absolute top-[-60px] w-full">
-            <div className="mx-4 laptop:mx-auto laptop:w-[90%] desktop:w-[80%]">
+            <div className="mx-4 laptop:mx-auto app-padding">
                 <div className="bg-app-primary text-white rounded-md">
                     <div className="flex flex-col laptop:flex-row items-center justify-between p-4 laptop:py-8 laptop:px-12 desktop:px-14 desktop:py-10">
                         {/* Title Section */}

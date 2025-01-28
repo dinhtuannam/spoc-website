@@ -15,9 +15,9 @@ async function MainFooter() {
             <FooterContact />
 
             <div className="w-full bg-app-primary-blue text-white py-8 app-padding pt-28">
-                <div className="max-w-[1200px] mx-auto">
-                    <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:gap-16">
-                        <div className="flex items-start justify-center mb-8 laptop:mb-0">
+                <div className="">
+                    <div className="flex flex-col desktop:flex-row desktop:justify-between desktop:gap-16">
+                        <div className="flex items-start justify-center mb-8 desktop:mb-0">
                             <Image
                                 src="/images/logo-blur.png"
                                 alt="spoc-logo"
@@ -27,25 +27,27 @@ async function MainFooter() {
                                 className="h-auto laptop:m-0"
                             />
                         </div>
-                        <div className="mb-8 laptop:mb-0 laptop:max-w-[300px]">
-                            <h3 className="footer__content-title text-center laptop:text-left">Thông tin liên lạc</h3>
-                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
-                                <MailIcon className="min-w-[20px]" />
-                                <p className="text-xs mobile:text-sm laptop:text-base">spoc@gmail.vn</p>
-                            </div>
-                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
-                                <PhoneIcon className="min-w-[20px]" />
-                                <p className="text-xs mobile:text-sm laptop:text-base">0123 123 123</p>
-                            </div>
-                            <div className="flex items-center mt-4 gap-2 justify-center laptop:justify-start">
-                                <MapPinIcon className="min-w-[20px]" />
-                                <p className="text-xs mobile:text-sm laptop:text-base">
-                                    123 Trần Hưng Đạo, P.12, Q.5, TP.HCM
-                                </p>
-                            </div>
-                        </div>
 
-                        <div className="grid mobile:grid-cols-1 tablet:grid-cols-2 gap-2 laptop:gap-0 flex-1">
+                        <div className="grid grid-cols-1 desktop:grid-cols-3 gap-2 desktop:gap-0 flex-1">
+                            <div className="mb-8 laptop:mb-">
+                                <h3 className="footer__content-title text-center desktop:text-left">
+                                    Thông tin liên lạc
+                                </h3>
+                                <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
+                                    <MailIcon className="min-w-[20px]" />
+                                    <p className="text-xs mobile:text-sm laptop:text-base">spoc@gmail.vn</p>
+                                </div>
+                                <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
+                                    <PhoneIcon className="min-w-[20px]" />
+                                    <p className="text-xs mobile:text-sm laptop:text-base">0123 123 123</p>
+                                </div>
+                                <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
+                                    <MapPinIcon className="min-w-[20px]" />
+                                    <p className="text-xs mobile:text-sm laptop:text-base">
+                                        123 Trần Hưng Đạo, P.12, Q.5, TP.HCM
+                                    </p>
+                                </div>
+                            </div>
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Về chúng tôi</h3>
                                 <ul className="footer__content-list">

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .footer__content_item {
-    @apply mb-8 laptop:mb-0 text-center laptop:text-left;
+    @apply mb-8 laptop:mb-0 text-center desktop:text-left;
 }
 
 .footer__content-title {
