@@ -8,6 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+export const dynamic = 'force-static';
+
 function DangNhap() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
