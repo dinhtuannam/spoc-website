@@ -13,8 +13,8 @@ interface DeleteButtonProps {
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick, className, children, hoverContent }) => {
     const button = (
-        <Button onClick={onClick} className={cn('bg-red-400 hover:bg-red-500 text-white flex items-center', className)}>
-            <TrashIcon className="w-5 h-5" />
+        <Button onClick={onClick} className={cn('btn-danger flex items-center', className)}>
+            {/* <TrashIcon className="w-5 h-5" /> */}
             {children}
         </Button>
     );
@@ -22,7 +22,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick, className, childre
     return (
         <HoverCard>
             <HoverCardTrigger asChild>{button}</HoverCardTrigger>
-            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Delete'}</HoverCardContent>
+            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Xóa'}</HoverCardContent>
         </HoverCard>
     );
 };

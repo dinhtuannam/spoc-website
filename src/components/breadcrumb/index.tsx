@@ -6,7 +6,6 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { cn } from '@/lib/utils';
-import { Slash } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -19,7 +18,7 @@ type BreadcrumbProps = {
 export function Breadcrumb({ values, className, container }: BreadcrumbProps) {
     return (
         <Container className={cn(container)}>
-            <BreadcrumbList className="!gap-0">
+            <BreadcrumbList className="!gap-0 tracking-wider">
                 {values.map((item, index) => (
                     <React.Fragment key={item.link}>
                         {index > 0 && (

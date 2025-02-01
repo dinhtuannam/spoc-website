@@ -14,8 +14,8 @@ const menuItems = [
         children: [
             { title: 'Banner', url: '/admin/trang-chu/banner' },
             { title: 'Section 1', url: '/admin/trang-chu/section-1' },
-            { title: 'Section 2', url: '/admin/section-2' },
-            { title: 'Section 3', url: '/admin/section-3' },
+            { title: 'Section 2', url: '/admin/trang-chu/section-2' },
+            { title: 'Section 3', url: '/admin/trang-chu/section-3' },
         ],
     },
     {

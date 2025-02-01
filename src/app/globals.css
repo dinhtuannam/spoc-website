@@ -66,9 +66,20 @@ body {
     .text-description {
         @apply tracking-wider text-base tablet:text-xl;
     }
-
+    .btn-primary {
+        @apply bg-[#E8F1FF] text-[#1E4077] hover:!bg-[#d5e5ff] transition;
+    }
+    .btn-danger {
+        @apply bg-[#FFEBE8] hover:!bg-[#ffdad4] text-[#D32F1E] transition;
+    }
+    .btn-secondary {
+        @apply bg-[#6994f9] hover:!bg-[#4f84ff] text-white transition;
+    }
     .input-none-border {
         @apply focus-visible:ring-0 focus-visible:border-white !border-0 rounded-none;
+    }
+    .app-input {
+        @apply bg-white focus-visible:!ring-0 focus-visible:!border-gray-400 placeholder:!text-gray-500;
     }
 
     .roboto-regular {

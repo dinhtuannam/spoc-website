@@ -6,15 +6,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import React from 'react';
 
-function Section1() {
+function Section3() {
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Trang chủ',
             link: '/admin/trang-chu/banner',
         },
         {
-            title: 'Section 1',
-            link: '/admin/trang-chu/section-1',
+            title: 'Section 3',
+            link: '/admin/trang-chu/section-3',
         },
     ];
     return (
@@ -44,4 +44,4 @@ function Section1() {
     );
 }
 
-export default Section1;
+export default Section3;

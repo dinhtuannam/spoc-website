@@ -13,11 +13,8 @@ interface EditButtonProps {
 
 const EditButton: React.FC<EditButtonProps> = ({ onClick, className, children, hoverContent }) => {
     const button = (
-        <Button
-            onClick={onClick}
-            className={cn('bg-blue-400 hover:bg-blue-500 text-white flex items-center', className)}
-        >
-            <PencilIcon className="w-5 h-5" />
+        <Button variant={'outline'} onClick={onClick} className={cn('btn-primary flex items-center', className)}>
+            {/* <PencilIcon className="w-5 h-5" /> */}
             {children}
         </Button>
     );
@@ -25,7 +22,7 @@ const EditButton: React.FC<EditButtonProps> = ({ onClick, className, children, h
     return (
         <HoverCard>
             <HoverCardTrigger asChild>{button}</HoverCardTrigger>
-            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Edit'}</HoverCardContent>
+            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Chỉnh sửa'}</HoverCardContent>
         </HoverCard>
     );
 };

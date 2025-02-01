@@ -3,17 +3,16 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
 import { cn } from '@/lib/utils';
 import React from 'react';
 
-interface CustomButtonProps {
+interface SaveButtonProps {
     onClick?: () => void;
-    variant?: Varinant;
     className?: string;
     children?: React.ReactNode;
     hoverContent?: string;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ onClick, className, variant, children, hoverContent }) => {
+const SaveButton: React.FC<SaveButtonProps> = ({ onClick, className, children, hoverContent }) => {
     const button = (
-        <Button variant={variant || 'default'} onClick={onClick} className={cn('flex items-center', className)}>
+        <Button onClick={onClick} className={cn('btn-secondary flex items-center', className)}>
             {children}
         </Button>
     );
@@ -21,9 +20,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({ onClick, className, variant
     return (
         <HoverCard>
             <HoverCardTrigger asChild>{button}</HoverCardTrigger>
-            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Create new'}</HoverCardContent>
+            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Lưu thay đổi'}</HoverCardContent>
         </HoverCard>
     );
 };
 
-export default CustomButton;
+export default SaveButton;
