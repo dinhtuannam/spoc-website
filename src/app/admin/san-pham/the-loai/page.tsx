@@ -1,6 +1,7 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
+import AddButton from '@/components/button/add.button';
 import EditButton from '@/components/button/edit.button';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
@@ -50,8 +51,9 @@ function Page() {
 
     return (
         <div className="page-container admin-padding my-8">
-            <div className="mb-4">
+            <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
+                <AddButton icon>Thêm</AddButton>
             </div>
 
             <div className="mt-4">
