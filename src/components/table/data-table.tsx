@@ -228,7 +228,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                     <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full lg:w-auto">
                         {!!api && !dataTable ? (
                             <Input
-                                placeholder="Enter search keywords ..."
+                                placeholder="Nhập từ khóa tìm kiếm ..."
                                 value={searchInput}
                                 onChange={(event) => handleChangeSearchInput(event)}
                                 onKeyDown={(event) => {
@@ -266,7 +266,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                                     variant="outline"
                                     className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
                                 >
-                                    Columns
+                                    Cột hiển thị
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="bg-white dark:bg-gray-800">
@@ -274,6 +274,8 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                                     .getAllColumns()
                                     .filter((column) => column.getCanHide())
                                     .map((column) => {
+                                        console.log(column);
+
                                         return (
                                             <DropdownMenuCheckboxItem
                                                 key={column.id}
@@ -281,7 +283,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                                                 checked={column.getIsVisible()}
                                                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
                                             >
-                                                {column.id}
+                                                {column.columnDef.header?.toString()}
                                             </DropdownMenuCheckboxItem>
                                         );
                                     })}
