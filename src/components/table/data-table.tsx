@@ -380,7 +380,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                                             <Flex align="center" direction="column">
                                                 <img src={'/icons/not-found.svg'} alt="Logo" className="h-32 mb-4" />
                                                 <Label className="text-gray-500 dark:text-gray-400">
-                                                    No data available
+                                                    Không tìm thấy dữ liệu
                                                 </Label>
                                             </Flex>
                                         </TableCell>

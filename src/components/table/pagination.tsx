@@ -88,12 +88,12 @@ export function TablePagination<TData>({
     return (
         <div className="flex flex-col sm:flex-row items-center justify-between px-2 py-4 space-y-4 sm:space-y-0">
             <div className="text-sm text-muted-foreground order-2 sm:order-1">
-                {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
-                selected.
+                <strong>{table.getFilteredSelectedRowModel().rows.length}</strong> trên{' '}
+                <strong>{table.getFilteredRowModel().rows.length}</strong> bản ghi được chọn.
             </div>
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8 order-1 sm:order-2">
                 <div className="flex items-center space-x-2">
-                    <p className="text-sm font-medium">Rows per page</p>
+                    <p className="text-sm font-medium">Bản ghi mỗi trang</p>
                     <Select
                         value={paginate ? `${paginate.pageSize}` : `${table.getState().pagination.pageSize}`}
                         onValueChange={(value) => handleChangePageSize(value)}
@@ -113,8 +113,8 @@ export function TablePagination<TData>({
                 <div className="flex items-center space-x-2">
                     <p className="text-sm font-medium">
                         {paginate
-                            ? `Page ${paginate.pageIndex} of ${paginate.totalPages}`
-                            : `Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`}
+                            ? `Trang ${paginate.pageIndex} / ${paginate.totalPages}`
+                            : `Trang ${table.getState().pagination.pageIndex + 1} / ${table.getPageCount()}`}
                     </p>
                     <div className="flex items-center space-x-2">
                         <Button

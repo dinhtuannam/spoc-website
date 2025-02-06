@@ -5,6 +5,7 @@ import AddButton from '@/components/button/add.button';
 import EditButton from '@/components/button/edit.button';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
+import ApiRoute from '@/constants/api-route';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
@@ -59,10 +60,10 @@ function Page() {
             <div className="mt-4">
                 <DataTable
                     columns={columns}
-                    api="/api/ProductCategory/pagination"
+                    api={ApiRoute.ProductCategory.pagination}
                     ref={tableRef}
                     selectKey={'id'}
-                    deleteApi="/api/ProductCategory"
+                    deleteApi={ApiRoute.ProductCategory.root}
                 />
             </div>
         </div>
