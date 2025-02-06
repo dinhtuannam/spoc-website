@@ -27,6 +27,22 @@ const menuItems = [
             { title: 'Section 3', url: '/admin/gioi-thieu/section-3' },
         ],
     },
+    {
+        title: 'Sản phẩm',
+        icon: TrangChuIcon,
+        children: [
+            { title: 'Sản phẩm', url: '/admin/san-pham' },
+            { title: 'Thể loại', url: '/admin/san-pham/the-loai' },
+        ],
+    },
+    {
+        title: 'Tin tức',
+        icon: TrangChuIcon,
+        children: [
+            { title: 'Tin tức', url: '/admin/san-pham' },
+            { title: 'Thể loại', url: '/admin/san-pham/the-loai' },
+        ],
+    },
 ];
 
 export function AdminSidebar() {

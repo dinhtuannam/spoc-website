@@ -18,7 +18,7 @@ function getAxios(baseURL: string) {
     });
 
     ins.interceptors.response.use(
-        (response) => response.data,
+        (response) => response,
         (error) => {
             if (error.response && error.response.status === 401) {
                 //removeTokens();
@@ -31,4 +31,4 @@ function getAxios(baseURL: string) {
     return ins;
 }
 
-export const API = getAxios(`https://localhost:7000`);
+export const API = getAxios(`https://spoc-api.onrender.com`);

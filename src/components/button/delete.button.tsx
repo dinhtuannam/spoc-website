@@ -9,12 +9,13 @@ interface DeleteButtonProps {
     className?: string;
     children?: React.ReactNode;
     hoverContent?: string;
+    icon?: boolean;
 }
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick, className, children, hoverContent }) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ onClick, className, children, hoverContent, icon = false }) => {
     const button = (
         <Button onClick={onClick} className={cn('btn-danger flex items-center', className)}>
-            {/* <TrashIcon className="w-5 h-5" /> */}
+            {icon && <TrashIcon className="w-5 h-5" />}
             {children}
         </Button>
     );

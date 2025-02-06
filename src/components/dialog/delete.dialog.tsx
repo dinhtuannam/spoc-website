@@ -29,17 +29,17 @@ const DeleteDialog: React.FC<DeleteDialogProps> = ({ visible, closeModal, onSubm
         <AlertDialog open={visible} onOpenChange={handleChange}>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Confirm delete data</AlertDialogTitle>
+                    <AlertDialogTitle>Xác nhận xóa dữ liệu</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Once confirmed, the data cannot be restored. Confirm?
+                        Một khi xóa, dữ liệu sẽ không thể khôi phục. Tiếp tục?
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel asChild>
-                        <Button variant="outline">Cancel</Button>
+                        <Button variant="outline">Hủy</Button>
                     </AlertDialogCancel>
                     <Button variant={'destructive'} onClick={handleSubmit}>
-                        Delete
+                        Xóa
                     </Button>
                 </AlertDialogFooter>
             </AlertDialogContent>
