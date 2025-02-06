@@ -1,7 +1,7 @@
 'use client';
 
-import Sidebar from '../sidebar';
 import NavMenu from './nav-menu';
+import Sidebar from './sidebar';
 import { cn } from '@/lib/utils';
 import { Phone } from 'lucide-react';
 import Link from 'next/link';

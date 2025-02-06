@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../globals.css';
-import MainFooter from '@/components/footer/main';
-import MainNavbar from '@/components/navbar/main';
+import MainFooter from '@/app/(client)/_components/footer';
+import MainNavbar from '@/app/(client)/_components/navbar';
 import { Toaster } from '@/components/ui/toaster';
 
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
