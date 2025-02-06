@@ -51,9 +51,9 @@ export function AdminSidebar() {
     return (
         <Sidebar>
             <SidebarContent className="!bg-white">
-                <div className="p-4 border-b border-gray-200">
+                <Link href={'/admin'} className="p-4 border-b border-gray-200 cursor-pointer">
                     <Image src="/images/logo.png" alt="SOPC" width={183} height={64} />
-                </div>
+                </Link>
 
                 <SidebarGroup>
                     <div className="py-4">
