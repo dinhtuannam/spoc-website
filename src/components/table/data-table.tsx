@@ -18,7 +18,6 @@ import GeneratorHelper from '@/helpers/generator.helper';
 import { isEmpty } from '@/helpers/object.helper';
 import { randomString } from '@/helpers/string.helper';
 import { useToast } from '@/hooks/use-toast';
-import useFetch from '@/hooks/useFetch';
 import { API } from '@/lib/axios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {

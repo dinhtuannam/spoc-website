@@ -20,7 +20,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     {children}
                     <VideoModal />
                 </VideoProvider>
-                <Toaster />
             </body>
         </html>
     );

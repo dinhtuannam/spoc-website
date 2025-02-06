@@ -1,5 +1,5 @@
 import { AdminSidebar } from './_components/sidebar';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '@/app/globals.css';
@@ -27,6 +27,7 @@ export default function AdminLayout({
                     <main className="w-full h-minus bg-[#F5F6FA]">
                         <AdminNavbar />
                         <QueryProvider>{children}</QueryProvider>
+                        <Toaster />
                     </main>
                 </SidebarProvider>
             </body>
