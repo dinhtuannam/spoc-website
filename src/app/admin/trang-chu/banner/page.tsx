@@ -9,7 +9,7 @@ function Banner() {
         },
         {
             title: 'Banner',
-            link: '/admin/trang-chu/banner',
+            link: '',
         },
     ];
     return (

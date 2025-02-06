@@ -20,6 +20,7 @@ import { randomString } from '@/helpers/string.helper';
 import { useToast } from '@/hooks/use-toast';
 import useFetch from '@/hooks/useFetch';
 import { API } from '@/lib/axios';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -73,6 +74,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
     }: DataTableProps<TData, TValue>,
     ref: React.Ref<{ onFetch: () => void }>,
 ) {
+    const queryClient = useQueryClient();
     const { toast } = useToast();
     const [deleteId, setDeleteId] = React.useState<any[]>([]);
     const [visible, setVisible] = React.useState<boolean>(false);
@@ -115,10 +117,25 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
         }
     }, [param]);
 
-    const { data: paginate, loading } =
-        !!api && !dataTable
-            ? useFetch<PaginatedData<TData>>(api, { ...defaultParam }, [defaultParam, fetch, ...dependency])
-            : { data: null, loading: false };
+    const getPaginateData = async (
+        endpoint: string | undefined,
+        params?: any,
+    ): Promise<PaginatedData<TData> | null> => {
+        try {
+            if (!endpoint) return null;
+            const res = await API.get<ApiRes<PaginatedData<TData>>>(endpoint, { params });
+            const data = res.data;
+            return data.data;
+        } catch (error) {
+            return null;
+        }
+    };
+
+    const { data: paginate, isLoading: loading } = useQuery<PaginatedData<TData> | null>({
+        queryKey: [api || fetch, defaultParam, ...dependency],
+        queryFn: () => getPaginateData(api, defaultParam),
+        staleTime: 1000 * 10, // 10 giây
+    });
 
     const data = React.useMemo(() => {
         return dataTable ? dataTable : paginate?.items || [];
@@ -165,8 +182,16 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
         }));
     };
 
+    const onClearQuery = () => {
+        queryClient.invalidateQueries({
+            queryKey: [api || fetch, defaultParam, ...dependency],
+            exact: true,
+        });
+    };
+
     const onFetch = () => {
         const text = randomString(12);
+        onClearQuery();
         setFetch(text);
         setRowSelection({});
     };
@@ -185,18 +210,19 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                 const { data: response } = await API.delete(deleteApi, {
                     data: payload,
                 });
+
                 if (!response.succeeded) {
                     toast({
                         variant: 'destructive',
-                        title: 'Delete alert',
+                        title: 'Thông báo xóa',
                         description: response.errorMessage,
                         duration: 1500,
                     });
                 } else {
                     toast({
                         //variant: 'success',
-                        title: 'Delete alert',
-                        description: `${deleteId.length} rows deleted successfully`,
+                        title: 'Thông báo xóa',
+                        description: `Xóa thành công ${deleteId.length} bản ghi`,
                         duration: 1500,
                     });
                     onFetch();
@@ -274,8 +300,6 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                                     .getAllColumns()
                                     .filter((column) => column.getCanHide())
                                     .map((column) => {
-                                        console.log(column);
-
                                         return (
                                             <DropdownMenuCheckboxItem
                                                 key={column.id}

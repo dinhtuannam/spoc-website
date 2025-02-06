@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import VideoModal from '@/components/modal/video-modal';
+import { Toaster } from '@/components/ui/toaster';
 import { VideoProvider } from '@/contexts/video-context';
 
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${roboto.className} antialiased`}>
                 <VideoProvider>
                     {children}
                     <VideoModal />
                 </VideoProvider>
+                <Toaster />
             </body>
         </html>
     );
