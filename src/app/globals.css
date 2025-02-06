@@ -54,6 +54,9 @@ body {
     .navbar-sticky {
         @apply sticky top-0 z-50 bg-white;
     }
+    .preview {
+        @apply cursor-pointer hover:opacity-90 transition;
+    }
     .img-hover {
         @apply border-[3px] border-transparent hover:border-app-primary-blue cursor-pointer transition;
     }

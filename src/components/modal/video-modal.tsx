@@ -33,7 +33,7 @@ function VideoModal() {
     if (!isVideoOpen || !videoUrl) return null;
 
     return (
-        <div className="fixed inset-0 z-[9999] bg-black animate-in fade-in duration-200" onClick={closeVideo}>
+        <div className="fixed inset-0 z-[9999] bg-black/70 animate-in fade-in duration-200" onClick={closeVideo}>
             <div className="absolute inset-0 flex items-center justify-center">
                 {/* Close Button */}
                 <button

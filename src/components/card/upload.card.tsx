@@ -5,8 +5,9 @@ import DeleteButton from '../button/delete.button';
 import EditButton from '../button/edit.button';
 import UploadButton from '../button/upload.button';
 import { Card, CardContent } from '../ui/card';
+import { useImagePreview } from '@/contexts/image-preview-context';
 import { cn } from '@/lib/utils';
-import { Link2 } from 'lucide-react';
+import { Link2, LucideTrash, Trash, Trash2, TrashIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { Fragment, useState } from 'react';
 
@@ -26,6 +27,7 @@ function UploadCard({
     onUpload,
 }: UploadCardProps) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const { openImage } = useImagePreview();
 
     const handleFileSelect = (file: File) => {
         const imageUrl = URL.createObjectURL(file);
@@ -33,11 +35,36 @@ function UploadCard({
         if (onUpload) onUpload(file);
     };
 
+    const isFileEmpty = () => {
+        return selectedImage === null && src === '/images/empty-img.png';
+    };
+
+    const handleClickImage = () => {
+        if (isFileEmpty()) {
+            return;
+        }
+        openImage(selectedImage || src);
+    };
+
     return (
         <Card className="w-fit">
             <CardContent className="!p-0">
-                <div className={cn('bg-[#EFEFEF] relative', className)}>
-                    <Image src={selectedImage || src} alt="Preview" fill className="object-cover w-full h-auto" />
+                <div className={cn('relative', !isFileEmpty() ? 'bg-black' : 'bg-[#EFEFEF]', className)}>
+                    <Image
+                        onClick={handleClickImage}
+                        src={selectedImage || src}
+                        alt="Preview"
+                        fill
+                        className={cn('object-cover w-full h-auto', !isFileEmpty() && 'preview')}
+                    />
+                    {selectedImage !== null && (
+                        <div
+                            className="rounded-md absolute top-4 right-4 w-fit p-1.5 cursor-pointer btn-danger"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            <Trash2 className=" mr-[-1.1px]" />
+                        </div>
+                    )}
                 </div>
                 <div className="px-4 py-3 flex justify-between items-center border-t">
                     <span className="text-gray-600 font-semibold">{label}</span>

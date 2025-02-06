@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
+import ImagePreview from '@/components/modal/image-preview';
 import VideoModal from '@/components/modal/video-modal';
 import { Toaster } from '@/components/ui/toaster';
+import { ImagePreviewProvider } from '@/contexts/image-preview-context';
 import { VideoProvider } from '@/contexts/video-context';
 
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
@@ -17,8 +19,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en" suppressHydrationWarning>
             <body className={`${roboto.className} antialiased`}>
                 <VideoProvider>
-                    {children}
-                    <VideoModal />
+                    <ImagePreviewProvider>
+                        {children}
+                        <VideoModal />
+                        <ImagePreview />
+                    </ImagePreviewProvider>
                 </VideoProvider>
             </body>
         </html>
