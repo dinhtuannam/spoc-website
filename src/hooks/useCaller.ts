@@ -64,7 +64,7 @@ function useCaller<T>(): UseCallerState<T> {
                 if (showToast)
                     toast({
                         variant: 'destructive',
-                        title: 'Action alert',
+                        title: 'Thông báo thao tác',
                         description: errorMessage,
                         duration: 1500,
                     });
@@ -73,8 +73,8 @@ function useCaller<T>(): UseCallerState<T> {
                 if (showToast)
                     toast({
                         variant: 'default',
-                        title: 'Action alert',
-                        description: successMessage || 'Your action was successfully completed',
+                        title: 'Thông báo thao tác',
+                        description: successMessage || 'Thao tác thành côn',
                         duration: 1500,
                     });
             }
@@ -82,7 +82,7 @@ function useCaller<T>(): UseCallerState<T> {
             return response.data;
         } catch (error) {
             setSucceeded(false);
-            const errorMsg = 'An error occurred, please try again.';
+            const errorMsg = 'Đã xảy ra lỗi, vui lòng thử lại.';
             setErrorMessage(errorMsg);
             toast({
                 variant: 'destructive',

@@ -78,6 +78,9 @@ body {
     .btn-secondary {
         @apply bg-[#6994f9] hover:!bg-[#4f84ff] text-white transition;
     }
+    .btn-primary-blue {
+        @apply bg-app-primary-blue text-white hover:!bg-app-primary-blue-hover disabled:!bg-[#3B62A3];
+    }
     .input-none-border {
         @apply focus-visible:ring-0 focus-visible:border-white !border-0 rounded-none;
     }

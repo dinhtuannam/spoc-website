@@ -48,7 +48,7 @@ const DrawerContainer: React.FC<DrawerContainerProps> = ({ children, title, desc
                     <DrawerTitle>{title}</DrawerTitle>
                     <DrawerDescription>{description}</DrawerDescription>
                 </DrawerHeader>
-                {children}
+                <div className="px-4">{children}</div>
                 <DrawerFooter className="pt-2">
                     <DrawerClose asChild>
                         <Button variant="outline">Hủy</Button>

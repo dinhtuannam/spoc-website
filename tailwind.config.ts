@@ -27,6 +27,7 @@ const config: Config = {
             },
             colors: {
                 'app-primary-blue': '#1E4077',
+                'app-primary-blue-hover': '#2A508C',
                 'app-primary': '#EF5A39',
                 'app-primary-hover': '#FF7900',
                 background: 'hsl(var(--background))',

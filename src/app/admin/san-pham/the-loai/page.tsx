@@ -1,14 +1,17 @@
 'use client';
 
+import CategoryAddModal from './_components/add.modal';
+import CategoryUpdateModal from './_components/update.modal';
 import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import EditButton from '@/components/button/edit.button';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
 import ApiRoute from '@/constants/api-route';
+import useModal from '@/hooks/useModal';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -23,7 +26,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 function Page() {
     const { tableRef, onFetch } = useTableRef();
-
+    const { modals, openModal, closeModal } = useModal(['update', 'add']);
     const columns = useMemo<ColumnDef<ProductCategory>[]>(
         () => [
             ColumnSelect<ProductCategory>(),
@@ -37,11 +40,7 @@ function Page() {
                 cell: ({ row }) => {
                     return (
                         <div className="flex space-x-2">
-                            <EditButton
-                                className="py-1 px-2"
-                                icon
-                                navigate={`/admin/san-pham/the-loai/cap-nhat/${row.original.id}`}
-                            />
+                            <EditButton className="py-1 px-2" icon onClick={() => openModal('update', row.original)} />
                         </div>
                     );
                 },
@@ -54,7 +53,9 @@ function Page() {
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
-                <AddButton icon>Thêm</AddButton>
+                <AddButton icon onClick={() => openModal('add')}>
+                    Thêm
+                </AddButton>
             </div>
 
             <div className="mt-4">
@@ -66,6 +67,13 @@ function Page() {
                     deleteApi={ApiRoute.ProductCategory.root}
                 />
             </div>
+            <CategoryAddModal visible={modals['add'].visible} onFetch={onFetch} closeModal={() => closeModal('add')} />
+            <CategoryUpdateModal
+                visible={modals['update'].visible}
+                onFetch={onFetch}
+                closeModal={() => closeModal('update')}
+                data={modals['update'].data}
+            />
         </div>
     );
 }
