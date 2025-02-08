@@ -37,7 +37,7 @@ function Page() {
                 cell: ({ row }) => {
                     return (
                         <div className="flex space-x-2">
-                            <DetailButton className="py-1 px-2" />
+                            <DetailButton className="py-1 px-2" icon />
                             <EditButton className="py-1 px-2" icon />
                         </div>
                     );
