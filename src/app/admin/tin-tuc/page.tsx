@@ -7,7 +7,6 @@ import EditButton from '@/components/button/edit.button';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
 import ApiRoute from '@/constants/api-route';
-import useModal from '@/hooks/useModal';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
