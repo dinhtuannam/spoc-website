@@ -15,21 +15,21 @@ import { useMemo, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Sản phẩm',
-        link: '/admin/san-pham',
+        title: 'Tin tức',
+        link: '/admin/tin-tuc',
     },
     {
         title: 'Danh mục',
-        link: '/admin/san-pham/the-loai',
+        link: '/admin/tin-tuc/the-loai',
     },
 ];
 
 function Page() {
     const { tableRef, onFetch } = useTableRef();
     const { modals, openModal, closeModal } = useModal(['update', 'add']);
-    const columns = useMemo<ColumnDef<ProductCategory>[]>(
+    const columns = useMemo<ColumnDef<NewsCategory>[]>(
         () => [
-            ColumnSelect<ProductCategory>(),
+            ColumnSelect<NewsCategory>(),
             {
                 accessorKey: 'name',
                 header: 'Tên danh mục',
@@ -61,10 +61,10 @@ function Page() {
             <div className="mt-4">
                 <DataTable
                     columns={columns}
-                    api={ApiRoute.ProductCategory.pagination}
+                    api={ApiRoute.NewsCategory.pagination}
                     ref={tableRef}
                     selectKey={'id'}
-                    deleteApi={ApiRoute.ProductCategory.root}
+                    deleteApi={ApiRoute.NewsCategory.root}
                 />
             </div>
             <CategoryAddModal visible={modals['add'].visible} onFetch={onFetch} closeModal={() => closeModal('add')} />

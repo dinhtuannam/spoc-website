@@ -6,11 +6,10 @@ import ApiRoute from '@/constants/api-route';
 import GeneratorHelper from '@/helpers/generator.helper';
 import useCaller from '@/hooks/useCaller';
 import useObjectState from '@/hooks/useObjectState';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-type CategoryUpdateModalProps = {
+type NewsAddModalProps = {
     visible: boolean;
-    data: ProductCategory;
     closeModal: () => void;
     onFetch: () => void;
 };
@@ -21,15 +20,9 @@ const initialState = {
     name: '',
 };
 
-function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpdateModalProps) {
+function NewsAddModal({ visible, closeModal, onFetch }: NewsAddModalProps) {
     const { loading, callApi } = useCaller<any>();
     const { state, error } = useObjectState(initialState);
-
-    useEffect(() => {
-        if (data) {
-            state.setData(data);
-        }
-    }, [data]);
 
     const handleSubmit = async () => {
         if (state.data.name === '') {
@@ -37,9 +30,9 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
             return;
         }
         const result = await callApi(
-            ApiRoute.ProductCategory.root,
+            ApiRoute.NewsCategory.root,
             {
-                method: 'PUT',
+                method: 'POST',
                 body: state.data,
             },
             'Thêm mới danh mục thành công',
@@ -58,12 +51,8 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
     };
 
     return (
-        <DrawerContainer title="Cập nhật danh mục" open={visible} onClose={handleClose}>
+        <DrawerContainer title="Thêm danh mục" open={visible} onClose={handleClose}>
             <div className={'grid items-start gap-4 md:w-[400px] sm:w-full'}>
-                <div className="grid gap-2">
-                    <Label htmlFor="phone">Mã danh mục</Label>
-                    <Input id="name" value={state.data.code} disabled placeholder="Mã danh mục" />
-                </div>
                 <div className="grid gap-2">
                     <Label htmlFor="phone">Tên danh mục</Label>
                     <Input
@@ -76,7 +65,12 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
                         <span className="text-red-500 text-xs mt-[-3px]">*{error.data.name.msg}</span>
                     )}
                 </div>
-                <LoadingButton className="mt-2 btn-primary-blue" onClick={handleSubmit} isLoading={loading}>
+                <LoadingButton
+                    className="mt-2 btn-primary-blue"
+                    onClick={handleSubmit}
+                    isLoading={loading}
+                    loadingText="Đang lưu thay đổi ..."
+                >
                     Lưu thay đổi
                 </LoadingButton>
             </div>
@@ -84,4 +78,4 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
     );
 }
 
-export default CategoryUpdateModal;
+export default NewsAddModal;

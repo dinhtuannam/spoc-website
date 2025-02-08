@@ -8,9 +8,9 @@ import useCaller from '@/hooks/useCaller';
 import useObjectState from '@/hooks/useObjectState';
 import React, { useEffect } from 'react';
 
-type CategoryUpdateModalProps = {
+type NewsUpdateModalProps = {
     visible: boolean;
-    data: ProductCategory;
+    data: NewsCategory;
     closeModal: () => void;
     onFetch: () => void;
 };
@@ -21,7 +21,7 @@ const initialState = {
     name: '',
 };
 
-function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpdateModalProps) {
+function NewsUpdateModal({ visible, data, closeModal, onFetch }: NewsUpdateModalProps) {
     const { loading, callApi } = useCaller<any>();
     const { state, error } = useObjectState(initialState);
 
@@ -37,7 +37,7 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
             return;
         }
         const result = await callApi(
-            ApiRoute.ProductCategory.root,
+            ApiRoute.NewsCategory.root,
             {
                 method: 'PUT',
                 body: state.data,
@@ -84,4 +84,4 @@ function CategoryUpdateModal({ visible, data, closeModal, onFetch }: CategoryUpd
     );
 }
 
-export default CategoryUpdateModal;
+export default NewsUpdateModal;

@@ -26,7 +26,7 @@ function CategoryAddModal({ visible, closeModal, onFetch }: CategoryAddModalProp
 
     const handleSubmit = async () => {
         if (state.data.name === '') {
-            error.set('name', true, 'Tên thể loại không được để trống');
+            error.set('name', true, 'Tên danh mục không được để trống');
             return;
         }
         const result = await callApi(
@@ -35,7 +35,7 @@ function CategoryAddModal({ visible, closeModal, onFetch }: CategoryAddModalProp
                 method: 'POST',
                 body: state.data,
             },
-            'Thêm mới thể loại thành công',
+            'Thêm mới danh mục thành công',
         );
         if (result.succeeded) {
             error.clear();
@@ -51,15 +51,15 @@ function CategoryAddModal({ visible, closeModal, onFetch }: CategoryAddModalProp
     };
 
     return (
-        <DrawerContainer title="Thêm thể loại" open={visible} onClose={handleClose}>
+        <DrawerContainer title="Thêm danh mục" open={visible} onClose={handleClose}>
             <div className={'grid items-start gap-4 md:w-[400px] sm:w-full'}>
                 <div className="grid gap-2">
-                    <Label htmlFor="phone">Tên thể loại</Label>
+                    <Label htmlFor="phone">Tên danh mục</Label>
                     <Input
                         id="name"
                         value={state.data.name}
                         onChange={state.change}
-                        placeholder="Nhập tên thể loại..."
+                        placeholder="Nhập tên danh mục..."
                     />
                     {error.data.name.flag && (
                         <span className="text-red-500 text-xs mt-[-3px]">*{error.data.name.msg}</span>
