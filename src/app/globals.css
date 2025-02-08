@@ -69,14 +69,17 @@ body {
     .text-description {
         @apply tracking-wider text-base tablet:text-xl;
     }
+    .btn-info {
+        @apply bg-gray-200/50 hover:!bg-gray-300 border-gray-400/50 border-[0.5px] text-black transition;
+    }
     .btn-primary {
-        @apply bg-[#E8F1FF] text-[#1E4077] hover:!bg-[#d5e5ff] transition;
+        @apply bg-[#E8F1FF] text-[#1E4077] border-[#b1cfff] border-[0.5px] hover:!bg-[#d5e5ff] transition;
     }
     .btn-danger {
-        @apply bg-[#FFEBE8] hover:!bg-[#ffdad4] text-[#D32F1E] transition;
+        @apply bg-[#FFEBE8] hover:!bg-[#ffdad4] border-[#ffc4ba] border-[0.5px] text-[#D32F1E] transition;
     }
     .btn-secondary {
-        @apply bg-[#6994f9] hover:!bg-[#4f84ff] text-white transition;
+        @apply bg-[#6994f9] hover:!bg-[#4f84ff] border-[#4f84ff] border-[0.5px] text-white transition;
     }
     .btn-primary-blue {
         @apply bg-app-primary-blue text-white hover:!bg-app-primary-blue-hover disabled:!bg-[#3B62A3];

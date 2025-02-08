@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { cn } from '@/lib/utils';
-import { InfoIcon } from 'lucide-react';
+import { Eye, InfoIcon } from 'lucide-react';
 import React from 'react';
 
 interface DetailButtonProps {
@@ -13,11 +13,8 @@ interface DetailButtonProps {
 
 const DetailButton: React.FC<DetailButtonProps> = ({ onClick, className, children, hoverContent }) => {
     const button = (
-        <Button
-            onClick={onClick}
-            className={cn('bg-gray-400 hover:opacity-80 text-white flex items-center', className)}
-        >
-            <InfoIcon className="w-5 h-5" />
+        <Button onClick={onClick} className={cn('btn-info flex items-center', className)}>
+            <Eye className="w-5 h-5" />
             {children}
         </Button>
     );
@@ -25,7 +22,7 @@ const DetailButton: React.FC<DetailButtonProps> = ({ onClick, className, childre
     return (
         <HoverCard>
             <HoverCardTrigger asChild>{button}</HoverCardTrigger>
-            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Information'}</HoverCardContent>
+            <HoverCardContent className="w-auto font-semibold">{hoverContent || 'Xem chi tiết'}</HoverCardContent>
         </HoverCard>
     );
 };
