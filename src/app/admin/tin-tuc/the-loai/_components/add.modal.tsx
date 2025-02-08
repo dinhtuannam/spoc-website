@@ -1,7 +1,6 @@
 import LoadingButton from '@/components/button/loading.button';
 import DrawerContainer from '@/components/container/drawer.container';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import FieldInput from '@/components/map/field.input';
 import ApiRoute from '@/constants/api-route';
 import GeneratorHelper from '@/helpers/generator.helper';
 import useCaller from '@/hooks/useCaller';
@@ -53,18 +52,15 @@ function NewsAddModal({ visible, closeModal, onFetch }: NewsAddModalProps) {
     return (
         <DrawerContainer title="Thêm danh mục" open={visible} onClose={handleClose}>
             <div className={'grid items-start gap-4 md:w-[400px] sm:w-full'}>
-                <div className="grid gap-2">
-                    <Label htmlFor="phone">Tên danh mục</Label>
-                    <Input
-                        id="name"
-                        value={state.data.name}
-                        onChange={state.change}
-                        placeholder="Nhập tên danh mục..."
-                    />
-                    {error.data.name.flag && (
-                        <span className="text-red-500 text-xs mt-[-3px]">*{error.data.name.msg}</span>
-                    )}
-                </div>
+                <FieldInput
+                    error={error.data.name.flag}
+                    msg={error.data.name.msg}
+                    className="grid gap-2"
+                    id="name"
+                    value={state.data.name}
+                    onChange={state.change}
+                    placeholder="Nhập tên danh mục..."
+                />
                 <LoadingButton
                     className="mt-2 btn-primary-blue"
                     onClick={handleSubmit}
