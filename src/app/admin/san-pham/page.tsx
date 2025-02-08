@@ -1,17 +1,17 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
+import AddButton from '@/components/button/add.button';
+import DetailButton from '@/components/button/detail.button';
 import EditButton from '@/components/button/edit.button';
-import UploadCard from '@/components/card/upload.card';
 import LineClamp from '@/components/label/line-clamp';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
-import { Textarea } from '@/components/ui/textarea';
 import ApiRoute from '@/constants/api-route';
 import { useImagePreview } from '@/contexts/image-preview-context';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
+import { ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo } from 'react';
 
@@ -28,6 +28,24 @@ function Page() {
     const columns = useMemo<ColumnDef<Product>[]>(
         () => [
             ColumnSelect<Product>(),
+            {
+                accessorKey: 'highlight',
+                header: 'Nổi bật',
+                cell: ({ row }) => {
+                    const url = row.original.highlight ? '/icons/star-fill.svg' : '/icons/star.svg';
+                    return (
+                        <div className="w-12">
+                            <Image
+                                src={url}
+                                alt={'img'}
+                                width={24}
+                                height={24}
+                                className="hover:scale-110 transition cursor-pointer ml-2"
+                            />
+                        </div>
+                    );
+                },
+            },
             {
                 accessorKey: 'id',
                 header: 'Hình ảnh',
@@ -102,7 +120,18 @@ function Page() {
                 cell: ({ row }) => {
                     return (
                         <div className="flex space-x-2 min-w-16">
-                            <EditButton className="py-1 px-2" icon />
+                            <DetailButton
+                                className="!px-2"
+                                hoverContent="Hình ảnh"
+                                navigate={`/admin/san-pham/${row.original.id}/hinh-anh`}
+                            >
+                                <ImageIcon className="w-5 h-5" />
+                            </DetailButton>
+                            <EditButton
+                                className="py-1 px-2"
+                                icon
+                                navigate={`/admin/san-pham/${row.original.id}/cap-nhat`}
+                            />
                         </div>
                     );
                 },
@@ -113,8 +142,11 @@ function Page() {
 
     return (
         <div className="page-container admin-padding my-8">
-            <div className="mb-4">
+            <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
+                <AddButton icon navigate="/admin/san-pham/them-moi">
+                    Thêm
+                </AddButton>
             </div>
             <div className="mt-4">
                 <DataTable

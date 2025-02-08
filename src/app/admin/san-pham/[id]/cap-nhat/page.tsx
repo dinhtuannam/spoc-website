@@ -1,5 +1,7 @@
+'use client';
+
 import { Breadcrumb } from '@/components/breadcrumb';
-import React from 'react';
+import { useParams } from 'next/navigation';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -7,12 +9,15 @@ const breadcrumbs: BreadcrumbItem[] = [
         link: '/admin/san-pham',
     },
     {
-        title: 'Thêm mới',
-        link: '/admin/san-pham/them-moi',
+        title: 'Cập nhật',
+        link: '/admin/san-pham/cap-nhat',
     },
 ];
 
 function Page() {
+    const params = useParams();
+    const { id } = params;
+
     return (
         <div className="page-container admin-padding my-8">
             <div className="mb-4">
