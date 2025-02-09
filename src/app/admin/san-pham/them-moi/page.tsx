@@ -4,9 +4,11 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import DeleteButton from '@/components/button/delete.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
+import FieldSelectApi from '@/components/input/field-select-api';
 import FieldInput from '@/components/input/field.input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import ApiRoute from '@/constants/api-route';
 import AppConstant from '@/constants/app.constant';
 import GeneratorHelper from '@/helpers/generator.helper';
 import useObjectState from '@/hooks/useObjectState';
@@ -96,16 +98,16 @@ function Page() {
                             onChange={state.change}
                             placeholder="Nhập tên danh mục..."
                         />
-                        <FieldInput
+                        <FieldSelectApi
+                            api={ApiRoute.ProductCategory.root}
                             loading={loading}
-                            label="* Thể loại"
+                            text="* Thể loại"
                             error={error.data.name.flag}
                             msg={error.data.name.msg}
                             className="grid gap-2"
-                            id="name"
                             value={state.data.name}
-                            onChange={state.change}
-                            placeholder="Nhập tên danh mục..."
+                            onChange={(value) => state.setValue('categoryId', value)}
+                            placeholder="Chọn danh mục sản phẩm..."
                         />
                     </div>
                     <FieldInput

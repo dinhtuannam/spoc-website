@@ -9,5 +9,6 @@ type Product = {
     link: string;
     highlight: boolean;
     markDate: string;
+    categoryId?: string;
     category?: Category;
 };
