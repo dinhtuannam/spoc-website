@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '../ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { Upload } from 'lucide-react';
 import React, { useRef } from 'react';
 
@@ -8,10 +9,12 @@ interface UploadButtonProps {
     onFileSelect?: (file: File) => void;
     accept?: string;
     multiple?: boolean;
+    max?: number;
 }
 
-function UploadButton({ onFileSelect, accept = 'image/*', multiple = false }: UploadButtonProps) {
+function UploadButton({ onFileSelect, accept = 'image/*', multiple = false, max = 1 }: UploadButtonProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const { toast } = useToast();
 
     const handleClick = () => {
         fileInputRef.current?.click();
@@ -21,7 +24,16 @@ function UploadButton({ onFileSelect, accept = 'image/*', multiple = false }: Up
         const files = event.target.files;
         if (files && files.length > 0) {
             if (multiple) {
-                // Handle multiple files if needed
+                if (files.length > max) {
+                    toast({
+                        variant: 'destructive',
+                        title: 'Thông báo thao tác',
+                        description: `Chỉ có thể upload tối đa ${max} file`,
+                        duration: 1500,
+                    });
+                    event.target.value = '';
+                    return;
+                }
                 Array.from(files).forEach((file) => {
                     onFileSelect?.(file);
                 });

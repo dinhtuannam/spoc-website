@@ -66,7 +66,7 @@ function UploadCard({
                         </div>
                     )}
                 </div>
-                <div className="px-4 py-3 flex justify-between items-center border-t">
+                <div className="px-4 py-3 flex justify-between items-center border-t gap-2">
                     <span className="text-gray-600 font-semibold">{label}</span>
                     <div className="flex items-center gap-2">
                         {flag ? (

@@ -1,12 +1,16 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
+import AddButton from '@/components/button/add.button';
+import UploadButton from '@/components/button/upload.button';
+import UploadCard from '@/components/card/upload.card';
 import FieldInput from '@/components/map/field.input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import AppConstant from '@/constants/app.constant';
 import useObjectState from '@/hooks/useObjectState';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useState } from 'react';
 
 const CustomEditor = dynamic(() => import('@/components/input/custom-editor'), { ssr: false });
 
@@ -35,8 +39,26 @@ const initialState: Product = {
     category: null,
 };
 
+interface ImageFile {
+    file: File;
+    url: string;
+}
+
 function Page() {
+    const [images, setImages] = useState<ImageFile[]>([]);
     const { state, error } = useObjectState(initialState);
+
+    const handleFileSelect = (file: File) => {
+        if (images.length < 6) {
+            setImages((prevImages) => [
+                ...prevImages,
+                {
+                    file,
+                    url: URL.createObjectURL(file),
+                },
+            ]);
+        }
+    };
 
     return (
         <div className="page-container admin-padding my-8">
@@ -97,6 +119,21 @@ function Page() {
                         {error.data.introduction.flag && (
                             <span className="text-red-500 text-xs mt-[-3px]">{error.data.introduction.msg}</span>
                         )}
+                    </div>
+                    <div className="grid gap-2">
+                        <div className="flex justify-between items-center mb-2">
+                            <Label htmlFor="phone">
+                                Hình ảnh <span className="text-gray-500">(tối đa {AppConstant.maxImage})</span>
+                            </Label>
+                            {images.length < AppConstant.maxImage && (
+                                <UploadButton accept="image/*" multiple max={6} onFileSelect={handleFileSelect} />
+                            )}
+                        </div>
+                        <div className="flex flex-wrap gap-4">
+                            {images.map((item, index) => {
+                                return <UploadCard className="w-52 h-52" src={item.url} flag={true} />;
+                            })}
+                        </div>
                     </div>
                 </CardContent>
             </Card>
