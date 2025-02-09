@@ -1,16 +1,17 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import AddButton from '@/components/button/add.button';
+import DeleteButton from '@/components/button/delete.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import FieldInput from '@/components/map/field.input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import AppConstant from '@/constants/app.constant';
+import GeneratorHelper from '@/helpers/generator.helper';
 import useObjectState from '@/hooks/useObjectState';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CustomEditor = dynamic(() => import('@/components/input/custom-editor'), { ssr: false });
 
@@ -40,11 +41,13 @@ const initialState: Product = {
 };
 
 interface ImageFile {
+    id: string;
     file: File;
     url: string;
 }
 
 function Page() {
+    const [loading, setLoading] = useState(true);
     const [images, setImages] = useState<ImageFile[]>([]);
     const { state, error } = useObjectState(initialState);
 
@@ -53,12 +56,26 @@ function Page() {
             setImages((prevImages) => [
                 ...prevImages,
                 {
+                    id: GeneratorHelper.newGuid(),
                     file,
                     url: URL.createObjectURL(file),
                 },
             ]);
         }
     };
+
+    const removeFile = (id: string) => {
+        const tmp = images.filter((x) => x.id !== id);
+        setImages(tmp);
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, AppConstant.delay);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div className="page-container admin-padding my-8">
@@ -69,7 +86,8 @@ function Page() {
                 <CardContent className="!py-8 grid items-start gap-4">
                     <div className="grid grid-cols-2 gap-4">
                         <FieldInput
-                            label="Tên sản phẩm"
+                            loading={loading}
+                            label="* Tên sản phẩm"
                             error={error.data.name.flag}
                             msg={error.data.name.msg}
                             className="grid gap-2"
@@ -79,7 +97,8 @@ function Page() {
                             placeholder="Nhập tên danh mục..."
                         />
                         <FieldInput
-                            label="Thể loại"
+                            loading={loading}
+                            label="* Thể loại"
                             error={error.data.name.flag}
                             msg={error.data.name.msg}
                             className="grid gap-2"
@@ -90,7 +109,8 @@ function Page() {
                         />
                     </div>
                     <FieldInput
-                        label="Link sản phẩm"
+                        loading={loading}
+                        label="* Link sản phẩm"
                         error={error.data.link.flag}
                         msg={error.data.link.msg}
                         className="grid gap-2"
@@ -99,27 +119,33 @@ function Page() {
                         onChange={state.change}
                         placeholder="Nhập đường link sản phẩm..."
                     />
-                    <div className="grid gap-2">
-                        <Label htmlFor="phone">Giới thiệu</Label>
-                        <CustomEditor />
-                        {error.data.introduction.flag && (
-                            <span className="text-red-500 text-xs mt-[-3px]">{error.data.introduction.msg}</span>
-                        )}
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="phone">Mô tả</Label>
-                        <CustomEditor />
-                        {error.data.introduction.flag && (
-                            <span className="text-red-500 text-xs mt-[-3px]">{error.data.introduction.msg}</span>
-                        )}
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="phone">Hướng dẫn sử dụng</Label>
-                        <CustomEditor />
-                        {error.data.introduction.flag && (
-                            <span className="text-red-500 text-xs mt-[-3px]">{error.data.introduction.msg}</span>
-                        )}
-                    </div>
+                    <CustomEditor
+                        loading={loading}
+                        className="grid gap-2"
+                        data={state.data.introduction}
+                        onChange={(val) => state.setValue('introduction', val)}
+                        label="Giới thiệu"
+                        error={error.data.introduction.flag}
+                        msg={error.data.introduction.msg}
+                    />
+                    <CustomEditor
+                        loading={loading}
+                        className="grid gap-2"
+                        data={state.data.description}
+                        onChange={(val) => state.setValue('description', val)}
+                        label="Mô tả"
+                        error={error.data.description.flag}
+                        msg={error.data.description.msg}
+                    />
+                    <CustomEditor
+                        loading={loading}
+                        className="grid gap-2"
+                        data={state.data.instruction}
+                        onChange={(val) => state.setValue('instruction', val)}
+                        label="Hướng dẫn sử dụng"
+                        error={error.data.instruction.flag}
+                        msg={error.data.instruction.msg}
+                    />
                     <div className="grid gap-2">
                         <div className="flex justify-between items-center mb-2">
                             <Label htmlFor="phone">
@@ -131,8 +157,13 @@ function Page() {
                         </div>
                         <div className="flex flex-wrap gap-4">
                             {images.map((item, index) => {
-                                return <UploadCard className="w-52 h-52" src={item.url} flag={true} />;
+                                return (
+                                    <UploadCard className="w-52 h-52" src={item.url} flag key={index}>
+                                        <DeleteButton icon className="!px-2" onClick={() => removeFile(item.id)} />
+                                    </UploadCard>
+                                );
                             })}
+                            {images.length === 0 && <UploadCard className="w-52 h-52" flag></UploadCard>}
                         </div>
                     </div>
                 </CardContent>

@@ -16,10 +16,12 @@ interface UploadCardProps {
     src?: string;
     flag?: boolean;
     className?: string;
+    children?: React.ReactNode;
     onUpload?: (file: File) => void;
 }
 
 function UploadCard({
+    children,
     label = 'Hình ảnh',
     src = '/images/empty-img.png',
     className = 'w-[480px] h-[270px]',
@@ -70,13 +72,14 @@ function UploadCard({
                     <span className="text-gray-600 font-semibold">{label}</span>
                     <div className="flex items-center gap-2">
                         {flag ? (
-                            <Fragment>
-                                <CustomButton className="btn-primary" hoverContent="Đường dẫn banner">
-                                    <Link2 />
-                                </CustomButton>
-                                <EditButton>Chỉnh sửa</EditButton>
-                                <DeleteButton>Xóa</DeleteButton>
-                            </Fragment>
+                            // <Fragment>
+                            //     <CustomButton className="btn-primary" hoverContent="Đường dẫn banner">
+                            //         <Link2 />
+                            //     </CustomButton>
+                            //     <EditButton>Chỉnh sửa</EditButton>
+                            //     <DeleteButton>Xóa</DeleteButton>
+                            // </Fragment>
+                            children
                         ) : (
                             <UploadButton onFileSelect={handleFileSelect} accept="image/*" />
                         )}
