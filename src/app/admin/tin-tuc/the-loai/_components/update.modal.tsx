@@ -1,6 +1,6 @@
 import LoadingButton from '@/components/button/loading.button';
 import DrawerContainer from '@/components/container/drawer.container';
-import FieldInput from '@/components/map/field.input';
+import FieldInput from '@/components/input/field.input';
 import ApiRoute from '@/constants/api-route';
 import GeneratorHelper from '@/helpers/generator.helper';
 import useCaller from '@/hooks/useCaller';

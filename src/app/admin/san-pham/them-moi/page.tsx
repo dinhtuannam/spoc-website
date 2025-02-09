@@ -4,7 +4,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import DeleteButton from '@/components/button/delete.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
-import FieldInput from '@/components/map/field.input';
+import FieldInput from '@/components/input/field.input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import AppConstant from '@/constants/app.constant';
