@@ -58,12 +58,12 @@ function NewsUpdateModal({ visible, data, closeModal, onFetch }: NewsUpdateModal
 
     return (
         <DrawerContainer title="Cập nhật danh mục" open={visible} onClose={handleClose}>
-            <div className={'grid items-start gap-4 md:w-[400px] sm:w-full'}>
+            <div className={'grid items-start gap-1 md:w-[400px] sm:w-full'}>
                 <FieldInput
                     label="Mã danh mục"
                     className="grid gap-2"
                     id="code"
-                    value={state.data.name}
+                    value={state.data.code}
                     disabled
                     onChange={state.change}
                     placeholder="Mã danh mục"
@@ -78,7 +78,7 @@ function NewsUpdateModal({ visible, data, closeModal, onFetch }: NewsUpdateModal
                     onChange={state.change}
                     placeholder="Nhập tên danh mục..."
                 />
-                <LoadingButton className="mt-2 btn-primary-blue" onClick={handleSubmit} isLoading={loading}>
+                <LoadingButton className="btn-primary-blue" onClick={handleSubmit} isLoading={loading}>
                     Lưu thay đổi
                 </LoadingButton>
             </div>

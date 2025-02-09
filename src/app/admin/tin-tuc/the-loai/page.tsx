@@ -1,7 +1,7 @@
 'use client';
 
-import CategoryAddModal from './_components/add.modal';
-import CategoryUpdateModal from './_components/update.modal';
+import NewsAddModal from './_components/add.modal';
+import NewsUpdateModal from './_components/update.modal';
 import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import EditButton from '@/components/button/edit.button';
@@ -11,7 +11,7 @@ import ApiRoute from '@/constants/api-route';
 import useModal from '@/hooks/useModal';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -67,8 +67,8 @@ function Page() {
                     deleteApi={ApiRoute.NewsCategory.root}
                 />
             </div>
-            <CategoryAddModal visible={modals['add'].visible} onFetch={onFetch} closeModal={() => closeModal('add')} />
-            <CategoryUpdateModal
+            <NewsAddModal visible={modals['add'].visible} onFetch={onFetch} closeModal={() => closeModal('add')} />
+            <NewsUpdateModal
                 visible={modals['update'].visible}
                 onFetch={onFetch}
                 closeModal={() => closeModal('update')}

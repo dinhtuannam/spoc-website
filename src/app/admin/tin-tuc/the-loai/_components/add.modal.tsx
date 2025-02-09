@@ -51,8 +51,9 @@ function NewsAddModal({ visible, closeModal, onFetch }: NewsAddModalProps) {
 
     return (
         <DrawerContainer title="Thêm danh mục" open={visible} onClose={handleClose}>
-            <div className={'grid items-start gap-4 md:w-[400px] sm:w-full'}>
+            <div className={'grid items-start gap-1 md:w-[400px] sm:w-full'}>
                 <FieldInput
+                    label="Tên danh mục"
                     error={error.data.name.flag}
                     msg={error.data.name.msg}
                     className="grid gap-2"
@@ -62,7 +63,7 @@ function NewsAddModal({ visible, closeModal, onFetch }: NewsAddModalProps) {
                     placeholder="Nhập tên danh mục..."
                 />
                 <LoadingButton
-                    className="mt-2 btn-primary-blue"
+                    className="btn-primary-blue"
                     onClick={handleSubmit}
                     isLoading={loading}
                     loadingText="Đang lưu thay đổi ..."
