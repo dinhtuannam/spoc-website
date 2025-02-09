@@ -83,6 +83,7 @@ function Page() {
     }, []);
 
     const validate = () => {
+        error.clear();
         let flag: boolean = true;
         if (ValidatorHelper.isEmpty(state.data.name)) {
             error.set('name', true, 'Tên sản phẩm không được để trống');
@@ -101,7 +102,6 @@ function Page() {
 
     const handleSubmit = () => {
         if (!validate()) return;
-        error.clear();
     };
 
     return (

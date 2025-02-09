@@ -9,7 +9,10 @@ import ApiRoute from '@/constants/api-route';
 import AppConstant from '@/constants/app.constant';
 import ValidatorHelper from '@/helpers/validator.helper';
 import useObjectState from '@/hooks/useObjectState';
+import ProductService from '@/services/product.service';
+import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
+import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const CustomEditor = dynamic(() => import('@/components/input/custom-editor'), { ssr: false });
@@ -41,16 +44,20 @@ const initialState: Product = {
 };
 
 function Page() {
-    const [loading, setLoading] = useState(true);
+    const params = useParams();
+    const { id } = params;
     const { state, error } = useObjectState(initialState);
+    const { data, isLoading: loading } = useQuery<Product | null | undefined>({
+        queryKey: [`${ApiRoute.Product.root}/${id}`],
+        queryFn: () => ProductService.get(id as string),
+        staleTime: 1000 * 5,
+    });
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, AppConstant.delay);
-
-        return () => clearTimeout(timer);
-    }, []);
+        if (data) {
+            state.setData(data);
+        }
+    }, [data]);
 
     const validate = () => {
         let flag: boolean = true;
@@ -103,7 +110,7 @@ function Page() {
                             className="grid gap-2"
                             value="id"
                             label="name"
-                            defaultValue={state.data.categoryId}
+                            defaultValue={state.data.category?.id}
                             onChange={(value) => state.setValue('categoryId', value)}
                             placeholder="Chọn danh mục sản phẩm..."
                         />
