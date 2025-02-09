@@ -2,6 +2,7 @@
 
 import { Breadcrumb } from '@/components/breadcrumb';
 import DeleteButton from '@/components/button/delete.button';
+import SaveButton from '@/components/button/save.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import FieldSelectApi from '@/components/input/field-select-api';
@@ -11,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import ApiRoute from '@/constants/api-route';
 import AppConstant from '@/constants/app.constant';
 import GeneratorHelper from '@/helpers/generator.helper';
+import ValidatorHelper from '@/helpers/validator.helper';
 import useObjectState from '@/hooks/useObjectState';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
@@ -37,6 +39,7 @@ const initialState: Product = {
     instruction: '',
     price: 0,
     link: '',
+    categoryId: '',
     highlight: false,
     markDate: '',
     category: null,
@@ -79,13 +82,36 @@ function Page() {
         return () => clearTimeout(timer);
     }, []);
 
+    const validate = () => {
+        let flag: boolean = true;
+        if (ValidatorHelper.isEmpty(state.data.name)) {
+            error.set('name', true, 'Tên sản phẩm không được để trống');
+            flag = false;
+        }
+        if (ValidatorHelper.isEmpty(state.data.categoryId)) {
+            error.set('categoryId', true, 'Danh mục sản phẩm không được để trống');
+            flag = false;
+        }
+        if (ValidatorHelper.isEmpty(state.data.link)) {
+            error.set('link', true, 'Link sản phẩm không được để trống');
+            flag = false;
+        }
+        return flag;
+    };
+
+    const handleSubmit = () => {
+        if (!validate()) return;
+        error.clear();
+    };
+
     return (
         <div className="page-container admin-padding my-8">
-            <div className="mb-4">
+            <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
+                <SaveButton onClick={handleSubmit}>Lưu</SaveButton>
             </div>
             <Card className="mt-4 ">
-                <CardContent className="!py-8 grid items-start gap-4">
+                <CardContent className="!py-8 grid items-start gap-2">
                     <div className="grid grid-cols-2 gap-4">
                         <FieldInput
                             loading={loading}
@@ -98,14 +124,15 @@ function Page() {
                             onChange={state.change}
                             placeholder="Nhập tên danh mục..."
                         />
-                        <FieldSelectApi
+                        <FieldSelectApi<ProductCategory>
                             api={ApiRoute.ProductCategory.root}
-                            loading={loading}
                             text="* Thể loại"
-                            error={error.data.name.flag}
-                            msg={error.data.name.msg}
+                            error={error.data.categoryId.flag}
+                            msg={error.data.categoryId.msg}
                             className="grid gap-2"
-                            value={state.data.name}
+                            value="id"
+                            label="name"
+                            defaultValue={state.data.categoryId}
                             onChange={(value) => state.setValue('categoryId', value)}
                             placeholder="Chọn danh mục sản phẩm..."
                         />

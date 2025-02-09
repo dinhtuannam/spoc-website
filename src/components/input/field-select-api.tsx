@@ -1,65 +1,77 @@
 'use client';
 
+import ErrorLabel from '../label/error.label';
 import { Label } from '../ui/label';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Skeleton } from '../ui/skeleton';
 import { cn } from '@/lib/utils';
 import SelectService from '@/services/select.service';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-interface FieldInputProps {
+interface SelectOption {
+    value: string;
+    label: string;
+}
+
+interface FieldInputProps<TData> {
+    value: keyof TData;
+    label: keyof TData;
+    api: string;
     text?: string;
     error?: boolean;
     msg?: string;
     className?: string;
     loading?: boolean;
-    value?: string | undefined;
-    onChange?(data: string): void;
-    api: string;
+    defaultValue?: string | undefined;
     placeholder?: string;
+    onChange?(data: string): void;
 }
 
-function FieldSelectApi({
+function FieldSelectApi<TData>({
+    value,
+    label,
     api,
-    className,
     text,
     error = false,
     msg = '',
+    className,
+    loading = false,
+    defaultValue,
     placeholder = 'Vui lòng chọn...',
-    value,
     onChange,
-}: FieldInputProps) {
-    const { data, isLoading: loading } = useQuery<SelectOption[]>({
+}: FieldInputProps<TData>) {
+    const { data = [], isLoading: apiLoading } = useQuery<SelectOption[]>({
         queryKey: [api],
-        queryFn: () => SelectService.get<ProductCategory>(api, 'id', 'name'),
-        staleTime: 1000 * 10,
+        queryFn: () => SelectService.get<TData>(api, value, label),
+        staleTime: 10 * 1000,
     });
 
     return (
         <div className={cn(className)}>
             {text && <Label htmlFor="phone">{text}</Label>}
-            {loading ? (
+
+            {apiLoading || loading ? (
                 <Skeleton className="w-full h-8" />
-            ) : (
-                <Select defaultValue={value} onValueChange={onChange}>
-                    <SelectTrigger className="w-full">
+            ) : data.length > 0 ? (
+                <Select defaultValue={defaultValue} onValueChange={onChange}>
+                    <SelectTrigger className={cn('w-full', error && '!border-red-500')}>
                         <SelectValue placeholder={placeholder} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            {data?.map((item, index) => {
-                                return (
-                                    <SelectItem value={item.value} key={index}>
-                                        {item.label}
-                                    </SelectItem>
-                                );
-                            })}
+                            {data.map((item) => (
+                                <SelectItem value={item.value} key={item.value}>
+                                    {item.label}
+                                </SelectItem>
+                            ))}
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+            ) : (
+                <p className="text-gray-500 text-sm">Không có dữ liệu</p>
             )}
-            {error && <span className="text-red-500 text-xs mt-[-3px]">{msg}</span>}
+            <ErrorLabel>{msg}</ErrorLabel>
         </div>
     );
 }

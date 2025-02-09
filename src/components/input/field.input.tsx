@@ -1,3 +1,4 @@
+import ErrorLabel from '../label/error.label';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Skeleton } from '../ui/skeleton';
@@ -21,7 +22,7 @@ function FieldInput({ className, label, error = false, msg = '', loading = false
             ) : (
                 <Input className={cn('app-input', error && '!border-red-500')} {...props} />
             )}
-            {error && <span className="text-red-500 text-xs mt-[-3px]">{msg}</span>}
+            <ErrorLabel>{msg}</ErrorLabel>
         </div>
     );
 }

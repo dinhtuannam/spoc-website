@@ -1,5 +1,6 @@
 'use client';
 
+import ErrorLabel from '../label/error.label';
 import { Label } from '../ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -33,7 +34,7 @@ const CustomEditor = ({ className, label, data, onChange, msg, error = false, lo
                     }}
                 />
             )}
-            {error && <span className="text-red-500 text-xs mt-[-3px]">{msg}</span>}
+            <ErrorLabel>{msg}</ErrorLabel>
         </div>
     );
 };

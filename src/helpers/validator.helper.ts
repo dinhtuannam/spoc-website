@@ -10,6 +10,16 @@ export default class ValidatorHelper {
         return invalid;
     }
 
+    static isEmpty<T>(data: T | undefined | null): boolean {
+        if (data === undefined || data === null) return true;
+
+        if (typeof data === 'string' && data.trim() === '') return true;
+
+        if (typeof data === 'number' && isNaN(data)) return true;
+
+        return false;
+    }
+
     static isValidEmail(email: string): boolean {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
