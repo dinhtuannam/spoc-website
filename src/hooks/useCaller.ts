@@ -66,7 +66,7 @@ function useCaller<T>(): UseCallerState<T> {
                         variant: 'destructive',
                         title: 'Thông báo thao tác',
                         description: errorMessage,
-                        duration: 1500,
+                        duration: 2500,
                     });
             }
             if (succeeded) {
@@ -75,7 +75,7 @@ function useCaller<T>(): UseCallerState<T> {
                         variant: 'default',
                         title: 'Thông báo thao tác',
                         description: successMessage || 'Thao tác thành côn',
-                        duration: 1500,
+                        duration: 2500,
                     });
             }
 
