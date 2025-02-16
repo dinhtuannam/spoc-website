@@ -8,11 +8,12 @@ interface SaveButtonProps {
     className?: string;
     children?: React.ReactNode;
     hoverContent?: string;
+    disabled?: boolean;
 }
 
-const SaveButton: React.FC<SaveButtonProps> = ({ onClick, className, children, hoverContent }) => {
+const SaveButton: React.FC<SaveButtonProps> = ({ onClick, className, children, hoverContent, disabled = false }) => {
     const button = (
-        <Button onClick={onClick} className={cn('btn-secondary flex items-center', className)}>
+        <Button onClick={onClick} className={cn('btn-secondary flex items-center', className)} disabled={disabled}>
             {children}
         </Button>
     );

@@ -54,7 +54,7 @@ function UploadCard({
     return (
         <Card className="w-fit">
             <CardContent className="!p-0">
-                <div className={cn('relative', !isFileEmpty() ? 'bg-black' : 'bg-[#EFEFEF]', className)}>
+                <div className={cn('relative', !isFileEmpty() ? 'bg-gray-100' : 'bg-[#EFEFEF]', className)}>
                     <Image
                         onClick={handleClickImage}
                         src={imageSrc}

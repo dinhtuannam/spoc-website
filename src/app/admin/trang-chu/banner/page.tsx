@@ -8,6 +8,7 @@ import EditButton from '@/components/button/edit.button';
 import SaveButton from '@/components/button/save.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
+import PageLoading from '@/components/loading/page.loading';
 import ApiRoute from '@/constants/api-route';
 import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
@@ -29,7 +30,7 @@ interface UpdateBanner extends Banner {
 function Banner() {
     const queryClient = useQueryClient();
     const [visible, setVisible] = useState<boolean>(false);
-    const { callApi, loading } = useCaller<any>();
+    const { callApi, loading, setLoading } = useCaller<any>();
     const [banners, setBanners] = useState<UpdateBanner[]>([]);
     const { modals, openModal, closeModal } = useModal([modalKey]);
     const { data = [], isLoading } = useQuery<Banner[]>({
@@ -83,6 +84,7 @@ function Banner() {
     };
 
     const onSave = async () => {
+        setLoading(true);
         const payload = banners;
         await Promise.all(
             payload.map(async (item) => {
@@ -103,6 +105,7 @@ function Banner() {
         if (result.succeeded) {
             onFetch();
         }
+        setLoading(false);
     };
 
     const onDelete = (id: string) => {
@@ -118,29 +121,29 @@ function Banner() {
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
-                <SaveButton onClick={() => setVisible(true)}>Lưu</SaveButton>
+                <SaveButton disabled={isLoading || loading} onClick={() => setVisible(true)}>
+                    Lưu
+                </SaveButton>
             </div>
 
-            <div className="flex flex-wrap gap-10">
-                {banners.map((item, index) => {
-                    return (
-                        <UploadCard
-                            flag={item.image !== '' || item.file !== undefined}
-                            src={item.image}
-                            key={index}
-                            onUpload={(file: File) => onUploadImage(item.id, file)}
-                        >
-                            {ButtonComponent(item)}
-                        </UploadCard>
-                    );
-                })}
-                {/* <UploadCard flag src={'/images/banner.png'}>
-                    {ButtonComponent()}
-                </UploadCard>
-                <UploadCard>{ButtonComponent()}</UploadCard>
-                <UploadCard>{ButtonComponent()}</UploadCard>
-                <UploadCard>{ButtonComponent()}</UploadCard> */}
-            </div>
+            {isLoading || loading ? (
+                <PageLoading />
+            ) : (
+                <div className="flex flex-wrap gap-10">
+                    {banners.map((item, index) => {
+                        return (
+                            <UploadCard
+                                flag={item.image !== '' || item.file !== undefined}
+                                src={item.image}
+                                key={index}
+                                onUpload={(file: File) => onUploadImage(item.id, file)}
+                            >
+                                {ButtonComponent(item)}
+                            </UploadCard>
+                        );
+                    })}
+                </div>
+            )}
 
             <ConfirmDialog visible={visible} closeModal={() => setVisible(false)} onSubmit={() => onSave()} />
             <UpdateLinkModal
