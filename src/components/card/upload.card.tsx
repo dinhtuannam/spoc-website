@@ -31,6 +31,9 @@ function UploadCard({
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const { openImage } = useImagePreview();
 
+    // Kiểm tra nếu src rỗng thì gán ảnh mặc định
+    const imageSrc = selectedImage || (src && src.trim() !== '' ? src : '/images/empty-img.png');
+
     const handleFileSelect = (file: File) => {
         const imageUrl = URL.createObjectURL(file);
         setSelectedImage(imageUrl);
@@ -38,14 +41,14 @@ function UploadCard({
     };
 
     const isFileEmpty = () => {
-        return selectedImage === null && src === '/images/empty-img.png';
+        return selectedImage === null && imageSrc === '/images/empty-img.png';
     };
 
     const handleClickImage = () => {
         if (isFileEmpty()) {
             return;
         }
-        openImage(selectedImage || src);
+        openImage(imageSrc);
     };
 
     return (
@@ -54,7 +57,7 @@ function UploadCard({
                 <div className={cn('relative', !isFileEmpty() ? 'bg-black' : 'bg-[#EFEFEF]', className)}>
                     <Image
                         onClick={handleClickImage}
-                        src={selectedImage || src}
+                        src={imageSrc}
                         alt="Preview"
                         fill
                         className={cn('object-cover w-full h-auto', !isFileEmpty() && 'preview')}
@@ -64,25 +67,14 @@ function UploadCard({
                             className="rounded-md absolute top-4 right-4 w-fit p-1.5 cursor-pointer btn-danger"
                             onClick={() => setSelectedImage(null)}
                         >
-                            <Trash2 className=" mr-[-1.1px]" />
+                            <Trash2 className="mr-[-1.1px]" />
                         </div>
                     )}
                 </div>
                 <div className="px-4 py-3 flex justify-between items-center border-t gap-2">
                     <span className="text-gray-600 font-semibold">{label}</span>
                     <div className="flex items-center gap-2">
-                        {flag ? (
-                            // <Fragment>
-                            //     <CustomButton className="btn-primary" hoverContent="Đường dẫn banner">
-                            //         <Link2 />
-                            //     </CustomButton>
-                            //     <EditButton>Chỉnh sửa</EditButton>
-                            //     <DeleteButton>Xóa</DeleteButton>
-                            // </Fragment>
-                            children
-                        ) : (
-                            <UploadButton onFileSelect={handleFileSelect} accept="image/*" />
-                        )}
+                        {flag ? children : <UploadButton onFileSelect={handleFileSelect} accept="image/*" />}
                     </div>
                 </div>
             </CardContent>

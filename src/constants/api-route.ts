@@ -1,3 +1,6 @@
+import { ComponentEnum } from '@/enums/component.enum';
+import { PageEnum } from '@/enums/page.enum';
+
 export default class ApiRoute {
     static Product = class {
         static root: string = '/api/Products';
@@ -18,5 +21,18 @@ export default class ApiRoute {
         static root: string = '/api/NewsCategory';
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
+    };
+    static Layout = class {
+        static getPage = (page: PageEnum) => {
+            return `/api/Layout/page/${page}`;
+        };
+        static getComponent = (page: PageEnum, component: ComponentEnum, sort: number | null = null) => {
+            const baseUrl = `/api/Layout/page/${page}/component/${component}`;
+            return sort !== null ? `${baseUrl}?sort=${sort}` : baseUrl;
+        };
+        static update = (page: PageEnum, component: ComponentEnum, sort: number | null = null) => {
+            const baseUrl = `/api/Layout/page/${page}/component/${component}`;
+            return sort !== null ? `${baseUrl}?sort=${sort}` : baseUrl;
+        };
     };
 }
