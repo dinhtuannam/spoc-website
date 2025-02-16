@@ -23,8 +23,8 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
     visible,
     closeModal,
     onSubmit,
-    title = 'Confirm dialog',
-    description = 'Are you sure you want to perform this action?',
+    title = 'Xác nhận thao tác',
+    description = 'Bạn có chắc muốn thực hiện thao tác này?',
     variant = 'outline',
 }) => {
     const [state, setState] = useState({
@@ -54,10 +54,10 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel asChild>
-                        <Button variant="outline">Cancel</Button>
+                        <Button className="btn-danger">Hủy</Button>
                     </AlertDialogCancel>
                     <Button variant={variant} onClick={handleSubmit}>
-                        Confirm
+                        Tiếp tục
                     </Button>
                 </AlertDialogFooter>
             </AlertDialogContent>
