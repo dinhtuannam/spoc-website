@@ -181,7 +181,9 @@ function Page() {
                                 Hình ảnh <span className="text-gray-500">(tối đa {AppConstant.maxImage})</span>
                             </Label>
                             {images.length < AppConstant.maxImage && (
-                                <UploadButton accept="image/*" multiple max={6} onFileSelect={handleFileSelect} />
+                                <UploadButton accept="image/*" multiple max={6} onFileSelect={handleFileSelect} icon>
+                                    Tải lên
+                                </UploadButton>
                             )}
                         </div>
                         <div className="flex flex-wrap gap-4">
