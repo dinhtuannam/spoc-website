@@ -35,4 +35,19 @@ export default class LayoutService {
             }
         },
     };
+
+    static async getSection(page: PageEnum, sort: number): Promise<DefaultSection | undefined | null> {
+        try {
+            const res = await API.get<ApiRes<DefaultSection>>(
+                ApiRoute.Layout.getComponent(page, ComponentEnum.DefaultSection, sort),
+            );
+            if (!res.data.succeeded || !res.data.data) {
+                null;
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            null;
+        }
+    }
 }
