@@ -6,6 +6,7 @@ import CustomButton from '@/components/button/custom.button';
 import DeleteButton from '@/components/button/delete.button';
 import EditButton from '@/components/button/edit.button';
 import SaveButton from '@/components/button/save.button';
+import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
 import PageLoading from '@/components/loading/page.loading';
@@ -69,11 +70,18 @@ function Banner() {
                 <CustomButton
                     className="btn-primary"
                     hoverContent="Đường dẫn banner"
-                    onClick={() => openModal(modalKey, item.link)}
+                    onClick={() =>
+                        openModal(modalKey, {
+                            id: item.id,
+                            link: item.link,
+                        })
+                    }
                 >
                     <Link2 />
                 </CustomButton>
-                <EditButton>Chỉnh sửa</EditButton>
+                <UploadButton onFileSelect={(file: File) => onChangeImage(item.id, file)} accept="image/*" icon={false}>
+                    Chỉnh sửa
+                </UploadButton>
                 <DeleteButton onClick={() => onDelete(item.id)}>Xóa</DeleteButton>
             </Fragment>
         );
@@ -81,6 +89,13 @@ function Banner() {
 
     const onUploadImage = (id: string, file: File) => {
         setBanners((prevBanners) => prevBanners.map((banner) => (banner.id === id ? { ...banner, file } : banner)));
+    };
+
+    const onChangeImage = (id: string, file: File) => {
+        const imageUrl = URL.createObjectURL(file);
+        setBanners((prevBanners) =>
+            prevBanners.map((banner) => (banner.id === id ? { ...banner, image: imageUrl, file } : banner)),
+        );
     };
 
     const onSave = async () => {
@@ -115,7 +130,13 @@ function Banner() {
         onFetch();
     };
 
-    const onEditLink = () => {};
+    const onEditLink = (id: string, link: string) => {
+        console.log(id, link);
+
+        setBanners((prevBanners) =>
+            prevBanners.map((banner) => (banner.id === id ? { ...banner, link: link } : banner)),
+        );
+    };
 
     return (
         <div className="page-container admin-padding my-8">

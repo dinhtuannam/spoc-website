@@ -10,9 +10,18 @@ interface UploadButtonProps {
     accept?: string;
     multiple?: boolean;
     max?: number;
+    icon?: boolean;
+    children: React.ReactNode;
 }
 
-function UploadButton({ onFileSelect, accept = 'image/*', multiple = false, max = 1 }: UploadButtonProps) {
+function UploadButton({
+    onFileSelect,
+    children,
+    accept = 'image/*',
+    multiple = false,
+    max = 1,
+    icon = false,
+}: UploadButtonProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const { toast } = useToast();
 
@@ -61,8 +70,8 @@ function UploadButton({ onFileSelect, accept = 'image/*', multiple = false, max 
                 className="flex items-center gap-2 border-dashed btn-primary"
                 onClick={handleClick}
             >
-                <Upload size={16} />
-                Tải lên
+                {icon && <Upload size={16} />}
+                {children}
             </Button>
         </>
     );

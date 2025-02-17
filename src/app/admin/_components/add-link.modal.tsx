@@ -6,12 +6,13 @@ import React, { useEffect } from 'react';
 
 type UpdateLinkModalProps = {
     visible: boolean;
-    data: string;
+    data: any;
     closeModal: () => void;
-    onSubmit: () => void;
+    onSubmit: (id: string, link: string) => void;
 };
 
 const initialState = {
+    id: '',
     link: '',
 };
 
@@ -20,12 +21,13 @@ function UpdateLinkModal({ visible, data, closeModal, onSubmit }: UpdateLinkModa
 
     useEffect(() => {
         if (data) {
-            state.setData({ link: data });
+            state.setData({ link: data.link, id: data.id });
         }
     }, [data]);
 
     const handleSubmit = async () => {
         error.clear();
+        onSubmit(state.data.id, state.data.link);
         closeModal();
     };
 

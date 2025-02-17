@@ -74,7 +74,13 @@ function UploadCard({
                 <div className="px-4 py-3 flex justify-between items-center border-t gap-2">
                     <span className="text-gray-600 font-semibold">{label}</span>
                     <div className="flex items-center gap-2">
-                        {flag ? children : <UploadButton onFileSelect={handleFileSelect} accept="image/*" />}
+                        {flag ? (
+                            children
+                        ) : (
+                            <UploadButton onFileSelect={handleFileSelect} accept="image/*" icon>
+                                Tải lên
+                            </UploadButton>
+                        )}
                     </div>
                 </div>
             </CardContent>
