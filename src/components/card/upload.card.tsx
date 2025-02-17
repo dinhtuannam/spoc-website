@@ -1,15 +1,12 @@
 'use client';
 
-import CustomButton from '../button/custom.button';
-import DeleteButton from '../button/delete.button';
-import EditButton from '../button/edit.button';
 import UploadButton from '../button/upload.button';
 import { Card, CardContent } from '../ui/card';
 import { useImagePreview } from '@/contexts/image-preview-context';
 import { cn } from '@/lib/utils';
-import { Link2, LucideTrash, Trash, Trash2, TrashIcon } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 interface UploadCardProps {
     label?: string;

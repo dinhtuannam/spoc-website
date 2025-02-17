@@ -19,5 +19,20 @@ export default class LayoutService {
                 return [];
             }
         },
+
+        async getSection(sort: 2 | 4): Promise<DefaultSection | undefined | null> {
+            try {
+                const res = await API.get<ApiRes<DefaultSection>>(
+                    ApiRoute.Layout.getComponent(PageEnum.TrangChu, ComponentEnum.DefaultSection, sort),
+                );
+                if (!res.data.succeeded || !res.data.data) {
+                    null;
+                }
+                return res.data.data;
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+                null;
+            }
+        },
     };
 }

@@ -5,3 +5,7 @@ type DefaultSection = {
     link: string;
     image: string;
 };
+
+interface UpdateDefaultSection extends DefaultSection {
+    file?: File;
+}
