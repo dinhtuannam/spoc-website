@@ -50,7 +50,7 @@ async function SanPham() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: '100%', height: 'auto', maxHeight: '615px', objectFit: 'cover' }}
+                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 priority
             />
             <div className="app-padding flex mobile:flex-col tablet:flex-row justify-between items-center mt-5 laptop:mt-15 desktop:mt-20 mobile:gap-4">

@@ -5,6 +5,7 @@ import Hero from '@/components/hero';
 import SocialMediaHero from '@/components/hero/social-media';
 import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
+import Image from 'next/image';
 import React from 'react';
 
 export const revalidate = 3600;
@@ -17,6 +18,15 @@ export const metadata = {
 function GioiThieuPage() {
     return (
         <div className="page-container height-minus">
+            <Image
+                src={'/images/banner-gioi-thieu.jpeg'}
+                alt={`banner`}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                priority
+            />
             <Hero
                 background="white"
                 title="Tầm nhìn"

@@ -9,7 +9,7 @@ function TinTucBanner() {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-full h-auto max-h-[600px] object-cover"
+            className="w-full h-auto object-cover"
             priority
         />
     );
