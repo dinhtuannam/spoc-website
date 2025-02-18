@@ -80,7 +80,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             payload.file = undefined;
         }
         const result = await callApi(
-            ApiRoute.Layout.update(PageEnum.SanPham, ComponentEnum.Banner),
+            ApiRoute.Layout.update(page, ComponentEnum.Banner),
             {
                 method: 'PUT',
                 body: JSON.stringify(payload),
