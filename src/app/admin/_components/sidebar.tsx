@@ -31,6 +31,7 @@ const menuItems = [
         title: 'Sản phẩm',
         icon: TrangChuIcon,
         children: [
+            { title: 'Banner', url: '/admin/san-pham/banner' },
             { title: 'Sản phẩm', url: '/admin/san-pham' },
             { title: 'Thể loại', url: '/admin/san-pham/the-loai' },
         ],
@@ -39,6 +40,7 @@ const menuItems = [
         title: 'Tin tức',
         icon: TrangChuIcon,
         children: [
+            { title: 'Banner', url: '/admin/tin-tuc/banner' },
             { title: 'Tin tức', url: '/admin/tin-tuc' },
             { title: 'Thể loại', url: '/admin/tin-tuc/the-loai' },
         ],

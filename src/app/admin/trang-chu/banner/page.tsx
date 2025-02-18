@@ -4,7 +4,6 @@ import UpdateLinkModal from '../../_components/add-link.modal';
 import { Breadcrumb } from '@/components/breadcrumb';
 import CustomButton from '@/components/button/custom.button';
 import DeleteButton from '@/components/button/delete.button';
-import EditButton from '@/components/button/edit.button';
 import SaveButton from '@/components/button/save.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
@@ -23,10 +22,6 @@ import { Fragment, useEffect, useState } from 'react';
 
 const queryKey: string = '/trang-chu/banner';
 const modalKey = 'link';
-
-interface UpdateBanner extends Banner {
-    file?: File;
-}
 
 function Banner() {
     const queryClient = useQueryClient();
@@ -125,14 +120,14 @@ function Banner() {
 
     const onDelete = (id: string) => {
         setBanners((prevBanners) =>
-            prevBanners.map((banner) => (banner.id === id ? { ...banner, image: '', link: '' } : banner)),
+            prevBanners.map((banner) =>
+                banner.id === id ? { ...banner, image: '', link: '', file: undefined } : banner,
+            ),
         );
         onFetch();
     };
 
     const onEditLink = (id: string, link: string) => {
-        console.log(id, link);
-
         setBanners((prevBanners) =>
             prevBanners.map((banner) => (banner.id === id ? { ...banner, link: link } : banner)),
         );

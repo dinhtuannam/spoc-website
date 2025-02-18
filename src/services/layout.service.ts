@@ -50,4 +50,17 @@ export default class LayoutService {
             null;
         }
     }
+
+    static async getBanner(page: PageEnum, sort: number): Promise<Banner | undefined | null> {
+        try {
+            const res = await API.get<ApiRes<Banner>>(ApiRoute.Layout.getComponent(page, ComponentEnum.Banner, sort));
+            if (!res.data.succeeded || !res.data.data) {
+                null;
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            null;
+        }
+    }
 }

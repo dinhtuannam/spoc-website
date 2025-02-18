@@ -4,3 +4,7 @@ type Banner = {
     image: string;
     sort: number;
 };
+
+interface UpdateBanner extends Banner {
+    file?: File;
+}
