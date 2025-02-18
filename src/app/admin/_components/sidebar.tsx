@@ -1,10 +1,20 @@
 'use client';
 
 import TrangChuIcon from '../../../../public/icons/trang-chu.svg';
-import { Sidebar, SidebarContent, SidebarGroup } from '@/components/ui/sidebar';
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    useSidebar,
+} from '@/components/ui/sidebar';
 import { ChevronDown, LayoutDashboard } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const menuItems = [
@@ -46,10 +56,20 @@ const menuItems = [
             { title: 'Thể loại', url: '/admin/tin-tuc/the-loai' },
         ],
     },
+    {
+        title: 'Liên hệ',
+        url: '/admin/lien-he',
+        icon: TrangChuIcon,
+        children: [],
+    },
 ];
 
 export function AdminSidebar() {
-    const [expandedItem, setExpandedItem] = useState<string | null>('Trang chủ'); // Mặc định mở Trang chủ
+    const router = useRouter();
+    const [expandedItem, setExpandedItem] = useState<string | null>('Trang chủ');
+    const { state, open, setOpen, openMobile, setOpenMobile, isMobile, toggleSidebar } = useSidebar();
+
+    const navigate = (url: string) => {};
 
     return (
         <Sidebar>
@@ -59,50 +79,62 @@ export function AdminSidebar() {
                 </Link>
 
                 <SidebarGroup>
-                    <div className="py-4">
-                        {menuItems.map((item) => (
-                            <div key={item.title} className="mb-2">
-                                <button
-                                    onClick={() => setExpandedItem(expandedItem === item.title ? null : item.title)}
-                                    className="w-full px-4 py-2 flex items-center justify-between text-gray-700 hover:bg-blue-50"
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.title}
-                                            width={20}
-                                            height={20}
-                                            className="w-5 h-5"
-                                        />
-                                        <span>{item.title}</span>
-                                    </div>
-                                    <ChevronDown
-                                        className={`w-4 h-4 transition-transform duration-300 ${
-                                            expandedItem === item.title ? 'rotate-180' : ''
-                                        }`}
-                                    />
-                                </button>
+                    <SidebarGroupContent>
+                        <SidebarMenu className="py-4">
+                            {menuItems.map((item) => (
+                                <SidebarMenuItem key={item.title} className="mb-2">
+                                    <SidebarMenuButton
+                                        onClick={() =>
+                                            item.children.length > 0
+                                                ? setExpandedItem(expandedItem === item.title ? null : item.title)
+                                                : router.push(item.url || '/admin')
+                                        }
+                                        className="w-full px-4 py-2 flex items-center justify-between text-gray-700 hover:bg-blue-50"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <Image
+                                                src={item.icon}
+                                                alt={item.title}
+                                                width={20}
+                                                height={20}
+                                                className="w-5 h-5"
+                                            />
+                                            <span>{item.title}</span>
+                                        </div>
+                                        {item.children.length > 0 && (
+                                            <ChevronDown
+                                                className={`w-4 h-4 transition-transform duration-300 ${
+                                                    expandedItem === item.title ? 'rotate-180' : ''
+                                                }`}
+                                            />
+                                        )}
+                                    </SidebarMenuButton>
 
-                                <div
-                                    className={`border-l-2 ml-5 overflow-hidden transition-all duration-300 ease-in-out ${
-                                        expandedItem === item.title ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                                    }`}
-                                >
-                                    <div className="py-1">
-                                        {item.children.map((child) => (
-                                            <Link
-                                                key={child.title}
-                                                href={child.url}
-                                                className="block py-2 px-4 text-sm text-gray-600 hover:bg-blue-50 hover:text-app-primary-blue transition-colors duration-200"
-                                            >
-                                                {child.title}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                                    {item.children.length > 0 && (
+                                        <div
+                                            className={`border-l-2 ml-5 overflow-hidden transition-all duration-300 ease-in-out ${
+                                                expandedItem === item.title
+                                                    ? 'max-h-[500px] opacity-100'
+                                                    : 'max-h-0 opacity-0'
+                                            }`}
+                                        >
+                                            <div className="py-1">
+                                                {item.children.map((child) => (
+                                                    <Link
+                                                        key={child.title}
+                                                        href={child.url}
+                                                        className="block py-2 px-4 text-sm text-gray-600 hover:bg-blue-50 hover:text-app-primary-blue transition-colors duration-200"
+                                                    >
+                                                        {child.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
         </Sidebar>
