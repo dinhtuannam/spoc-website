@@ -46,6 +46,7 @@ const menuItems: MenuItem[] = [
             { title: 'Section 1', url: '/admin/gioi-thieu/section-1' },
             { title: 'Section 2', url: '/admin/gioi-thieu/section-2' },
             { title: 'Section 3', url: '/admin/gioi-thieu/section-3' },
+            { title: 'Section 4', url: '/admin/gioi-thieu/section-4' },
         ],
     },
     {
