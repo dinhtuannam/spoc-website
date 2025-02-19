@@ -41,11 +41,24 @@ function FieldSelectApi<TData>({
     placeholder = 'Vui lòng chọn...',
     onChange,
 }: FieldInputProps<TData>) {
+    // Track selected value
+    const [selectedValue, setSelectedValue] = React.useState<string | undefined>(defaultValue);
+
+    // Update selected value when defaultValue changes
+    React.useEffect(() => {
+        setSelectedValue(defaultValue);
+    }, [defaultValue]);
+
     const { data = [], isLoading: apiLoading } = useQuery<SelectOption[]>({
         queryKey: [api],
         queryFn: () => SelectService.get<TData>(api, value, label),
         staleTime: 10 * 1000,
     });
+
+    const handleChange = (value: string) => {
+        setSelectedValue(value);
+        onChange?.(value);
+    };
 
     return (
         <div className={cn(className)}>
@@ -54,7 +67,7 @@ function FieldSelectApi<TData>({
             {apiLoading || loading ? (
                 <Skeleton className="w-full h-8" />
             ) : data.length > 0 ? (
-                <Select defaultValue={defaultValue} onValueChange={onChange}>
+                <Select value={selectedValue} onValueChange={handleChange}>
                     <SelectTrigger className={cn('w-full', error && '!border-red-500')}>
                         <SelectValue placeholder={placeholder} />
                     </SelectTrigger>

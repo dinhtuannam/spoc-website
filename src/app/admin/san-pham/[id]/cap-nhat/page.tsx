@@ -110,7 +110,7 @@ function Page() {
                             className="grid gap-2"
                             value="id"
                             label="name"
-                            defaultValue={state.data.category?.id}
+                            defaultValue={state.data.categoryId}
                             onChange={(value) => state.setValue('categoryId', value)}
                             placeholder="Chọn danh mục sản phẩm..."
                         />
