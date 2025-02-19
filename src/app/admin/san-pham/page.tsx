@@ -4,6 +4,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import DetailButton from '@/components/button/detail.button';
 import EditButton from '@/components/button/edit.button';
+import EditorQuill from '@/components/input/editor-quill';
 import FieldSelectApi from '@/components/input/field-select-api';
 import LineClamp from '@/components/label/line-clamp';
 import ColumnSelect from '@/components/table/column-select';
@@ -164,6 +165,15 @@ function Page() {
                 <AddButton icon navigate="/admin/san-pham/them-moi">
                     Thêm
                 </AddButton>
+            </div>
+            <div>
+                <EditorQuill
+                    label="Nội dung blog"
+                    // value={content}
+                    // onChange={(value) => setContent(value)}
+                    error={false}
+                    msg="Vui lòng nhập nội dung"
+                />
             </div>
             <div className="mt-4">
                 <DataTable
