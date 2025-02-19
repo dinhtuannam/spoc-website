@@ -9,6 +9,7 @@ import { uploadImage } from '@/services/storage.service';
 import dynamic from 'next/dynamic';
 import React, { useMemo } from 'react';
 import 'react-quill/dist/quill.snow.css';
+import ErrorLabel from '../label/error.label';
 
 // Dynamic import để tránh SSR issues
 const ReactQuill = dynamic(() => import('react-quill'), {
@@ -117,7 +118,7 @@ function EditorQuill({ className, label, value, onChange, msg, error = false, lo
                     />
                 </div>
             )}
-            {error && msg && <p className="text-sm text-red-500">{msg}</p>}
+            <ErrorLabel>{msg}</ErrorLabel>
         </div>
     );
 }

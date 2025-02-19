@@ -5,6 +5,7 @@ import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
 import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
+import EditorQuill from '@/components/input/editor-quill';
 import FieldSelectApi from '@/components/input/field-select-api';
 import FieldInput from '@/components/input/field.input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,10 +15,7 @@ import AppConstant from '@/constants/app.constant';
 import GeneratorHelper from '@/helpers/generator.helper';
 import ValidatorHelper from '@/helpers/validator.helper';
 import useObjectState from '@/hooks/useObjectState';
-import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-
-const CustomEditor = dynamic(() => import('@/components/input/custom-editor'), { ssr: false });
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -148,28 +146,28 @@ function Page() {
                         onChange={state.change}
                         placeholder="Nhập đường link sản phẩm..."
                     />
-                    <CustomEditor
+                    <EditorQuill
                         loading={loading}
                         className="grid gap-2"
-                        data={state.data.introduction}
+                        value={state.data.introduction}
                         onChange={(val) => state.setValue('introduction', val)}
                         label="Giới thiệu"
                         error={error.data.introduction.flag}
                         msg={error.data.introduction.msg}
                     />
-                    <CustomEditor
+                    <EditorQuill
                         loading={loading}
                         className="grid gap-2"
-                        data={state.data.description}
+                        value={state.data.description}
                         onChange={(val) => state.setValue('description', val)}
                         label="Mô tả"
                         error={error.data.description.flag}
                         msg={error.data.description.msg}
                     />
-                    <CustomEditor
+                    <EditorQuill
                         loading={loading}
                         className="grid gap-2"
-                        data={state.data.instruction}
+                        value={state.data.instruction}
                         onChange={(val) => state.setValue('instruction', val)}
                         label="Hướng dẫn sử dụng"
                         error={error.data.instruction.flag}

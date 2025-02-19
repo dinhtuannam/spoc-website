@@ -166,15 +166,6 @@ function Page() {
                     Thêm
                 </AddButton>
             </div>
-            <div>
-                <EditorQuill
-                    label="Nội dung blog"
-                    // value={content}
-                    // onChange={(value) => setContent(value)}
-                    error={false}
-                    msg="Vui lòng nhập nội dung"
-                />
-            </div>
             <div className="mt-4">
                 <DataTable
                     columns={columns}
