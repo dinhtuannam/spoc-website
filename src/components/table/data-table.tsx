@@ -140,6 +140,13 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
         return dataTable ? dataTable : paginate?.items || [];
     }, [dataTable, paginate]);
 
+    // Sync table pageSize with API pageSize
+    React.useEffect(() => {
+        if (paginate) {
+            table.setPageSize(paginate.pageSize);
+        }
+    }, [paginate?.pageSize]);
+
     const table = useReactTable({
         data: data || [],
         columns,
@@ -151,6 +158,12 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
         onRowSelectionChange: setRowSelection,
+        // Set initial pageSize
+        initialState: {
+            pagination: {
+                pageSize: defaultParam.PageSize,
+            },
+        },
         state: {
             sorting,
             columnFilters,

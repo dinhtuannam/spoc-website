@@ -18,8 +18,11 @@ export function TablePagination<TData>({
 }: TablePaginationProps<TData>) {
     const handleChangePageSize = (value: string) => {
         const size = Number(value);
-        if (changePageSize) changePageSize(size);
-        else table.setPageSize(size);
+        if (changePageSize) {
+            changePageSize(size);
+        } else {
+            table.setPageSize(size);
+        }
         handleFirstPage();
     };
 
