@@ -2,8 +2,13 @@ import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
 
 export default class ApiRoute {
+    static Contact = class {
+        static root: string = '/api/Contact';
+        static filter: string = `${this.root}/filter`;
+        static pagination: string = `${this.root}/pagination`;
+    };
     static Product = class {
-        static root: string = '/api/Products';
+        static root: string = '/api/Product';
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
     };
