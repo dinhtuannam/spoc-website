@@ -25,8 +25,13 @@ interface FieldInputProps<TData> {
     loading?: boolean;
     defaultValue?: string | undefined;
     placeholder?: string;
+    validate?: boolean;
+    required?: boolean;
     onChange?(data: string): void;
 }
+
+const requiredKey = 'null';
+const requiredValue = '';
 
 function FieldSelectApi<TData>({
     value,
@@ -39,6 +44,8 @@ function FieldSelectApi<TData>({
     loading = false,
     defaultValue,
     placeholder = 'Vui lòng chọn...',
+    validate = true,
+    required = true,
     onChange,
 }: FieldInputProps<TData>) {
     // Track selected value
@@ -57,7 +64,7 @@ function FieldSelectApi<TData>({
 
     const handleChange = (value: string) => {
         setSelectedValue(value);
-        onChange?.(value);
+        onChange?.(value === requiredKey ? requiredValue : value);
     };
 
     return (
@@ -73,6 +80,7 @@ function FieldSelectApi<TData>({
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
+                            {!required && <SelectItem value={requiredKey}>{placeholder || 'Mặc định'}</SelectItem>}
                             {data.map((item) => (
                                 <SelectItem value={item.value} key={item.value}>
                                     {item.label}
@@ -84,7 +92,7 @@ function FieldSelectApi<TData>({
             ) : (
                 <p className="text-gray-500 text-sm">Không có dữ liệu</p>
             )}
-            <ErrorLabel>{msg}</ErrorLabel>
+            {validate && <ErrorLabel>{msg}</ErrorLabel>}
         </div>
     );
 }

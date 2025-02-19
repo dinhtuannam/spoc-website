@@ -4,6 +4,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import DetailButton from '@/components/button/detail.button';
 import EditButton from '@/components/button/edit.button';
+import FieldSelectApi from '@/components/input/field-select-api';
 import LineClamp from '@/components/label/line-clamp';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
@@ -140,6 +141,22 @@ function Page() {
         [],
     );
 
+    const filter = () => {
+        return (
+            <div>
+                <FieldSelectApi<ProductCategory>
+                    api={ApiRoute.ProductCategory.root}
+                    className="min-w-[150px]"
+                    value="id"
+                    label="name"
+                    placeholder="Chọn danh mục sản phẩm..."
+                    validate={false}
+                    required={false}
+                />
+            </div>
+        );
+    };
+
     return (
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
@@ -155,6 +172,7 @@ function Page() {
                     ref={tableRef}
                     selectKey={'id'}
                     deleteApi={ApiRoute.Product.root}
+                    filter={filter()}
                 />
             </div>
         </div>
