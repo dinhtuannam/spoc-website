@@ -31,4 +31,5 @@ function getAxios(baseURL: string) {
     return ins;
 }
 
-export const API = getAxios(`https://spoc-api.onrender.com`);
+export const API_PATH: string = `https://spoc-api.onrender.com`;
+export const API = getAxios(API_PATH);

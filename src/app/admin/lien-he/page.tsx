@@ -4,7 +4,7 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
 import ApiRoute from '@/constants/api-route';
-import { formatter } from '@/helpers/format.helper';
+import Formatter from '@/helpers/format.helper';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
@@ -41,7 +41,7 @@ function Page() {
                 accessorKey: 'createdDate',
                 header: 'Thời gian',
                 cell: ({ row }) => {
-                    return <span>{formatter.format(row.original.createdDate)}</span>;
+                    return <span>{Formatter.date(row.original.createdDate)}</span>;
                 },
             },
         ],

@@ -4,5 +4,5 @@ type Contact = {
     phone: string;
     fullname: string;
     content: string;
-    createdDate: Date;
+    createdDate: string;
 };

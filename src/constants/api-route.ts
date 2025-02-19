@@ -12,6 +12,11 @@ export default class ApiRoute {
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
     };
+    static ProductImage = class {
+        static root: string = '/api/ProductImage';
+        static filter: string = `${this.root}/filter`;
+        static pagination: string = `${this.root}/pagination`;
+    };
     static ProductCategory = class {
         static root: string = '/api/ProductCategory';
         static filter: string = `${this.root}/filter`;

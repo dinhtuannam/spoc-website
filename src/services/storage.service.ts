@@ -1,5 +1,7 @@
 //import { getToken } from '@/helpers/storage.helper';
 
+import { API_PATH } from '@/lib/axios';
+
 export const uploadMultiImage = async (files: File[]): Promise<string[]> => {
     try {
         const formData = new FormData();
@@ -13,7 +15,7 @@ export const uploadMultiImage = async (files: File[]): Promise<string[]> => {
             formData.append('files', file, file.name);
         });
 
-        const response = await fetch('https://spoc-api.onrender.com/api/Storage/upload', {
+        const response = await fetch(`${API_PATH}/api/Storage/upload`, {
             method: 'POST',
             body: formData,
             headers: {
@@ -45,7 +47,7 @@ export const uploadImage = async (file: File): Promise<string | null> => {
         formData.append('files', file, file.name);
         //const accessToken = getToken();
 
-        const response = await fetch('https://spoc-api.onrender.com/api/Storage/upload', {
+        const response = await fetch(`${API_PATH}/api/Storage/upload`, {
             method: 'POST',
             body: formData,
             headers: {
