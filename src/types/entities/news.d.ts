@@ -6,4 +6,6 @@ type News = {
     content: string;
     categoryId?: string;
     category: NewsCategory;
+    createdDate?: string;
+    updatedDate?: string;
 };

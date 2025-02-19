@@ -4,9 +4,11 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import DetailButton from '@/components/button/detail.button';
 import EditButton from '@/components/button/edit.button';
+import FieldSelectApi from '@/components/input/field-select-api';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
 import ApiRoute from '@/constants/api-route';
+import Formatter from '@/helpers/format.helper';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
@@ -32,6 +34,20 @@ function Page() {
                 header: 'Danh mục',
             },
             {
+                accessorKey: 'createdDate',
+                header: 'Ngày tạo',
+                cell: ({ row }) => {
+                    return <span>{Formatter.date(row.original.createdDate)}</span>;
+                },
+            },
+            {
+                accessorKey: 'updatedDate',
+                header: 'Ngày chỉnh sửa',
+                cell: ({ row }) => {
+                    return <span>{Formatter.date(row.original.updatedDate)}</span>;
+                },
+            },
+            {
                 id: 'actions',
                 header: 'Thao tác',
                 cell: ({ row }) => {
@@ -47,6 +63,22 @@ function Page() {
         [],
     );
 
+    const filter = () => {
+        return (
+            <div>
+                <FieldSelectApi<NewsCategory>
+                    api={ApiRoute.NewsCategory.root}
+                    className="min-w-[150px]"
+                    value="id"
+                    label="name"
+                    placeholder="Chọn danh mục tin tức..."
+                    validate={false}
+                    required={false}
+                />
+            </div>
+        );
+    };
+
     return (
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
@@ -61,6 +93,7 @@ function Page() {
                     ref={tableRef}
                     selectKey={'id'}
                     deleteApi={ApiRoute.News.root}
+                    filter={filter()}
                 />
             </div>
         </div>

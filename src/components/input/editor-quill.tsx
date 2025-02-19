@@ -34,11 +34,7 @@ function EditorQuill({ className, label, value, onChange, msg, error = false, lo
             toolbar: {
                 container: [
                     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                    [
-                        {
-                            font: ['sans-serif', 'Arial', 'Times New Roman'],
-                        },
-                    ],
+                    [{ font: [] }],
                     [{ size: ['small', false, 'large', 'huge'] }],
                     ['bold', 'italic', 'underline', 'strike'],
                     [{ color: [] }, { background: [] }],
