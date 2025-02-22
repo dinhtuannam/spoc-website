@@ -67,13 +67,6 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
         }));
     };
 
-    const onChangeImage = (file: File) => {
-        setSection((prev) => ({
-            ...prev,
-            file: file,
-        }));
-    };
-
     const onSave = async () => {
         setLoading(true);
         const payload = section;
@@ -144,7 +137,7 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
                             src={section.image}
                             onUpload={onUploadImage}
                             onRemoveImage={onDelete}
-                            onChangeImage={onChangeImage}
+                            onChangeImage={onUploadImage}
                         />
                     </div>
                 </div>

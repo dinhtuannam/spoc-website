@@ -3,9 +3,7 @@
 import UpdateLinkModal from './add-link.modal';
 import { Breadcrumb } from '@/components/breadcrumb';
 import CustomButton from '@/components/button/custom.button';
-import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
-import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
 import PageLoading from '@/components/loading/page.loading';
@@ -17,7 +15,7 @@ import useCaller from '@/hooks/useCaller';
 import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
-import { Link2, RotateCcw } from 'lucide-react';
+import { Link2 } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 
 const modalKey = 'link';
@@ -42,15 +40,13 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
     const { callApi, loading, setLoading } = useCaller<any>();
     const [banner, setBanner] = useState<UpdateBanner>(initialValue);
     const { modals, openModal, closeModal } = useModal([modalKey]);
-    const [original, setOriginal] = useState<UpdateBanner>(initialValue);
 
     useEffect(() => {
         const fetchApi = async () => {
             setLoading(true);
             const res = await LayoutService.getBanner(page, sort);
             if (res) {
-                setBanner({ ...res, file: undefined, deleted: false });
-                setOriginal({ ...res, file: undefined, deleted: false });
+                setBanner({ ...res, file: undefined });
             }
             setLoading(false);
         };
@@ -61,15 +57,6 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
     const onUploadImage = (file: File) => {
         setBanner((prev) => ({
             ...prev,
-            file: file,
-        }));
-    };
-
-    const onChangeImage = (file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        setBanner((prev) => ({
-            ...prev,
-            image: imageUrl,
             file: file,
         }));
     };
@@ -90,8 +77,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             uploadMessage,
         );
         if (result.succeeded && result.data) {
-            setBanner({ ...result.data, file: undefined, deleted: false });
-            setOriginal({ ...result.data, file: undefined, deleted: false });
+            setBanner({ ...result.data, file: undefined });
         }
         setLoading(false);
     };
@@ -100,15 +86,6 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
         setBanner((prev) => ({
             ...prev,
             link: '',
-            image: '',
-            file: undefined,
-            deleted: true,
-        }));
-    };
-
-    const onRemoveSelectImage = () => {
-        setBanner((prev) => ({
-            ...prev,
             image: '',
             file: undefined,
         }));
@@ -138,30 +115,21 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                         flag={banner.image !== '' || banner.file !== undefined}
                         src={banner.image}
                         onUpload={onUploadImage}
-                        onRemoveImage={onRemoveSelectImage}
+                        onRemoveImage={onDelete}
+                        onChangeImage={onUploadImage}
                     >
-                        <Fragment>
-                            <CustomButton
-                                className="btn-primary"
-                                hoverContent={banner.link ? banner.link : 'Thêm đường dẫn banner'}
-                                onClick={() =>
-                                    openModal(modalKey, {
-                                        id: banner.id,
-                                        link: banner.link,
-                                    })
-                                }
-                            >
-                                <Link2 />
-                            </CustomButton>
-                            <UploadButton onFileSelect={onChangeImage} accept="image/*" icon={false}>
-                                Chỉnh sửa
-                            </UploadButton>
-                            {!banner.deleted && (
-                                <DeleteButton hoverContent="Xóa banner và đường dẫn" onClick={onDelete}>
-                                    Xóa
-                                </DeleteButton>
-                            )}
-                        </Fragment>
+                        <CustomButton
+                            className="btn-primary"
+                            hoverContent={banner.link ? banner.link : 'Thêm đường dẫn banner'}
+                            onClick={() =>
+                                openModal(modalKey, {
+                                    id: banner.id,
+                                    link: banner.link,
+                                })
+                            }
+                        >
+                            <Link2 />
+                        </CustomButton>
                     </UploadCard>
                 </div>
             )}

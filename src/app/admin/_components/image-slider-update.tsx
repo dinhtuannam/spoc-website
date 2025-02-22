@@ -1,9 +1,7 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
-import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
 import PageLoading from '@/components/loading/page.loading';
@@ -14,9 +12,7 @@ import ApiRoute from '@/constants/api-route';
 import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
 import GeneratorHelper from '@/helpers/generator.helper';
-import { useToast } from '@/hooks/use-toast';
 import useCaller from '@/hooks/useCaller';
-import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -43,8 +39,6 @@ function ImageSliderUpdate() {
     const [visible, setVisible] = useState<boolean>(false);
     const { callApi, loading, setLoading } = useCaller<any>();
     const [slider, setSlider] = useState<UpdateImageSlider>(initialValue);
-    const [original, setOriginal] = useState<UpdateImageSlider>(initialValue);
-    const { toast } = useToast();
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -52,7 +46,6 @@ function ImageSliderUpdate() {
             const res = await LayoutService.trangChu.getSlider();
             if (res) {
                 setSlider({ ...res });
-                setOriginal({ ...res });
             }
             setLoading(false);
         };
@@ -67,20 +60,10 @@ function ImageSliderUpdate() {
         }));
     };
 
-    const onChangeImage = (id: string, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        setSlider((prev) => ({
-            ...prev,
-            images: prev.images.map((image) => (image.id === id ? { ...image, url: imageUrl, file } : image)),
-        }));
-    };
-
     const onDelete = (id: string) => {
         setSlider((prev) => ({
             ...prev,
-            images: prev.images.map((image) =>
-                image.id === id ? { ...image, url: '', file: undefined, deleted: true } : image,
-            ),
+            images: prev.images.map((image) => (image.id === id ? { ...image, url: '', file: undefined } : image)),
         }));
     };
 
@@ -114,33 +97,6 @@ function ImageSliderUpdate() {
             setSlider(result.data);
         }
         setLoading(false);
-    };
-
-    const ButtonComponent = (item: UpdateSlider) => {
-        return (
-            <Fragment>
-                <UploadButton onFileSelect={(file: File) => onChangeImage(item.id, file)} accept="image/*" icon={false}>
-                    Chỉnh sửa
-                </UploadButton>
-                {!item.deleted && <DeleteButton onClick={() => onDelete(item.id)}>Xóa</DeleteButton>}
-            </Fragment>
-        );
-    };
-
-    const onRemoveSelectImage = (id: string) => {
-        const find = original.images.find((x) => x.id === id);
-        if (!find) {
-            toast({
-                variant: 'destructive',
-                title: 'Thông báo thao tác',
-                description: 'Lỗi hệ thống, không tìm thấy bản ghi cần xóa',
-                duration: 2500,
-            });
-        }
-        setSlider((prev) => ({
-            ...prev,
-            images: prev.images.map((image) => (image.id === id ? { ...image, url: '', file: undefined } : image)),
-        }));
     };
 
     return (
@@ -191,10 +147,9 @@ function ImageSliderUpdate() {
                                         src={item.url}
                                         key={index}
                                         onUpload={(file: File) => onUploadImage(item.id, file)}
-                                        onRemoveImage={() => onRemoveSelectImage(item.id)}
-                                    >
-                                        {ButtonComponent(item)}
-                                    </UploadCard>
+                                        onRemoveImage={() => onDelete(item.id)}
+                                        onChangeImage={(file: File) => onUploadImage(item.id, file)}
+                                    />
                                 );
                             })}
                         </div>

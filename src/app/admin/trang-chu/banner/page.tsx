@@ -3,22 +3,19 @@
 import UpdateLinkModal from '../../_components/add-link.modal';
 import { Breadcrumb } from '@/components/breadcrumb';
 import CustomButton from '@/components/button/custom.button';
-import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
-import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
 import PageLoading from '@/components/loading/page.loading';
 import ApiRoute from '@/constants/api-route';
 import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
-import { useToast } from '@/hooks/use-toast';
 import useCaller from '@/hooks/useCaller';
 import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
 import { Link2 } from 'lucide-react';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const modalKey = 'link';
 
@@ -26,9 +23,7 @@ function Banner() {
     const [visible, setVisible] = useState<boolean>(false);
     const { callApi, loading, setLoading } = useCaller<any>();
     const [banners, setBanners] = useState<UpdateBanner[]>([]);
-    const [original, setOriginal] = useState<UpdateBanner[]>([]);
     const { modals, openModal, closeModal } = useModal([modalKey]);
-    const { toast } = useToast();
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -36,7 +31,6 @@ function Banner() {
             const res = await LayoutService.trangChu.getBanner();
             if (res) {
                 setBanners(res);
-                setOriginal(res);
             }
             setLoading(false);
         };
@@ -54,53 +48,8 @@ function Banner() {
         },
     ];
 
-    const ButtonComponent = (item: Banner) => {
-        return (
-            <Fragment>
-                <CustomButton
-                    className="btn-primary"
-                    hoverContent="Đường dẫn banner"
-                    onClick={() =>
-                        openModal(modalKey, {
-                            id: item.id,
-                            link: item.link,
-                        })
-                    }
-                >
-                    <Link2 />
-                </CustomButton>
-                <UploadButton onFileSelect={(file: File) => onChangeImage(item.id, file)} accept="image/*" icon={false}>
-                    Chỉnh sửa
-                </UploadButton>
-                <DeleteButton onClick={() => onDelete(item.id)}>Xóa</DeleteButton>
-            </Fragment>
-        );
-    };
-
     const onUploadImage = (id: string, file: File) => {
         setBanners((prevBanners) => prevBanners.map((banner) => (banner.id === id ? { ...banner, file } : banner)));
-    };
-
-    const onChangeImage = (id: string, file: File) => {
-        const imageUrl = URL.createObjectURL(file);
-        setBanners((prevBanners) =>
-            prevBanners.map((banner) => (banner.id === id ? { ...banner, image: imageUrl, file } : banner)),
-        );
-    };
-
-    const onRemoveSelectImage = (id: string) => {
-        const find = original.find((x) => x.id === id);
-        if (!find) {
-            toast({
-                variant: 'destructive',
-                title: 'Thông báo thao tác',
-                description: 'Lỗi hệ thống, không tìm thấy bản ghi cần xóa',
-                duration: 2500,
-            });
-        }
-        setBanners((prevBanners) =>
-            prevBanners.map((banner) => (banner.id === id ? { ...banner, image: '', file: undefined } : banner)),
-        );
     };
 
     const onSave = async () => {
@@ -124,7 +73,6 @@ function Banner() {
         );
         if (result.succeeded) {
             setBanners(result.data);
-            setOriginal(result.data);
         }
         setLoading(false);
     };
@@ -159,17 +107,27 @@ function Banner() {
             ) : (
                 <div className="flex flex-wrap gap-10">
                     {banners.map((item, index) => {
-                        console.log(item);
-
                         return (
                             <UploadCard
                                 flag={item.image !== '' || item.file !== undefined}
                                 src={item.image}
                                 key={index}
                                 onUpload={(file: File) => onUploadImage(item.id, file)}
-                                onRemoveImage={() => onRemoveSelectImage(item.id)}
+                                onRemoveImage={() => onDelete(item.id)}
+                                onChangeImage={(file: File) => onUploadImage(item.id, file)}
                             >
-                                {ButtonComponent(item)}
+                                <CustomButton
+                                    className="btn-primary"
+                                    hoverContent="Đường dẫn banner"
+                                    onClick={() =>
+                                        openModal(modalKey, {
+                                            id: item.id,
+                                            link: item.link,
+                                        })
+                                    }
+                                >
+                                    <Link2 />
+                                </CustomButton>
                             </UploadCard>
                         );
                     })}
