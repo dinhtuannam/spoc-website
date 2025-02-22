@@ -4,6 +4,7 @@ import { NewsList } from './_components/news-list';
 import { SubscribeForm } from './_components/subscribe-form';
 import { Breadcrumb } from '@/components/breadcrumb';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 export const metadata = {
     title: 'Tin tức - SOPC',
@@ -43,13 +44,17 @@ function TinTuc() {
                 <div className="grid laptop:grid-cols-4 gap-6 laptop:gap-8 mt-6 laptop:mt-10">
                     {/* Left Sidebar */}
                     <div className="space-y-6">
-                        <NewsCategories />
+                        <Suspense>
+                            <NewsCategories />
+                        </Suspense>
                         <SubscribeForm />
                     </div>
 
                     {/* News List */}
                     <div className="laptop:col-span-3">
-                        <NewsList items={newsItems} />
+                        <Suspense>
+                            <NewsList items={newsItems} />
+                        </Suspense>
                     </div>
                 </div>
             </div>
