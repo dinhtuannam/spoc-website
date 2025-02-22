@@ -10,7 +10,7 @@ function Section1() {
         },
         {
             title: 'Section 1',
-            link: '/admin/gioi-thieu/section-1',
+            link: '',
         },
     ];
     return (

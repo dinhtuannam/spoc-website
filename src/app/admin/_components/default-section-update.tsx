@@ -1,6 +1,7 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
+import CustomButton from '@/components/button/custom.button';
 import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
 import UploadButton from '@/components/button/upload.button';
@@ -18,6 +19,7 @@ import ValidatorHelper from '@/helpers/validator.helper';
 import useCaller from '@/hooks/useCaller';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
+import { RotateCcw } from 'lucide-react';
 import React, { Fragment, useEffect, useState } from 'react';
 
 interface DefaultSectionUpdateProps {
@@ -40,6 +42,7 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
     const [visible, setVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
     const [section, setSection] = useState<UpdateDefaultSection>(initialValue);
+    const [original, setOriginal] = useState<UpdateDefaultSection>(initialValue);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -47,6 +50,7 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
             const res = await LayoutService.getSection(page, sort);
             if (res) {
                 setSection({ ...res, file: undefined });
+                setOriginal({ ...res, file: undefined });
             }
             setLoading(false);
         };
@@ -105,6 +109,25 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
         }));
     };
 
+    const onRemoveSelectImage = () => {
+        setSection((prev) => ({
+            ...prev,
+            image: '',
+            file: undefined,
+        }));
+    };
+
+    const onClear = () => {
+        setSection((prev) => ({
+            ...prev,
+            link: original.link,
+            image: original.image,
+            file: undefined,
+        }));
+    };
+
+    console.log(section);
+
     return (
         <Fragment>
             <div className="mb-4 flex items-center justify-between">
@@ -143,11 +166,15 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
                     <div className="space-y-4">
                         <Label>Hình ảnh</Label>
                         <UploadCard
-                            className="w-[305px] h-[270px]"
+                            className="w-96 aspect-[111/100]"
                             flag={!ValidatorHelper.isEmpty(section.image) || section.file !== undefined}
                             src={section.image}
                             onUpload={onUploadImage}
+                            onRemoveImage={onRemoveSelectImage}
                         >
+                            <CustomButton className="btn-primary" hoverContent={'Hoàn tác'} onClick={onClear}>
+                                <RotateCcw />
+                            </CustomButton>
                             <UploadButton icon={false} accept="image/*" onFileSelect={onChangeImage}>
                                 Chỉnh sửa
                             </UploadButton>

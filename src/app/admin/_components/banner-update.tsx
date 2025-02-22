@@ -17,7 +17,7 @@ import useCaller from '@/hooks/useCaller';
 import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
-import { Link2 } from 'lucide-react';
+import { Link2, RotateCcw } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 
 const modalKey = 'link';
@@ -50,6 +50,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             const res = await LayoutService.getBanner(page, sort);
             if (res) {
                 setBanner({ ...res, file: undefined });
+                setOriginal({ ...res, file: undefined });
             }
             setLoading(false);
         };
@@ -90,6 +91,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
         );
         if (result.succeeded && result.data) {
             setBanner({ ...result.data, file: undefined });
+            setOriginal({ ...result.data, file: undefined });
         }
         setLoading(false);
     };
@@ -106,7 +108,6 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
     const onRemoveSelectImage = () => {
         setBanner((prev) => ({
             ...prev,
-            link: '',
             image: original.image,
             file: undefined,
         }));
@@ -117,6 +118,10 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             ...prev,
             link: link,
         }));
+    };
+
+    const onClear = () => {
+        setBanner(original);
     };
 
     return (
@@ -139,6 +144,9 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                         onRemoveImage={onRemoveSelectImage}
                     >
                         <Fragment>
+                            <CustomButton className="btn-primary" hoverContent={'Hoàn tác'} onClick={onClear}>
+                                <RotateCcw />
+                            </CustomButton>
                             <CustomButton
                                 className="btn-primary"
                                 hoverContent={banner.link ? banner.link : 'Thêm đường dẫn banner'}
