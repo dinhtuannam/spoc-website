@@ -4,18 +4,19 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import AddButton from '@/components/button/add.button';
 import DetailButton from '@/components/button/detail.button';
 import EditButton from '@/components/button/edit.button';
-import EditorQuill from '@/components/input/editor-quill';
 import FieldSelectApi from '@/components/input/field-select-api';
 import LineClamp from '@/components/label/line-clamp';
 import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ApiRoute from '@/constants/api-route';
 import { useImagePreview } from '@/contexts/image-preview-context';
+import { highlightOption } from '@/datas/highlight.data';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
 import { ImageIcon } from 'lucide-react';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,8 +26,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 function Page() {
+    const [option, setOption] = useState<SelectOption[]>(highlightOption);
     const { openImage } = useImagePreview();
-    const { tableRef, onFetch } = useTableRef();
+    const { tableRef } = useTableRef();
     const columns = useMemo<ColumnDef<Product>[]>(
         () => [
             ColumnSelect<Product>(),
@@ -144,17 +146,25 @@ function Page() {
 
     const filter = () => {
         return (
-            <div>
+            <Fragment>
                 <FieldSelectApi<ProductCategory>
                     api={ApiRoute.ProductCategory.root}
-                    className="min-w-[150px]"
+                    className="w-[200px]"
                     value="id"
                     label="name"
-                    placeholder="Chọn danh mục sản phẩm..."
+                    placeholder="Danh mục sản phẩm"
                     validate={false}
                     required={false}
                 />
-            </div>
+                <FieldSelectApi<SelectOption>
+                    api={ApiRoute.Option.highlight}
+                    className="w-[160px]"
+                    value="value"
+                    label="label"
+                    placeholder="Sản phẩm nổi bật"
+                    validate={false}
+                />
+            </Fragment>
         );
     };
 

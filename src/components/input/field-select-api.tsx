@@ -80,7 +80,7 @@ function FieldSelectApi<TData>({
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            {!required && <SelectItem value={requiredKey}>{placeholder || 'Mặc định'}</SelectItem>}
+                            {!required && <SelectItem value={requiredKey}>Tất cả</SelectItem>}
                             {data.map((item) => (
                                 <SelectItem value={item.value} key={item.value}>
                                     {item.label}

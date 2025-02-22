@@ -11,7 +11,7 @@ import ApiRoute from '@/constants/api-route';
 import Formatter from '@/helpers/format.helper';
 import useTableRef from '@/hooks/useTableRef';
 import { ColumnDef } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -65,17 +65,25 @@ function Page() {
 
     const filter = () => {
         return (
-            <div>
+            <Fragment>
                 <FieldSelectApi<NewsCategory>
                     api={ApiRoute.NewsCategory.root}
-                    className="min-w-[150px]"
+                    className="min-w-[200px]"
                     value="id"
                     label="name"
-                    placeholder="Chọn danh mục tin tức..."
+                    placeholder="Danh mục tin tức"
                     validate={false}
                     required={false}
                 />
-            </div>
+                <FieldSelectApi<SelectOption>
+                    api={ApiRoute.Option.highlight}
+                    className="w-[160px]"
+                    value="value"
+                    label="label"
+                    placeholder="Tin tức nổi bật"
+                    validate={false}
+                />
+            </Fragment>
         );
     };
 
