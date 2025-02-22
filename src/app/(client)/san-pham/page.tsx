@@ -1,6 +1,6 @@
+import ProductList from './_components/product.list';
 import ProductCategories from '@/app/(client)/san-pham/_components/product-categories';
 import { Breadcrumb } from '@/components/breadcrumb';
-import ProductCard from '@/components/card/product.card';
 import SearchBar from '@/components/input/search.input';
 import Image from 'next/image';
 
@@ -34,15 +34,6 @@ async function SanPham() {
         },
     ];
 
-    // Giả lập data, trong thực tế có thể fetch từ API
-    const products: Product[] = Array(6).fill({
-        id: 'san-pham-sach',
-        name: 'Thực phẩm ngũ ngon',
-        price: 100000,
-        unit: 'Hộp',
-        image: '/images/product.png',
-    });
-
     return (
         <div className="page-container height-minus">
             <Image
@@ -62,13 +53,7 @@ async function SanPham() {
             <div className="app-padding mobile:grid-cols-1 laptop:grid-cols-4 grid gap-8 my-8">
                 <ProductCategories />
 
-                <div className="mobile:col-span-1 laptop:col-span-3">
-                    <div className="grid mobile:grid-cols-2 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
-                        {products.map((product, index) => (
-                            <ProductCard key={index} name="Thực phẩm ngủ ngon" image="/images/product.png" />
-                        ))}
-                    </div>
-                </div>
+                <ProductList />
             </div>
         </div>
     );

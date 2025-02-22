@@ -1,27 +1,21 @@
 'use client';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import ParamConst from '@/constants/param.constant';
+import ProductCategoryService from '@/services/product-category.service';
+import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, Menu } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
-
-interface Category {
-    name: string;
-    products: string[];
-}
-
-interface ProductCategoriesProps {
-    categories: Category[];
-}
-
-const categories = [
-    {
-        name: 'Danh mục sản phẩm',
-        products: ['Sản phẩm 1', 'Sản phẩm 2', 'Sản phẩm 3', 'Sản phẩm 4'],
-    },
-];
 
 function ProductCategories() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const { data = [], isLoading } = useQuery<ProductCategory[]>({
+        queryKey: ['client/product-category'],
+        queryFn: () => ProductCategoryService.menu(),
+        staleTime: 60 * 1000,
+    });
 
     return (
         <div className="mobile:col-span-1 laptop:col-span-1">
@@ -35,8 +29,6 @@ function ProductCategories() {
                 </button>
             </div>
 
-            {/* <h2 className="text-xl font-semibold mb-4 hidden laptop:block">DANH MỤC SẢN PHẨM</h2> */}
-
             <div
                 className={`
                     space-y-2 laptop:block
@@ -47,7 +39,6 @@ function ProductCategories() {
                 `}
             >
                 <div className="p-4 border-b flex items-center justify-between laptop:hidden">
-                    {/* <h2 className="text-xl font-semibold">DANH MỤC SẢN PHẨM</h2> */}
                     <button
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -57,31 +48,31 @@ function ProductCategories() {
                 </div>
 
                 <div className="mobile:p-4 laptop:p-0">
-                    {categories.map((category, index) => (
-                        <Collapsible key={index} defaultOpen>
-                            <CollapsibleTrigger className="flex items-center justify-between w-full p-2 !pl-0 text-left hover:bg-gray-100 rounded transition">
-                                <h2 className="text-xl font-semibold hidden laptop:block">DANH MỤC SẢN PHẨM</h2>
-                                <ChevronDown className="h-4 w-4" />
-                            </CollapsibleTrigger>
-                            <CollapsibleContent>
-                                <div className="ml-1 pl-4 space-y-2 mt-2 border-l-2 border-gray-500">
-                                    {category.products.map((product, idx) => (
+                    <Collapsible defaultOpen>
+                        <div className="flex items-center justify-between w-full p-2 !pl-0 text-left hover:bg-gray-100 rounded transition">
+                            <h2 className="text-xl font-semibold">DANH MỤC SẢN PHẨM</h2>
+                            <ChevronDown className="h-4 w-4" />
+                        </div>
+                        <CollapsibleContent>
+                            <div className="ml-1 pl-4 mt-2 border-l-2 border-gray-500">
+                                {data.map((item, idx) => (
+                                    <Link href={`/san-pham?${ParamConst.danh_muc}=${item.code}`} scroll={false}>
                                         <div
                                             key={idx}
-                                            className="cursor-pointer hover:text-primary hover:underline transition"
+                                            className="text-xl cursor-pointer hover:text-primary hover:underline transition mb-3"
                                             onClick={() => {
                                                 if (window.innerWidth < 769) {
                                                     setIsMobileMenuOpen(false);
                                                 }
                                             }}
                                         >
-                                            {product}
+                                            {item.name}
                                         </div>
-                                    ))}
-                                </div>
-                            </CollapsibleContent>
-                        </Collapsible>
-                    ))}
+                                    </Link>
+                                ))}
+                            </div>
+                        </CollapsibleContent>
+                    </Collapsible>
                 </div>
             </div>
 
