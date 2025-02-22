@@ -15,6 +15,7 @@ interface UploadCardProps {
     className?: string;
     children?: React.ReactNode;
     onUpload?: (file: File) => void;
+    onRemoveImage?: () => void;
 }
 
 function UploadCard({
@@ -24,11 +25,11 @@ function UploadCard({
     className = 'w-[480px] h-[270px]',
     flag = false,
     onUpload,
+    onRemoveImage,
 }: UploadCardProps) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const { openImage } = useImagePreview();
 
-    // Kiểm tra nếu src rỗng thì gán ảnh mặc định
     const imageSrc = selectedImage || (src && src.trim() !== '' ? src : '/images/empty-img.png');
 
     const handleFileSelect = (file: File) => {
@@ -48,6 +49,11 @@ function UploadCard({
         openImage(imageSrc);
     };
 
+    const onRemoveSelectedImage = () => {
+        setSelectedImage(null);
+        onRemoveImage?.();
+    };
+
     return (
         <Card className="w-fit">
             <CardContent className="!p-0">
@@ -62,7 +68,7 @@ function UploadCard({
                     {selectedImage !== null && (
                         <div
                             className="rounded-md absolute top-4 right-4 w-fit p-1.5 cursor-pointer btn-danger"
-                            onClick={() => setSelectedImage(null)}
+                            onClick={onRemoveSelectedImage}
                         >
                             <Trash2 className="mr-[-1.1px]" />
                         </div>

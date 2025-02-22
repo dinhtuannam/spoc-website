@@ -14,6 +14,7 @@ import ApiRoute from '@/constants/api-route';
 import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
 import GeneratorHelper from '@/helpers/generator.helper';
+import { useToast } from '@/hooks/use-toast';
 import useCaller from '@/hooks/useCaller';
 import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
@@ -26,8 +27,6 @@ const initialValue: UpdateImageSlider = {
     description: '',
     images: [],
 };
-
-const modalKey = 'link';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -44,7 +43,8 @@ function ImageSliderUpdate() {
     const [visible, setVisible] = useState<boolean>(false);
     const { callApi, loading, setLoading } = useCaller<any>();
     const [slider, setSlider] = useState<UpdateImageSlider>(initialValue);
-    const { modals, openModal, closeModal } = useModal([modalKey]);
+    const [original, setOriginal] = useState<UpdateImageSlider>(initialValue);
+    const { toast } = useToast();
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -52,6 +52,7 @@ function ImageSliderUpdate() {
             const res = await LayoutService.trangChu.getSlider();
             if (res) {
                 setSlider({ ...res });
+                setOriginal({ ...res });
             }
             setLoading(false);
         };
@@ -126,6 +127,24 @@ function ImageSliderUpdate() {
         );
     };
 
+    const onRemoveSelectImage = (id: string) => {
+        const find = original.images.find((x) => x.id === id);
+        if (!find) {
+            toast({
+                variant: 'destructive',
+                title: 'Thông báo thao tác',
+                description: 'Lỗi hệ thống, không tìm thấy bản ghi cần xóa',
+                duration: 2500,
+            });
+        }
+        setSlider((prev) => ({
+            ...prev,
+            images: prev.images.map((image) =>
+                image.id === id ? { ...image, url: find?.url ?? '', file: undefined } : image,
+            ),
+        }));
+    };
+
     return (
         <Fragment>
             <ConfirmDialog visible={visible} closeModal={() => setVisible(false)} onSubmit={() => onSave()} />
@@ -174,6 +193,7 @@ function ImageSliderUpdate() {
                                         src={item.url}
                                         key={index}
                                         onUpload={(file: File) => onUploadImage(item.id, file)}
+                                        onRemoveImage={() => onRemoveSelectImage(item.id)}
                                     >
                                         {ButtonComponent(item)}
                                     </UploadCard>

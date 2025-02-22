@@ -42,6 +42,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
     const { callApi, loading, setLoading } = useCaller<any>();
     const [banner, setBanner] = useState<UpdateBanner>(initialValue);
     const { modals, openModal, closeModal } = useModal([modalKey]);
+    const [original, setOriginal] = useState<UpdateBanner>(initialValue);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -102,6 +103,15 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
         }));
     };
 
+    const onRemoveSelectImage = () => {
+        setBanner((prev) => ({
+            ...prev,
+            link: '',
+            image: original.image,
+            file: undefined,
+        }));
+    };
+
     const onEditLink = (_: string, link: string) => {
         setBanner((prev) => ({
             ...prev,
@@ -126,11 +136,12 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                         flag={banner.image !== '' && banner.file === undefined}
                         src={banner.image}
                         onUpload={onUploadImage}
+                        onRemoveImage={onRemoveSelectImage}
                     >
                         <Fragment>
                             <CustomButton
                                 className="btn-primary"
-                                hoverContent="Đường dẫn banner"
+                                hoverContent={banner.link ? banner.link : 'Thêm đường dẫn banner'}
                                 onClick={() =>
                                     openModal(modalKey, {
                                         id: banner.id,
@@ -143,7 +154,9 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                             <UploadButton onFileSelect={onChangeImage} accept="image/*" icon={false}>
                                 Chỉnh sửa
                             </UploadButton>
-                            <DeleteButton onClick={onDelete}>Xóa</DeleteButton>
+                            <DeleteButton hoverContent="Xóa banner và đường dẫn" onClick={onDelete}>
+                                Xóa
+                            </DeleteButton>
                         </Fragment>
                     </UploadCard>
                 </div>
