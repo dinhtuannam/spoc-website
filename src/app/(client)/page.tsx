@@ -1,4 +1,5 @@
 import NewsHighlight from './_components/news-highlight';
+import ProductHighlight from './_components/product-highlight';
 import { RelatedProducts } from '@/app/(client)/san-pham/[id]/_components/related-products';
 import FadeContent from '@/components/animate/fade-content';
 import Banner from '@/components/banner';
@@ -40,16 +41,7 @@ export default function Home() {
                 <CardSlider />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
-                <div className="mb-8 laptop:mb-16 app-padding">
-                    <RelatedProducts
-                        products={relatedProducts}
-                        title="SẢN PHẨM BÁN CHẠY"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
-                    />
-                    <Link href={'/san-pham'} className="center mt-8">
-                        <AppButton className="mx-auto">Khám phá thêm</AppButton>
-                    </Link>
-                </div>
+                <ProductHighlight className="mb-8 laptop:mb-16 app-padding" />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero

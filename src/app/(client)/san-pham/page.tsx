@@ -65,7 +65,7 @@ async function SanPham() {
                 <div className="mobile:col-span-1 laptop:col-span-3">
                     <div className="grid mobile:grid-cols-2 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
                         {products.map((product, index) => (
-                            <ProductCard key={index} />
+                            <ProductCard key={index} name="Thực phẩm ngủ ngon" image="/images/product.png" />
                         ))}
                     </div>
                 </div>
