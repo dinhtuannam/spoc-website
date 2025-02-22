@@ -20,4 +20,5 @@ type UpdateImageSlider = {
 
 interface UpdateSlider extends Slider {
     file?: File;
+    deleted?: boolean;
 }

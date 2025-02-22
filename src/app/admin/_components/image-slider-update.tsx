@@ -78,7 +78,9 @@ function ImageSliderUpdate() {
     const onDelete = (id: string) => {
         setSlider((prev) => ({
             ...prev,
-            images: prev.images.map((image) => (image.id === id ? { ...image, url: '', file: undefined } : image)),
+            images: prev.images.map((image) =>
+                image.id === id ? { ...image, url: '', file: undefined, deleted: true } : image,
+            ),
         }));
     };
 
@@ -114,13 +116,13 @@ function ImageSliderUpdate() {
         setLoading(false);
     };
 
-    const ButtonComponent = (item: Slider) => {
+    const ButtonComponent = (item: UpdateSlider) => {
         return (
             <Fragment>
                 <UploadButton onFileSelect={(file: File) => onChangeImage(item.id, file)} accept="image/*" icon={false}>
                     Chỉnh sửa
                 </UploadButton>
-                <DeleteButton onClick={() => onDelete(item.id)}>Xóa</DeleteButton>
+                {!item.deleted && <DeleteButton onClick={() => onDelete(item.id)}>Xóa</DeleteButton>}
             </Fragment>
         );
     };

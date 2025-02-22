@@ -47,8 +47,8 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
             setLoading(true);
             const res = await LayoutService.getSection(page, sort);
             if (res) {
-                setSection({ ...res, file: undefined });
-                setOriginal({ ...res, file: undefined });
+                setSection({ ...res, file: undefined, deleted: false });
+                setOriginal({ ...res, file: undefined, deleted: false });
             }
             setLoading(false);
         };
@@ -104,6 +104,7 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
             ...prev,
             image: '',
             file: undefined,
+            deleted: true,
         }));
     };
 
@@ -162,7 +163,7 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
                             <UploadButton icon={false} accept="image/*" onFileSelect={onChangeImage}>
                                 Chỉnh sửa
                             </UploadButton>
-                            <DeleteButton icon onClick={onDelete} />
+                            {!section.deleted && <DeleteButton icon onClick={onDelete} />}
                         </UploadCard>
                     </div>
                 </div>

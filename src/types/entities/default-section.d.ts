@@ -8,4 +8,5 @@ type DefaultSection = {
 
 interface UpdateDefaultSection extends DefaultSection {
     file?: File;
+    deleted?: boolean;
 }

@@ -49,8 +49,8 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             setLoading(true);
             const res = await LayoutService.getBanner(page, sort);
             if (res) {
-                setBanner({ ...res, file: undefined });
-                setOriginal({ ...res, file: undefined });
+                setBanner({ ...res, file: undefined, deleted: false });
+                setOriginal({ ...res, file: undefined, deleted: false });
             }
             setLoading(false);
         };
@@ -90,8 +90,8 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             uploadMessage,
         );
         if (result.succeeded && result.data) {
-            setBanner({ ...result.data, file: undefined });
-            setOriginal({ ...result.data, file: undefined });
+            setBanner({ ...result.data, file: undefined, deleted: false });
+            setOriginal({ ...result.data, file: undefined, deleted: false });
         }
         setLoading(false);
     };
@@ -102,6 +102,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             link: '',
             image: '',
             file: undefined,
+            deleted: true,
         }));
     };
 
@@ -118,10 +119,6 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             ...prev,
             link: link,
         }));
-    };
-
-    const onClear = () => {
-        setBanner(original);
     };
 
     return (
@@ -144,9 +141,6 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                         onRemoveImage={onRemoveSelectImage}
                     >
                         <Fragment>
-                            <CustomButton className="btn-primary" hoverContent={'Hoàn tác'} onClick={onClear}>
-                                <RotateCcw />
-                            </CustomButton>
                             <CustomButton
                                 className="btn-primary"
                                 hoverContent={banner.link ? banner.link : 'Thêm đường dẫn banner'}
@@ -162,9 +156,11 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
                             <UploadButton onFileSelect={onChangeImage} accept="image/*" icon={false}>
                                 Chỉnh sửa
                             </UploadButton>
-                            <DeleteButton hoverContent="Xóa banner và đường dẫn" onClick={onDelete}>
-                                Xóa
-                            </DeleteButton>
+                            {!banner.deleted && (
+                                <DeleteButton hoverContent="Xóa banner và đường dẫn" onClick={onDelete}>
+                                    Xóa
+                                </DeleteButton>
+                            )}
                         </Fragment>
                     </UploadCard>
                 </div>

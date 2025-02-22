@@ -7,4 +7,5 @@ type Banner = {
 
 interface UpdateBanner extends Banner {
     file?: File;
+    deleted?: boolean;
 }
