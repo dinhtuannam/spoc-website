@@ -27,4 +27,17 @@ export default class NewsService {
             return null;
         }
     }
+
+    static async highlight(take: number): Promise<News[]> {
+        try {
+            const res = await API.get<ApiRes<News[]>>(ApiRoute.News.highlight(take));
+            if (!res.data.succeeded || !res.data.data) {
+                return [];
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            return [];
+        }
+    }
 }

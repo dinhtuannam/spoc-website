@@ -9,6 +9,7 @@ interface NewsCardProps {
     image: string;
     shortDescription?: string;
     category?: string;
+    scroll?: boolean;
 }
 
 // '/images/news.jpeg'
@@ -16,10 +17,10 @@ interface NewsCardProps {
 // Tập thể dục 10 phút mỗi ngày lợi như thế nào?
 // Với thói quen tập thể dục 10 phút mỗi ngày, bạn sẽ có...
 
-function NewsCard({ code, title, image, shortDescription, category }: NewsCardProps) {
+function NewsCard({ code, title, image, shortDescription, category, scroll = true }: NewsCardProps) {
     return (
         <Card className="overflow-hidden group img-hover shadow-lg">
-            <Link href={`/tin-tuc/${code}`} scroll={false} prefetch>
+            <Link href={`/tin-tuc/${code}`} scroll={scroll} prefetch>
                 <div className="relative aspect-[4/4]">
                     <Image
                         src={image}

@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import '../globals.css';
 import MainFooter from '@/app/(client)/_components/footer';
 import MainNavbar from '@/app/(client)/_components/navbar';
+import QueryProvider from '@/components/provider/query.provider';
 import { Toaster } from '@/components/ui/toaster';
 
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
@@ -21,8 +22,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${roboto.className} antialiased`}>
                 <MainNavbar />
-                {children}
+                <QueryProvider>{children}</QueryProvider>
                 <Toaster />
+
                 <MainFooter />
             </body>
         </html>

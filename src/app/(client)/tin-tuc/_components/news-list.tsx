@@ -49,6 +49,7 @@ export function NewsList({ items }: NewsListProps) {
                     shortDescription={item.shortDescription}
                     image={item.image}
                     category={item.category?.name}
+                    scroll={false}
                 />
             ))}
         </AppGrid>
