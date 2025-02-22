@@ -14,6 +14,12 @@ export default class ApiRoute {
         static root: string = '/api/Product';
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
+        static highlight = (take: number) => {
+            return `${this.root}/highlight?take=${take}`;
+        };
+        static similiar = (take: number, category: string) => {
+            return `${this.root}/similiar?take=${take}&category=${category}`;
+        };
     };
     static ProductImage = class {
         static root: string = '/api/ProductImage';
@@ -31,7 +37,7 @@ export default class ApiRoute {
         static pagination: string = `${this.root}/pagination`;
         static search: string = `${this.root}/search`;
         static highlight = (take: number) => {
-            return `${this.root}/highlight?take${take}`;
+            return `${this.root}/highlight?take=${take}`;
         };
     };
     static NewsCategory = class {
