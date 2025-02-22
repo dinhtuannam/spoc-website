@@ -32,7 +32,7 @@ function GioiThieuPage() {
                 background="white"
                 title="Tầm nhìn"
                 description="SOPC mong muốn mang đến một tương lai tươi sáng cho mọi đôi mắt Việt Nam và trở thành biểu tượng của sự tin cậy và chất lượng trong lĩnh vực chăm sóc mắt"
-                img={'/images/section-1.png'}
+                img={'/templates/gioi-thieu/TamNhin.png'}
                 imgPosition="left"
                 priority
             />
@@ -40,7 +40,7 @@ function GioiThieuPage() {
                 background="blue"
                 title="Sứ mệnh"
                 description="Cung cấp các sản phẩm và dịch vụ chăm sóc mắt tiên tiến, an toàn và hiệu quả, nhằm cải thiện chất lượng cuộc sống cho mọi người."
-                img={'/images/section-2.png'}
+                img={'/templates/gioi-thieu/SuMenh.png'}
                 imgPosition="right"
                 priority
             />
@@ -49,7 +49,7 @@ function GioiThieuPage() {
                     background="white"
                     title="Giá trị cốt lõi"
                     description="Chất lượng, Đổi mới, Khách hàng là trọng tâm, Uy tín, Trách nhiệm."
-                    img={'/images/hero.jpeg'}
+                    img={'/templates/gioi-thieu/GiaTriCotLoi.jpg'}
                     imgPosition="left"
                 />
             </FadeContent>
