@@ -19,7 +19,7 @@ interface NewsCardProps {
 function NewsCard({ code, title, image, shortDescription, category }: NewsCardProps) {
     return (
         <Card className="overflow-hidden group img-hover shadow-lg">
-            <Link href={`/tin-tuc/${code}`} scroll={false}>
+            <Link href={`/tin-tuc/${code}`} scroll={false} prefetch>
                 <div className="relative aspect-[4/4]">
                     <Image
                         src={image}

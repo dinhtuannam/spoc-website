@@ -3,17 +3,31 @@ import { NewsCategories } from '../_components/news-categories';
 import { SubscribeForm } from '../_components/subscribe-form';
 import { Breadcrumb } from '@/components/breadcrumb';
 import Formatter from '@/helpers/format.helper';
-import NewsService from '@/services/news.service';
+import { API_PATH } from '@/lib/axios';
 import React from 'react';
 
-export const metadata = {
-    title: 'Tin tức - SOPC',
-    description: 'Cập nhật tin tức mới nhất về SOPC',
-};
+// async function getNews(id: string): Promise<News | null> {
+//     const res = await NewsService.detail('306f7d20-7b0f-fe68-b2d1-378c09bc0d80');
+//     return res;
+// }
 
 async function getNews(id: string): Promise<News | null> {
-    const res = await NewsService.detail('306f7d20-7b0f-fe68-b2d1-378c09bc0d80');
-    return res;
+    const res = await fetch(`${API_PATH}/api/News/code/${id}`, {
+        next: { revalidate: 60 }, // ISR: Cập nhật dữ liệu mỗi 60 giây
+    });
+
+    if (!res.ok) return null;
+    const tmp = await res.json();
+    return tmp.data;
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+    const news = await getNews(params.id);
+
+    return {
+        title: news?.title || 'Tin tức - SOPC',
+        description: news?.shortDescription || 'Cập nhật tin tức mới nhất về SOPC',
+    };
 }
 
 async function TinTucDetail({ params }: { params: { id: string } }) {
@@ -30,7 +44,7 @@ async function TinTucDetail({ params }: { params: { id: string } }) {
         },
         {
             title: news?.title || 'Bài viết',
-            link: '/tin-tuc',
+            link: '/tin-tuc/abc',
         },
     ];
 

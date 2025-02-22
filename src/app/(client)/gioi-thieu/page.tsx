@@ -1,3 +1,4 @@
+import NewsHighlight from '../_components/news-highlight';
 import FadeContent from '@/components/animate/fade-content';
 import NewsCard from '@/components/card/news.card';
 import SectionHeader from '@/components/header/section.header';
@@ -57,25 +58,7 @@ function GioiThieuPage() {
                 <SocialMediaHero />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
-                <div className="mt-8">
-                    <SectionHeader />
-                    <VeritcalSlider background="white" className="!py-2 !mt-2">
-                        {Array.from({ length: 8 }).map((_, index) => (
-                            <CarouselItem
-                                key={index}
-                                className="desktop:basis-1/4 basis-1/2 tablet:basis-1/3 tablet:mx-1"
-                            >
-                                <NewsCard
-                                    code="abc"
-                                    image="/images/news.jpeg"
-                                    title="Tập thể dục 10 phút mỗi ngày lợi như thế nào?"
-                                    shortDescription="Với thói quen tập thể dục 10 phút mỗi ngày, bạn sẽ có..."
-                                    category="Lối sống khỏe"
-                                />
-                            </CarouselItem>
-                        ))}
-                    </VeritcalSlider>
-                </div>
+                <NewsHighlight className="mt-8" />
             </FadeContent>
         </div>
     );
