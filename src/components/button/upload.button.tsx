@@ -39,8 +39,6 @@ function UploadButton({
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files && files.length > 0) {
-            console.log(files[0]);
-
             if (multiple) {
                 if (files.length > max) {
                     toast({

@@ -173,28 +173,6 @@ function Page() {
                         error={error.data.instruction.flag}
                         msg={error.data.instruction.msg}
                     />
-                    <div className="grid gap-2">
-                        <div className="flex justify-between items-center mb-2">
-                            <Label htmlFor="phone">
-                                Hình ảnh <span className="text-gray-500">(tối đa {AppConstant.maxImage})</span>
-                            </Label>
-                            {images.length < AppConstant.maxImage && (
-                                <UploadButton accept="image/*" multiple max={6} onFileSelect={handleFileSelect} icon>
-                                    Tải lên
-                                </UploadButton>
-                            )}
-                        </div>
-                        <div className="flex flex-wrap gap-4">
-                            {images.map((item, index) => {
-                                return (
-                                    <UploadCard className="w-52 h-52" src={item.url} flag key={index}>
-                                        <DeleteButton icon className="!px-2" onClick={() => removeFile(item.id)} />
-                                    </UploadCard>
-                                );
-                            })}
-                            {images.length === 0 && <UploadCard className="w-52 h-52" flag></UploadCard>}
-                        </div>
-                    </div>
                 </CardContent>
             </Card>
         </div>
