@@ -29,7 +29,7 @@ export function RelatedProducts({ products, title, description, link }: RelatedP
             </div>
             <AppGrid>
                 {products.map((product, index) => (
-                    <ProductCard key={index} />
+                    <ProductCard key={index} name="Thực phẩm ngủ ngon" image="/images/product.png" />
                 ))}
             </AppGrid>
         </div>
