@@ -99,9 +99,7 @@ function Banner() {
             });
         }
         setBanners((prevBanners) =>
-            prevBanners.map((banner) =>
-                banner.id === id ? { ...banner, image: find?.image ?? '', file: undefined } : banner,
-            ),
+            prevBanners.map((banner) => (banner.id === id ? { ...banner, image: '', file: undefined } : banner)),
         );
     };
 

@@ -137,9 +137,7 @@ function ImageSliderUpdate() {
         }
         setSlider((prev) => ({
             ...prev,
-            images: prev.images.map((image) =>
-                image.id === id ? { ...image, url: find?.url ?? '', file: undefined } : image,
-            ),
+            images: prev.images.map((image) => (image.id === id ? { ...image, url: '', file: undefined } : image)),
         }));
     };
 

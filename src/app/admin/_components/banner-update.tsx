@@ -108,7 +108,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
     const onRemoveSelectImage = () => {
         setBanner((prev) => ({
             ...prev,
-            image: original.image,
+            image: '',
             file: undefined,
         }));
     };
