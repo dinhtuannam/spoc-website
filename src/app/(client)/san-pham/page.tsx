@@ -46,7 +46,7 @@ async function SanPham() {
     return (
         <div className="page-container height-minus">
             <Image
-                src={'/images/banner-sp.png'}
+                src={'/templates/trang-chu/DoiMatSang.png'}
                 alt={`banner`}
                 width={0}
                 height={0}

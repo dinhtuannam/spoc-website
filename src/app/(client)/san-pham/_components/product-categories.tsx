@@ -15,11 +15,7 @@ interface ProductCategoriesProps {
 
 const categories = [
     {
-        name: 'Danh mục 1',
-        products: ['Sản phẩm 1', 'Sản phẩm 2', 'Sản phẩm 3', 'Sản phẩm 4'],
-    },
-    {
-        name: 'Danh mục 2',
+        name: 'Danh mục sản phẩm',
         products: ['Sản phẩm 1', 'Sản phẩm 2', 'Sản phẩm 3', 'Sản phẩm 4'],
     },
 ];
@@ -39,7 +35,7 @@ function ProductCategories() {
                 </button>
             </div>
 
-            <h2 className="text-xl font-semibold mb-4 hidden laptop:block">DANH MỤC SẢN PHẨM</h2>
+            {/* <h2 className="text-xl font-semibold mb-4 hidden laptop:block">DANH MỤC SẢN PHẨM</h2> */}
 
             <div
                 className={`
@@ -51,7 +47,7 @@ function ProductCategories() {
                 `}
             >
                 <div className="p-4 border-b flex items-center justify-between laptop:hidden">
-                    <h2 className="text-xl font-semibold">DANH MỤC SẢN PHẨM</h2>
+                    {/* <h2 className="text-xl font-semibold">DANH MỤC SẢN PHẨM</h2> */}
                     <button
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -64,7 +60,7 @@ function ProductCategories() {
                     {categories.map((category, index) => (
                         <Collapsible key={index} defaultOpen>
                             <CollapsibleTrigger className="flex items-center justify-between w-full p-2 !pl-0 text-left hover:bg-gray-100 rounded transition">
-                                <h1 className="font-semibold">{category.name}</h1>
+                                <h2 className="text-xl font-semibold hidden laptop:block">DANH MỤC SẢN PHẨM</h2>
                                 <ChevronDown className="h-4 w-4" />
                             </CollapsibleTrigger>
                             <CollapsibleContent>

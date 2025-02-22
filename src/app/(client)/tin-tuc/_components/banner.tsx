@@ -4,7 +4,7 @@ import React from 'react';
 function TinTucBanner() {
     return (
         <Image
-            src="/images/banner-tin-tuc.png"
+            src="/templates/tin-tuc/banner.jpg"
             alt="Tin tức banner"
             width={0}
             height={0}
