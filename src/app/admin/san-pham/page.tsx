@@ -10,6 +10,7 @@ import ColumnSelect from '@/components/table/column-select';
 import { DataTable } from '@/components/table/data-table';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import ApiRoute from '@/constants/api-route';
+import AppConstant from '@/constants/app.constant';
 import { useImagePreview } from '@/contexts/image-preview-context';
 import { highlightOption } from '@/datas/highlight.data';
 import useTableRef from '@/hooks/useTableRef';
@@ -54,17 +55,18 @@ function Page() {
                 accessorKey: 'id',
                 header: 'Hình ảnh',
                 cell: ({ row }) => {
+                    const url = row.original.image ? row.original.image : AppConstant.fallback;
                     return (
                         <div className="w-16">
                             <div
-                                className={`relative aspect-square cursor-pointer rounded-lg overflow-hidden hover:bg-black`}
+                                className={`relative aspect-square cursor-pointer rounded-lg overflow-hidden hover:bg-gray-200`}
                             >
                                 <Image
-                                    src={'/images/product.png'}
+                                    src={url}
                                     alt={'img'}
                                     fill
                                     className="object-contain transition preview"
-                                    onClick={() => openImage('/images/product.png')}
+                                    onClick={() => openImage(url)}
                                 />
                             </div>
                         </div>

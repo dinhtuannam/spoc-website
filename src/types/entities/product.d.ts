@@ -7,6 +7,7 @@ type Product = {
     instruction: string;
     price: number;
     link: string;
+    image?: string;
     highlight: boolean;
     markDate: string;
     categoryId?: string;

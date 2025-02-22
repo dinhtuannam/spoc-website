@@ -117,6 +117,7 @@ function Page() {
 
             if (responseData.succeeded) {
                 toast({
+                    variant: 'success',
                     title: 'Thông báo',
                     description: 'Cập nhật hình ảnh thành công!',
                     duration: 1500,
@@ -171,6 +172,7 @@ function Page() {
 
             if (responseData.succeeded) {
                 toast({
+                    variant: 'success',
                     title: 'Thông báo',
                     description: 'Tải lên hình ảnh thành công!',
                     duration: 1500,

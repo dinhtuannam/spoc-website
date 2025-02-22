@@ -1,4 +1,5 @@
 import { Card } from '../ui/card';
+import AppConstant from '@/constants/app.constant';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -13,6 +14,7 @@ function ProductCard() {
                     alt={'thực phẩm ngủ ngon'}
                     fill
                     className="object-contain cursor-pointer hover:scale-105 transition"
+                    onError={(e) => (e.currentTarget.src = AppConstant.fallback)}
                 />
             </Link>
             <h3 className="text-center font-medium mobile:text-sm tablet:text-base">Thực phẩm ngủ ngon</h3>

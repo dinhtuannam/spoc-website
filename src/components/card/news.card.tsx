@@ -1,4 +1,5 @@
 import { Card } from '../ui/card';
+import AppConstant from '@/constants/app.constant';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -27,6 +28,7 @@ function NewsCard({ code, title, image, shortDescription, category, scroll = tru
                         alt={'tic tức spoc'}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => (e.currentTarget.src = AppConstant.fallback)}
                     />
                 </div>
                 <div className="p-4">

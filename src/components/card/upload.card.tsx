@@ -3,6 +3,7 @@
 import DeleteButton from '../button/delete.button';
 import UploadButton from '../button/upload.button';
 import { Card, CardContent } from '../ui/card';
+import AppConstant from '@/constants/app.constant';
 import { useImagePreview } from '@/contexts/image-preview-context';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
     {
         children,
         label = 'Hình ảnh',
-        src = '/images/empty-img.png',
+        src = AppConstant.fallback,
         className = 'w-[480px] h-[270px]',
         flag = false,
         onUpload,
@@ -43,7 +44,7 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
         clearSelectedImage: (value?: string | null) => setSelectedImage(value ?? null),
     }));
 
-    const imageSrc = selectedImage || (src && src.trim() !== '' ? src : '/images/empty-img.png');
+    const imageSrc = selectedImage || (src && src.trim() !== '' ? src : AppConstant.fallback);
 
     const handleFileSelect = (file: File) => {
         const imageUrl = URL.createObjectURL(file);
@@ -58,7 +59,7 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
     };
 
     const isFileEmpty = () => {
-        return selectedImage === null && imageSrc === '/images/empty-img.png';
+        return selectedImage === null && imageSrc === AppConstant.fallback;
     };
 
     const handleClickImage = () => {
@@ -83,6 +84,7 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
                         alt="Preview"
                         fill
                         className={cn('object-cover w-full h-auto', !isFileEmpty() && 'preview')}
+                        onError={(e) => (e.currentTarget.src = AppConstant.fallback)}
                     />
                 </div>
                 <div className="px-4 py-3 flex justify-between items-center border-t gap-2">

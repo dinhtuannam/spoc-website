@@ -2,6 +2,7 @@
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { type CarouselApi } from '@/components/ui/carousel';
+import AppConstant from '@/constants/app.constant';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState, useEffect, Fragment } from 'react';
@@ -39,6 +40,7 @@ function Banner({ images, priority = false }: BannerProps) {
                                 height={0}
                                 sizes="100vw"
                                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                                onError={(e) => (e.currentTarget.src = AppConstant.fallback)}
                             />
                         </CarouselItem>
                     ))}
