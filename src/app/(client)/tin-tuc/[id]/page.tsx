@@ -11,9 +11,9 @@ export const metadata = {
 
 const rawHTML = {
     __html: `
-    <section class="md:pt-5 pt-3 lg:pb-100px md:pb-20 pb-60px" style="font-size: 24px">
+    <section class="md:pt-5 pt-3 lg:pb-100px md:pb-20 pb-60px">
     <div class="container mx-auto">
-                <div class=" mx-auto">
+                <div class="max-w-[853px] mx-auto">
             <div class="w-full mb-10">
                 <h1 class="font-medium text-primary md:text-40px text-[28px] text-left">
                     Tế bào nội mô giác mạc và những điều cần biết                </h1>
@@ -50,7 +50,39 @@ const rawHTML = {
 <p>– C.V% (coefficient of variantion cell): biểu thị sự biến đổi kích thước giữa các tế bào nội mô. CV% &lt; 40 là bình thường.</p>
 <p>– S.D (standard deviation of the mean cell area): độ lệch chuẩn của tế bào nội mô vùng khảo sát.</p>
 <p>–&nbsp;HEXA% (Hexagonality): biểu hiện sự biến đổi hình dạng của tế bào lục giác (tế bào nội mô giác mạc). HEXA &gt; 50% là bình thường.</p>        <div class="container dat-lich-tu-van mx-auto py-6 max-w-947px">
-            
+            <h2 class="md:text-40px text-3xl leading-tight font-medium text-center text-primary -tracking-2/100 md:mb-5 mb-3">Để lại thông tin để được tư vấn miễn phí và hưởng các ưu đãi</h2>
+            <div class="py-6 sm:px-32px px-4 shadow-form rounded-20px relative">
+                <form method="POST" data-form="book-appointment" class="book-appointment-form flex md:flex-row flex-col gap-18px justify-between items-end shrink-1">
+                    <div class="relative flex flex-col w-full shrink-1 md:w-220px">
+                        <label for="apt-1259-fullname" class="text-gray-600 md:text-base text-sm font-medium leading-tight md:mb-14px mb-2">Họ và tên <span class="text-red-600">*</span></label>
+                        <div class="w-full !mt-0">
+                            <input id="apt-1259-fullname" type="text" name="fullname" class="w-full border border-gray-200 rounded-40px p-5 h-10 md:text-xs text-base leading-tight text-gray-600" placeholder="Nhập họ và tên" required="">
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col w-full shrink-1 md:w-220px">
+                        <label for="apt-1259-service" class="text-gray-600 md:text-base text-sm font-medium leading-tight md:mb-14px mb-2">Dịch vụ cần tư vấn <span class="text-red-600">*</span></label>
+                        <div class="relative w-full !mt-0 js-select2-parent-1259">
+                            <select id="apt-1259-service" data-dropdown-parent=".js-select2-parent-1259" data-width="resolve" name="service" class="w-full border border-gray-200 rounded-40px p-5 h-10 js-select2 md:text-xs text-base leading-tight text-gray-600 select2-hidden-accessible" required="" data-select2-id="select2-data-apt-1259-service" tabindex="-1" aria-hidden="true">
+                                <option value="" data-select2-id="select2-data-2-p084">Chọn dịch vụ</option>
+                                <option value="Phẫu thuật khúc xạ (mổ cận)">Phẫu thuật khúc xạ (mổ cận)</option>
+                                <option value="Phẫu thuật lão thị">Phẫu thuật lão thị</option>
+                                <option value="Phẫu thuật đục thủy tinh thể">Phẫu thuật đục thủy tinh thể</option>
+                                <option value="Các gói khám và điều trị bệnh lý khác">Các gói khám và điều trị bệnh lý khác</option>
+                            </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="select2-data-1-ezba" style="width: 167.333px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-apt-1259-service-container" aria-controls="select2-apt-1259-service-container"><span class="select2-selection__rendered" id="select2-apt-1259-service-container" role="textbox" aria-readonly="true" title="Chọn dịch vụ"><span class="select2-selection__placeholder">Chọn dịch vụ</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col w-full shrink-1 md:w-220px">
+                        <label for="apt-1259-phone" class="text-gray-600 md:text-base text-sm font-medium leading-tight md:mb-14px mb-2">Số điện thoại <span class="text-red-600">*</span></label>
+                        <div class="w-full !mt-0">
+                            <input id="apt-1259-phone" type="tel" name="phone" class="w-full border border-gray-200 rounded-40px p-5 h-10 md:text-xs text-base leading-tight text-gray-600" placeholder="Nhập số điện thoại" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-primary hover:bg-button-hover text-white hover:text-primary md:text-base text-sm leading-tight transition-colors duration-400 px-33px h-10 rounded-40px whitespace-nowrap w-full shrink-1 md:max-w-169px">Đặt lịch tư vấn</button>
+                    <div class="overlay js-overlay absolute top-0 left-0 w-full h-full bg-overlay z-2 hidden items-center justify-center">
+                        <div class="spinner w-20 h-20"><svg height="200" preserveAspectRatio="xMidYMid" style="shape-rendering:auto;display:block;background:0 0" viewBox="0 0 100 100" width="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><circle cx="50" cy="50" fill="none" r="0" stroke="#0d9447" stroke-width="2"><animate attributeName="r" begin="0s" calcMode="spline" dur="1s" keySplines="0 0.2 0.8 1" keyTimes="0;1" repeatCount="indefinite" values="0;40"></animate><animate attributeName="opacity" begin="0s" calcMode="spline" dur="1s" keySplines="0.2 0 0.8 1" keyTimes="0;1" repeatCount="indefinite" values="1;0"></animate></circle><circle cx="50" cy="50" fill="none" r="0" stroke="#0d9447" stroke-width="2"><animate attributeName="r" begin="-0.5s" calcMode="spline" dur="1s" keySplines="0 0.2 0.8 1" keyTimes="0;1" repeatCount="indefinite" values="0;40"></animate><animate attributeName="opacity" begin="-0.5s" calcMode="spline" dur="1s" keySplines="0.2 0 0.8 1" keyTimes="0;1" repeatCount="indefinite" values="1;0"></animate></circle><g></g></g></svg></div>
+                    </div>
+                </form>
+            </div>
         </div>
         <p></p>
 <p>–&nbsp;Cornea Thick (mm) – PACHY: chiều dày giác mạc.</p>
@@ -149,7 +181,7 @@ function TinTucDetail() {
                             <h3 className="font-bold text-2xl mt-1">Tập thể dục 10 phút mỗi ngày lợi như thế nào?</h3>
                             <hr className="my-2 border-gray-300" />
                             <p className="text-gray-700 font-semibold italic text-sm mt-1">20.08.2024</p>
-                            <div dangerouslySetInnerHTML={rawHTML} />
+                            {/* <div dangerouslySetInnerHTML={__html:}/> */}
                         </div>
                     </div>
                 </div>

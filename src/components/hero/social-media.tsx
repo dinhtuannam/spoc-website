@@ -39,7 +39,7 @@ const SocialMediaContent = ({ count, description }: { count: number; description
 const BackgroundImage = () => (
     <div className="absolute right-0 top-0 h-full hidden laptop:block">
         <Image
-            src="/images/hero-social-media.png"
+            src="/templates/gioi-thieu/BS2.png"
             alt="hero social media"
             width={800}
             height={600}

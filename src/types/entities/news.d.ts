@@ -4,8 +4,9 @@ type News = {
     title: string;
     shortDescription?: string;
     content: string;
+    image: string;
     categoryId?: string;
-    category: NewsCategory;
+    category?: NewsCategory;
     createdDate?: string;
     updatedDate?: string;
 };

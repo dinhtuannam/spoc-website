@@ -29,6 +29,7 @@ export default class ApiRoute {
         static root: string = '/api/News';
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
+        static search: string = `${this.root}/search`;
     };
     static NewsCategory = class {
         static root: string = '/api/NewsCategory';
