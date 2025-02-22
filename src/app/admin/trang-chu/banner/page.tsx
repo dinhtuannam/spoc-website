@@ -12,41 +12,36 @@ import PageLoading from '@/components/loading/page.loading';
 import ApiRoute from '@/constants/api-route';
 import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
+import { useToast } from '@/hooks/use-toast';
 import useCaller from '@/hooks/useCaller';
 import useModal from '@/hooks/useModal';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link2 } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
 
-const queryKey: string = '/trang-chu/banner';
 const modalKey = 'link';
 
 function Banner() {
-    const queryClient = useQueryClient();
     const [visible, setVisible] = useState<boolean>(false);
     const { callApi, loading, setLoading } = useCaller<any>();
     const [banners, setBanners] = useState<UpdateBanner[]>([]);
+    const [original, setOriginal] = useState<UpdateBanner[]>([]);
     const { modals, openModal, closeModal } = useModal([modalKey]);
-    const { data = [], isLoading } = useQuery<Banner[]>({
-        queryKey: [queryKey],
-        queryFn: () => LayoutService.trangChu.getBanner(),
-        staleTime: 10 * 1000,
-    });
-
-    const onFetch = () => {
-        queryClient.invalidateQueries({
-            queryKey,
-            exact: true,
-        });
-    };
+    const { toast } = useToast();
 
     useEffect(() => {
-        if (!isLoading) {
-            setBanners(data);
-        }
-    }, [data]);
+        const fetchApi = async () => {
+            setLoading(true);
+            const res = await LayoutService.trangChu.getBanner();
+            if (res) {
+                setBanners(res);
+                setOriginal(res);
+            }
+            setLoading(false);
+        };
+        fetchApi();
+    }, []);
 
     const breadcrumbs: BreadcrumbItem[] = [
         {
@@ -93,6 +88,23 @@ function Banner() {
         );
     };
 
+    const onRemoveSelectImage = (id: string) => {
+        const find = original.find((x) => x.id === id);
+        if (!find) {
+            toast({
+                variant: 'destructive',
+                title: 'Thông báo thao tác',
+                description: 'Lỗi hệ thống, không tìm thấy bản ghi cần xóa',
+                duration: 2500,
+            });
+        }
+        setBanners((prevBanners) =>
+            prevBanners.map((banner) =>
+                banner.id === id ? { ...banner, image: find?.image ?? '', file: undefined } : banner,
+            ),
+        );
+    };
+
     const onSave = async () => {
         setLoading(true);
         const payload = banners;
@@ -113,7 +125,8 @@ function Banner() {
             'Lưu banner trang chủ thành công',
         );
         if (result.succeeded) {
-            onFetch();
+            setBanners(result.data);
+            setOriginal(result.data);
         }
         setLoading(false);
     };
@@ -124,7 +137,6 @@ function Banner() {
                 banner.id === id ? { ...banner, image: '', link: '', file: undefined } : banner,
             ),
         );
-        onFetch();
     };
 
     const onEditLink = (id: string, link: string) => {
@@ -137,22 +149,27 @@ function Banner() {
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
-                <SaveButton disabled={isLoading || loading} onClick={() => setVisible(true)}>
-                    Lưu
-                </SaveButton>
+                <div className="flex items-center gap-2">
+                    <SaveButton disabled={loading} onClick={() => setVisible(true)}>
+                        Lưu
+                    </SaveButton>
+                </div>
             </div>
 
-            {isLoading || loading ? (
+            {loading ? (
                 <PageLoading />
             ) : (
                 <div className="flex flex-wrap gap-10">
                     {banners.map((item, index) => {
+                        console.log(item);
+
                         return (
                             <UploadCard
-                                flag={item.image !== '' && item.file === undefined}
+                                flag={item.image !== '' || item.file !== undefined}
                                 src={item.image}
                                 key={index}
                                 onUpload={(file: File) => onUploadImage(item.id, file)}
+                                onRemoveImage={() => onRemoveSelectImage(item.id)}
                             >
                                 {ButtonComponent(item)}
                             </UploadCard>

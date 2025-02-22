@@ -133,7 +133,7 @@ function BannerUpdate({ page, sort, breadcrumb, uploadMessage }: BannerUpdatePro
             ) : (
                 <div className="flex flex-wrap gap-10">
                     <UploadCard
-                        flag={banner.image !== '' && banner.file === undefined}
+                        flag={banner.image !== '' || banner.file !== undefined}
                         src={banner.image}
                         onUpload={onUploadImage}
                         onRemoveImage={onRemoveSelectImage}

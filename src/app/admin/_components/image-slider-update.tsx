@@ -71,9 +71,7 @@ function ImageSliderUpdate() {
         const imageUrl = URL.createObjectURL(file);
         setSlider((prev) => ({
             ...prev,
-            images: prev.images.map((image) =>
-                image.id === id ? { ...image, url: imageUrl, file: undefined } : image,
-            ),
+            images: prev.images.map((image) => (image.id === id ? { ...image, url: imageUrl, file } : image)),
         }));
     };
 
@@ -189,7 +187,7 @@ function ImageSliderUpdate() {
                                 return (
                                     <UploadCard
                                         className="w-80 aspect-[79/100]"
-                                        flag={item.url !== '' && item.file === undefined}
+                                        flag={item.url !== '' || item.file !== undefined}
                                         src={item.url}
                                         key={index}
                                         onUpload={(file: File) => onUploadImage(item.id, file)}
