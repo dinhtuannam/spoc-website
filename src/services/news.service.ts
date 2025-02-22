@@ -14,4 +14,17 @@ export default class NewsService {
             return [];
         }
     }
+
+    static async detail(id: string): Promise<News | null> {
+        try {
+            const res = await API.get<ApiRes<News>>(`${ApiRoute.News.root}/${id}`);
+            if (!res.data.succeeded || !res.data.data) {
+                null;
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            return null;
+        }
+    }
 }
