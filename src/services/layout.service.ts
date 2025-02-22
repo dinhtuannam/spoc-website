@@ -34,6 +34,21 @@ export default class LayoutService {
                 null;
             }
         },
+
+        async getSlider(): Promise<ImageSlider | undefined | null> {
+            try {
+                const res = await API.get<ApiRes<ImageSlider>>(
+                    ApiRoute.Layout.getComponent(PageEnum.TrangChu, ComponentEnum.ImageSlider),
+                );
+                if (!res.data.succeeded || !res.data.data) {
+                    null;
+                }
+                return res.data.data;
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+                null;
+            }
+        },
     };
 
     static async getSection(page: PageEnum, sort: number): Promise<DefaultSection | undefined | null> {

@@ -149,7 +149,7 @@ function Banner() {
                     {banners.map((item, index) => {
                         return (
                             <UploadCard
-                                flag={item.image !== '' || item.file !== undefined}
+                                flag={item.image !== '' && item.file === undefined}
                                 src={item.image}
                                 key={index}
                                 onUpload={(file: File) => onUploadImage(item.id, file)}
