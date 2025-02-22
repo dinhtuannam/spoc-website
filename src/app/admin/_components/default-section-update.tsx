@@ -1,9 +1,7 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
-import UploadButton from '@/components/button/upload.button';
 import UploadCard from '@/components/card/upload.card';
 import ConfirmDialog from '@/components/dialog/confirm.dialog';
 import PageLoading from '@/components/loading/page.loading';
@@ -40,15 +38,13 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
     const [visible, setVisible] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
     const [section, setSection] = useState<UpdateDefaultSection>(initialValue);
-    const [original, setOriginal] = useState<UpdateDefaultSection>(initialValue);
 
     useEffect(() => {
         const fetchApi = async () => {
             setLoading(true);
             const res = await LayoutService.getSection(page, sort);
             if (res) {
-                setSection({ ...res, file: undefined, deleted: false });
-                setOriginal({ ...res, file: undefined, deleted: false });
+                setSection({ ...res, file: undefined });
             }
             setLoading(false);
         };
@@ -72,10 +68,8 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
     };
 
     const onChangeImage = (file: File) => {
-        const imageUrl = URL.createObjectURL(file);
         setSection((prev) => ({
             ...prev,
-            image: imageUrl,
             file: file,
         }));
     };
@@ -100,15 +94,6 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
     };
 
     const onDelete = () => {
-        setSection((prev) => ({
-            ...prev,
-            image: '',
-            file: undefined,
-            deleted: true,
-        }));
-    };
-
-    const onRemoveSelectImage = () => {
         setSection((prev) => ({
             ...prev,
             image: '',
@@ -158,13 +143,9 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
                             flag={!ValidatorHelper.isEmpty(section.image) || section.file !== undefined}
                             src={section.image}
                             onUpload={onUploadImage}
-                            onRemoveImage={onRemoveSelectImage}
-                        >
-                            <UploadButton icon={false} accept="image/*" onFileSelect={onChangeImage}>
-                                Chỉnh sửa
-                            </UploadButton>
-                            {!section.deleted && <DeleteButton icon onClick={onDelete} />}
-                        </UploadCard>
+                            onRemoveImage={onDelete}
+                            onChangeImage={onChangeImage}
+                        />
                     </div>
                 </div>
             )}

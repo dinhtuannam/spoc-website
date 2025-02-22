@@ -1,10 +1,10 @@
 'use client';
 
+import DeleteButton from '../button/delete.button';
 import UploadButton from '../button/upload.button';
 import { Card, CardContent } from '../ui/card';
 import { useImagePreview } from '@/contexts/image-preview-context';
 import { cn } from '@/lib/utils';
-import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 
@@ -15,6 +15,7 @@ interface UploadCardProps {
     className?: string;
     children?: React.ReactNode;
     onUpload?: (file: File) => void;
+    onChangeImage?: (file: File) => void;
     onRemoveImage?: () => void;
 }
 
@@ -31,6 +32,7 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
         flag = false,
         onUpload,
         onRemoveImage,
+        onChangeImage,
     },
     ref,
 ) {
@@ -47,6 +49,12 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
         const imageUrl = URL.createObjectURL(file);
         setSelectedImage(imageUrl);
         if (onUpload) onUpload(file);
+    };
+
+    const handleChangeFile = (file: File) => {
+        const imageUrl = URL.createObjectURL(file);
+        setSelectedImage(imageUrl);
+        onChangeImage?.(file);
     };
 
     const isFileEmpty = () => {
@@ -76,20 +84,18 @@ const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCar
                         fill
                         className={cn('object-cover w-full h-auto', !isFileEmpty() && 'preview')}
                     />
-                    {selectedImage !== null && (
-                        <div
-                            className="rounded-md absolute top-4 right-4 w-fit p-1.5 cursor-pointer btn-danger"
-                            onClick={onRemoveSelectedImage}
-                        >
-                            <Trash2 className="mr-[-1.1px]" />
-                        </div>
-                    )}
                 </div>
                 <div className="px-4 py-3 flex justify-between items-center border-t gap-2">
                     <span className="text-gray-600 font-semibold">{label}</span>
                     <div className="flex items-center gap-2">
                         {flag ? (
-                            children
+                            <>
+                                {children}
+                                <UploadButton icon={false} accept="image/*" onFileSelect={handleChangeFile}>
+                                    Chỉnh sửa
+                                </UploadButton>
+                                <DeleteButton onClick={onRemoveSelectedImage}>Xóa</DeleteButton>
+                            </>
                         ) : (
                             <UploadButton onFileSelect={handleFileSelect} accept="image/*" icon>
                                 Tải lên
