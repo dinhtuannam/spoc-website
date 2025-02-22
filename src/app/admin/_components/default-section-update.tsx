@@ -1,7 +1,6 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import CustomButton from '@/components/button/custom.button';
 import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
 import UploadButton from '@/components/button/upload.button';
@@ -19,7 +18,6 @@ import ValidatorHelper from '@/helpers/validator.helper';
 import useCaller from '@/hooks/useCaller';
 import LayoutService from '@/services/layout.service';
 import { uploadImage } from '@/services/storage.service';
-import { RotateCcw } from 'lucide-react';
 import React, { Fragment, useEffect, useState } from 'react';
 
 interface DefaultSectionUpdateProps {
@@ -117,17 +115,6 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
         }));
     };
 
-    const onClear = () => {
-        setSection((prev) => ({
-            ...prev,
-            link: original.link,
-            image: original.image,
-            file: undefined,
-        }));
-    };
-
-    console.log(section);
-
     return (
         <Fragment>
             <div className="mb-4 flex items-center justify-between">
@@ -172,9 +159,6 @@ function DefaultSectionUpdate({ page, sort, breadcrumb, uploadMessage }: Default
                             onUpload={onUploadImage}
                             onRemoveImage={onRemoveSelectImage}
                         >
-                            <CustomButton className="btn-primary" hoverContent={'Hoàn tác'} onClick={onClear}>
-                                <RotateCcw />
-                            </CustomButton>
                             <UploadButton icon={false} accept="image/*" onFileSelect={onChangeImage}>
                                 Chỉnh sửa
                             </UploadButton>

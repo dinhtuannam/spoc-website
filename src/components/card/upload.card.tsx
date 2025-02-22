@@ -6,7 +6,7 @@ import { useImagePreview } from '@/contexts/image-preview-context';
 import { cn } from '@/lib/utils';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 
 interface UploadCardProps {
     label?: string;
@@ -18,17 +18,28 @@ interface UploadCardProps {
     onRemoveImage?: () => void;
 }
 
-function UploadCard({
-    children,
-    label = 'Hình ảnh',
-    src = '/images/empty-img.png',
-    className = 'w-[480px] h-[270px]',
-    flag = false,
-    onUpload,
-    onRemoveImage,
-}: UploadCardProps) {
+export interface UploadCardRef {
+    clearSelectedImage: (value?: string | null) => void;
+}
+
+const UploadCard = forwardRef<UploadCardRef, UploadCardProps>(function UploadCard(
+    {
+        children,
+        label = 'Hình ảnh',
+        src = '/images/empty-img.png',
+        className = 'w-[480px] h-[270px]',
+        flag = false,
+        onUpload,
+        onRemoveImage,
+    },
+    ref,
+) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const { openImage } = useImagePreview();
+
+    useImperativeHandle(ref, () => ({
+        clearSelectedImage: (value?: string | null) => setSelectedImage(value ?? null),
+    }));
 
     const imageSrc = selectedImage || (src && src.trim() !== '' ? src : '/images/empty-img.png');
 
@@ -89,6 +100,6 @@ function UploadCard({
             </CardContent>
         </Card>
     );
-}
+});
 
 export default UploadCard;
