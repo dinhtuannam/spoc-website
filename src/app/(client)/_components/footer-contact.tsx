@@ -1,9 +1,30 @@
 'use client';
 
+import { useToast } from '@/hooks/use-toast';
 import React, { useState } from 'react';
 
 function FooterContact() {
     const [input, setInput] = useState<string>('');
+    const { toast } = useToast();
+
+    const handleSubmit = () => {
+        if (!input) {
+            toast({
+                variant: 'default',
+                title: 'Thông báo thao tác',
+                description: 'Vui lòng nhập số điện thoại',
+                duration: 3000,
+            });
+            return;
+        }
+        setInput('');
+        toast({
+            variant: 'success',
+            title: 'Thông báo thao tác',
+            description: 'Gửi thông tin liên hệ thành công',
+            duration: 3000,
+        });
+    };
 
     return (
         <div className="absolute top-[-60px] w-full">
@@ -29,7 +50,10 @@ function FooterContact() {
                                     placeholder="Nhập số điện thoại"
                                     className="flex-1 rounded-l-md p-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all"
                                 />
-                                <button className="bg-app-primary-blue text-white px-2 laptop:px-4 py-3 rounded-r-md hover:bg-gray-800 transition-colors whitespace-nowrap">
+                                <button
+                                    onClick={handleSubmit}
+                                    className="bg-app-primary-blue text-white px-2 laptop:px-4 py-3 rounded-r-md hover:bg-gray-800 transition-colors whitespace-nowrap"
+                                >
                                     GỬI NGAY
                                 </button>
                             </div>

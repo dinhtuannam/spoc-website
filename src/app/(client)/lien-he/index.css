@@ -9,3 +9,7 @@
 .lienHe__form_item {
     @apply border-b border-white pb-2;
 }
+
+.lienHe__form_item_err {
+    @apply border-b-2 !border-red-500 pb-2;
+}

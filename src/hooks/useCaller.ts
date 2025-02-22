@@ -72,7 +72,7 @@ function useCaller<T>(): UseCallerState<T> {
             if (succeeded) {
                 if (showToast)
                     toast({
-                        variant: 'default',
+                        variant: 'success',
                         title: 'Thông báo thao tác',
                         description: successMessage || 'Thao tác thành côn',
                         duration: 2500,
