@@ -11,8 +11,9 @@ import React from 'react';
 export const revalidate = 3600;
 
 export const metadata = {
-    title: 'Giới thiệu - SPOC',
-    description: 'Giới thiệu về SPOC',
+    title: 'Giới thiệu - SOPC',
+    description:
+        'SOPC - Cung cấp các sản phẩm và dịch vụ chăm sóc mắt tiên tiến, an toàn và hiệu quả, nhằm cải thiện chất lượng cuộc sống cho mọi người',
 };
 
 function GioiThieuPage() {

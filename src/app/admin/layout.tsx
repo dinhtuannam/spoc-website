@@ -10,8 +10,8 @@ import { Toaster } from '@/components/ui/toaster';
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
 
 export const metadata: Metadata = {
-    title: 'SPOC Admin',
-    description: 'Admin dashboard',
+    title: 'Quản trị - SOPC',
+    description: 'Hệ thống quản trị SOPC',
 };
 
 export default function AdminLayout({

@@ -65,7 +65,7 @@ function DangNhap() {
                         <div className="flex justify-between items-center">
                             <Label htmlFor="password">Mật khẩu</Label>
                             <Link href="/auth/quen-mat-khau" className="text-sm text-app-primary hover:underline">
-                                Forget Password?
+                                Quên mật khẩu?
                             </Link>
                         </div>
                         <Input
@@ -89,7 +89,7 @@ function DangNhap() {
                             htmlFor="remember"
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         >
-                            Remember Password
+                            Ghi nhớ tôi
                         </label>
                     </div>
 

@@ -16,8 +16,9 @@ interface Product {
 export const revalidate = 3600; // Revalidate mỗi 1 giờ
 
 export const metadata = {
-    title: 'Sản phẩm - SPOC',
-    description: 'Viên ngũ cốc dinh dưỡng cho trẻ em',
+    title: 'Sản phẩm - SOPC',
+    description:
+        'Khám phá các sản phẩm chăm sóc mắt chất lượng từ SOPC. Chúng tôi cung cấp đa dạng thuốc và thực phẩm bổ sung giúp bảo vệ và cải thiện sức khỏe đôi mắt của bạn.',
 };
 
 // Chuyển thành async function để hỗ trợ data fetching

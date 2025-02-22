@@ -78,7 +78,7 @@ async function MainFooter() {
                             <Image src="/icons/youtube.svg" alt="youtube" width={20} height={20} />
                         </div>
                         <p className="text-xs mobile:text-sm laptop:text-base mt-4 tablet:mt-0">
-                            Copyright © 2025. SPOC
+                            Copyright © 2025. SOPC
                         </p>
                     </div>
                 </div>

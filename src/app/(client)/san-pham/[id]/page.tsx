@@ -6,7 +6,7 @@ import AppButton from '@/components/button/app.button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const metadata = {
-    title: 'Sản phẩm - SPOC',
+    title: 'Sản phẩm - SOPC',
     description: 'Viên ngũ cốc dinh dưỡng cho trẻ em',
 };
 

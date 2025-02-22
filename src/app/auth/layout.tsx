@@ -5,8 +5,8 @@ import '@/app/globals.css';
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
 
 export const metadata: Metadata = {
-    title: 'SPOC Admin',
-    description: 'Admin dashboard',
+    title: 'Đăng nhập - SOPC',
+    description: 'Đăng nhập vào hệ thống quản trị SOPC',
 };
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {

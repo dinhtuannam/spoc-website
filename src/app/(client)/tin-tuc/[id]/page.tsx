@@ -5,8 +5,8 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import React from 'react';
 
 export const metadata = {
-    title: 'Tin tức - SPOC',
-    description: 'Cập nhật tin tức mới nhất về sức khỏe và dinh dưỡng',
+    title: 'Tin tức - SOPC',
+    description: 'Cập nhật tin tức mới nhất về SOPC',
 };
 
 function TinTucDetail() {

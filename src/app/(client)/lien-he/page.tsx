@@ -7,8 +7,8 @@ import FadeContent from '@/components/animate/fade-content';
 export const revalidate = 3600;
 
 export const metadata = {
-    title: 'Liên hệ - SPOC',
-    description: 'Liên hệ với chúng tôi - SPOC',
+    title: 'Liên hệ - SOPC',
+    description: 'Liên hệ với chúng tôi - SOPC',
 };
 
 async function LienHe() {

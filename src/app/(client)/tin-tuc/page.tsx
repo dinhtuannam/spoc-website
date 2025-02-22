@@ -6,8 +6,9 @@ import { Breadcrumb } from '@/components/breadcrumb';
 import Image from 'next/image';
 
 export const metadata = {
-    title: 'Tin tức - SPOC',
-    description: 'Cập nhật tin tức mới nhất về sức khỏe và dinh dưỡng',
+    title: 'Tin tức - SOPC',
+    description:
+        'Cập nhật những tin tức mới nhất về SOPC, các sản phẩm chăm sóc mắt, kiến thức sức khỏe thị giác và các chương trình khuyến mãi hấp dẫn.',
 };
 
 function TinTuc() {
