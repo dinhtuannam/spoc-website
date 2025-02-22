@@ -1,4 +1,9 @@
+'use client';
+
 import ProductCard from '@/components/card/product.card';
+import ProductSkeleton from '@/components/skeleton/product.skeleton';
+import ProductService from '@/services/product.service';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const products: Product[] = Array(6).fill({
@@ -10,12 +15,22 @@ const products: Product[] = Array(6).fill({
 });
 
 function ProductList() {
+    const { data = [], isLoading } = useQuery<Product[]>({
+        queryKey: ['client/product'],
+        queryFn: () => ProductService.all(),
+        staleTime: 60 * 1000,
+    });
+
+    console.log(data);
+
     return (
         <div className="mobile:col-span-1 laptop:col-span-3">
             <div className="grid mobile:grid-cols-2 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
-                {products.map((product, index) => (
-                    <ProductCard key={index} name="Thực phẩm ngủ ngon" image="/images/product.png" />
-                ))}
+                {isLoading
+                    ? Array.from({ length: 9 }).map((_, index) => <ProductSkeleton key={index} />)
+                    : data.map((product, index) => (
+                          <ProductCard key={index} name={product.name} image={product.image} />
+                      ))}
             </div>
         </div>
     );

@@ -15,6 +15,19 @@ export default class ProductService {
         }
     }
 
+    static async all(): Promise<Product[]> {
+        try {
+            const res = await API.get<ApiRes<Product[]>>(`${ApiRoute.Product.root}`);
+            if (!res.data.succeeded || !res.data.data) {
+                return [];
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            return [];
+        }
+    }
+
     static async highlight(take: number): Promise<Product[]> {
         try {
             const res = await API.get<ApiRes<Product[]>>(ApiRoute.Product.highlight(take));
