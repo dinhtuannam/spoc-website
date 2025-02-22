@@ -2,6 +2,7 @@
 
 import VideoModal from '../modal/video-modal';
 import { useVideo } from '@/contexts/video-context';
+import { trangChuData } from '@/datas/trang-chu.data';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
@@ -33,7 +34,6 @@ const cardData: CardItem[] = [
 function CardSlider() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [showScrollbar, setShowScrollbar] = useState(false);
-    const { openVideo } = useVideo();
 
     useEffect(() => {
         const checkScroll = () => {
@@ -57,8 +57,9 @@ function CardSlider() {
                         Tầm nhìn, sứ mệnh, Giá trị cốt lõi
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        POSC hướng đến trở thành thương hiệu hàng đầu trong chăm sóc mắt, cung cấp sản phẩm an toàn,
+                        chất lượng cao. Chúng tôi cam kết đổi mới, tận tâm và không ngừng cải tiến để bảo vệ thị lực
+                        cộng đồng.
                     </p>
                 </div>
 
@@ -72,16 +73,15 @@ function CardSlider() {
                                 showScrollbar ? 'pb-6' : '',
                             )}
                         >
-                            {cardData.map((card, index) => (
+                            {trangChuData[3].map((card, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => openVideo('https://www.tiktok.com/embed/v2/7173970009390173442')}
                                     className="cursor-pointer group relative bg-white rounded-app-radius overflow-hidden shadow-lg snap-start h-[400px] tablet:h-[480px] laptop:h-[500px] desktop:h-[580px]"
                                 >
                                     {/* Image with Overlay */}
                                     <div className="relative h-full">
                                         <Image
-                                            src={card.image}
+                                            src={card.url}
                                             alt={card.title}
                                             fill
                                             quality={100}
@@ -95,7 +95,7 @@ function CardSlider() {
                                     {/* Content */}
                                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                                         <h3 className="text-xl tablet:text-2xl font-bold mb-2">{card.title}</h3>
-                                        <p className="text-sm tablet:text-base opacity-90">{card.description}</p>
+                                        <p className="text-sm tablet:text-base opacity-90">{card.des}</p>
                                     </div>
                                 </div>
                             ))}

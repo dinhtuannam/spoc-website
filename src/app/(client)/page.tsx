@@ -8,13 +8,12 @@ import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
 import VeritcalSlider from '@/components/section/vertical-slider.section';
 import { CarouselItem } from '@/components/ui/carousel';
+import { trangChuData } from '@/datas/trang-chu.data';
 import Image from 'next/image';
 
 export const revalidate = 3600;
 
 export default function Home() {
-    const imgs: string[] = ['/images/banner.png', '/images/banner.png', '/images/banner.png'];
-    const sliders: string[] = ['/images/card-slider.jpeg', '/images/card-slider.jpeg', '/images/card-slider.jpeg'];
     const relatedProducts = Array(4).fill({
         id: 'san-pham-khac',
         name: 'Thực phẩm ngũ ngon',
@@ -25,15 +24,15 @@ export default function Home() {
 
     return (
         <div className="page-container height-minus">
-            <Banner images={imgs} priority />
+            <Banner images={trangChuData[1]} priority />
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero
                     background="white"
-                    title="Slogan công ty"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat."
-                    img={'/images/hero.jpeg'}
+                    title={trangChuData[2].title}
+                    description={trangChuData[2].des}
+                    img={trangChuData[2].url}
                     imgPosition="left"
-                    link="abc"
+                    link="/gioi-thieu"
                 />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
@@ -57,9 +56,9 @@ export default function Home() {
                     background="blue"
                     title="Đội ngũ cố vấn chuyên môn"
                     description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
-                    img={'/images/people.png'}
+                    img={trangChuData[4].url}
                     imgPosition="right"
-                    link="abc"
+                    link="/gioi-thieu"
                 />
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>

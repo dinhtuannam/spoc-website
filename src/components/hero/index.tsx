@@ -1,6 +1,7 @@
 import AppButton from '../button/app.button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 interface HeroProps {
@@ -65,9 +66,11 @@ function Hero({ background, imgPosition, img, title, description, className, lin
                         {description}
                     </p>
                     {link && (
-                        <AppButton className={cn(imgPosition === 'right' ? 'mb-4 laptop:mb-0' : '')}>
-                            Khám phá
-                        </AppButton>
+                        <Link href={link}>
+                            <AppButton className={cn(imgPosition === 'right' ? 'mb-4 laptop:mb-0' : '')}>
+                                Khám phá
+                            </AppButton>
+                        </Link>
                     )}
                 </div>
             </div>
