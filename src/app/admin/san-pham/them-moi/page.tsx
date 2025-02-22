@@ -1,21 +1,18 @@
 'use client';
 
 import { Breadcrumb } from '@/components/breadcrumb';
-import DeleteButton from '@/components/button/delete.button';
 import SaveButton from '@/components/button/save.button';
-import UploadButton from '@/components/button/upload.button';
-import UploadCard from '@/components/card/upload.card';
 import EditorQuill from '@/components/input/editor-quill';
 import FieldSelectApi from '@/components/input/field-select-api';
 import FieldInput from '@/components/input/field.input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
 import ApiRoute from '@/constants/api-route';
 import AppConstant from '@/constants/app.constant';
 import GeneratorHelper from '@/helpers/generator.helper';
 import ValidatorHelper from '@/helpers/validator.helper';
+import useCaller from '@/hooks/useCaller';
 import useObjectState from '@/hooks/useObjectState';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -29,7 +26,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const initialState: Product = {
-    id: '',
+    id: GeneratorHelper.newGuid(),
     code: '',
     name: '',
     introduction: '',
@@ -43,34 +40,9 @@ const initialState: Product = {
     category: null,
 };
 
-interface ImageFile {
-    id: string;
-    file: File;
-    url: string;
-}
-
 function Page() {
-    const [loading, setLoading] = useState(true);
-    const [images, setImages] = useState<ImageFile[]>([]);
     const { state, error } = useObjectState(initialState);
-
-    const handleFileSelect = (file: File) => {
-        if (images.length < 6) {
-            setImages((prevImages) => [
-                ...prevImages,
-                {
-                    id: GeneratorHelper.newGuid(),
-                    file,
-                    url: URL.createObjectURL(file),
-                },
-            ]);
-        }
-    };
-
-    const removeFile = (id: string) => {
-        const tmp = images.filter((x) => x.id !== id);
-        setImages(tmp);
-    };
+    const { callApi, loading, setLoading } = useCaller<any>();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -91,22 +63,34 @@ function Page() {
             error.set('categoryId', true, 'Danh mục sản phẩm không được để trống');
             flag = false;
         }
-        if (ValidatorHelper.isEmpty(state.data.link)) {
-            error.set('link', true, 'Link sản phẩm không được để trống');
-            flag = false;
-        }
         return flag;
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!validate()) return;
+        setLoading(true);
+        const payload = state.data;
+        const result = await callApi(
+            ApiRoute.Product.root,
+            {
+                method: 'POST',
+                body: payload,
+            },
+            'Thêm sản phẩm thành công',
+        );
+        if (result.succeeded && result.data) {
+            window.location.href = '/admin/san-pham';
+        }
+        setLoading(false);
     };
 
     return (
         <div className="page-container admin-padding my-8">
             <div className="mb-4 flex items-center justify-between">
                 <Breadcrumb values={breadcrumbs} />
-                <SaveButton onClick={handleSubmit}>Lưu</SaveButton>
+                <SaveButton onClick={handleSubmit} disabled={loading}>
+                    Lưu
+                </SaveButton>
             </div>
             <Card className="mt-4 ">
                 <CardContent className="!py-8 grid items-start gap-2">
@@ -135,17 +119,6 @@ function Page() {
                             placeholder="Chọn danh mục sản phẩm..."
                         />
                     </div>
-                    <FieldInput
-                        loading={loading}
-                        label="* Link sản phẩm"
-                        error={error.data.link.flag}
-                        msg={error.data.link.msg}
-                        className="grid gap-2"
-                        id="link"
-                        value={state.data.link}
-                        onChange={state.change}
-                        placeholder="Nhập đường link sản phẩm..."
-                    />
                     <EditorQuill
                         loading={loading}
                         className="grid gap-2"
