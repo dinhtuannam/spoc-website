@@ -32,12 +32,10 @@ function ProductList() {
                 pageIndex: Formatter.paramNumber(page, 1),
                 pageSize: Formatter.paramNumber(size, 9),
                 category: Formatter.paramStr(category, ''),
-                textSearch: Formatter.paramStr(query, ''),
+                textSearch: Formatter.paramStr(decodeURIComponent(query || ''), ''),
             }),
         staleTime: 60 * 1000,
     });
-
-    console.log(data);
 
     return (
         <div className="mobile:col-span-1 laptop:col-span-3">
@@ -48,7 +46,7 @@ function ProductList() {
                           <ProductCard key={index} name={product.name} image={product.image} />
                       ))}
             </div>
-            <div className="mt-8">{data && <PaginationCard data={data} />}</div>
+            <div className="mt-8">{data && <PaginationCard data={data} scrollTo="product__scrollTo" />}</div>
         </div>
     );
 }

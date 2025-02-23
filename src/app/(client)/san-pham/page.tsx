@@ -45,14 +45,16 @@ async function SanPham() {
                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 priority
             />
-            <div className="app-padding flex mobile:flex-col tablet:flex-row justify-between items-center mt-5 laptop:mt-15 desktop:mt-20 mobile:gap-4">
+            <div
+                id="product__scrollTo"
+                className="app-padding flex mobile:flex-col tablet:flex-row justify-between items-center mt-5 laptop:mt-15 desktop:mt-20 mobile:gap-4"
+            >
                 <Breadcrumb values={breadcrumb} />
                 <SearchBar className={'mobile:w-full tablet:max-w-xs'} placeHolder="Tìm kiếm sản phẩm ..." />
             </div>
 
             <div className="app-padding mobile:grid-cols-1 laptop:grid-cols-4 grid gap-8 my-8">
                 <ProductCategories />
-
                 <ProductList />
             </div>
         </div>

@@ -9,11 +9,12 @@ import { useMemo, useCallback } from 'react';
 
 interface PaginationCardProps {
     data: PaginatedData<any>;
+    scrollTo?: string;
 }
 
 const pageSizes = [10, 20, 30, 40, 50];
 
-function PaginationCard({ data }: PaginationCardProps) {
+function PaginationCard({ data, scrollTo }: PaginationCardProps) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -39,6 +40,9 @@ function PaginationCard({ data }: PaginationCardProps) {
         (page: number) => {
             const query = createQueryString({ [ParamConst.page]: page.toString() });
             router.replace(`${pathname}?${query}`, { scroll: false });
+
+            // Cuộn đến vị trí 500px sau khi thay đổi URL
+            if (scrollTo) document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' });
         },
         [createQueryString, pathname, router],
     );
@@ -50,6 +54,8 @@ function PaginationCard({ data }: PaginationCardProps) {
                 [ParamConst.pageSize]: size.toString(),
             });
             router.replace(`${pathname}?${query}`, { scroll: false });
+
+            if (scrollTo) document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' });
         },
         [createQueryString, pathname, router],
     );
