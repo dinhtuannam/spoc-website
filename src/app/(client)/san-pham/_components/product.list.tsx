@@ -43,7 +43,7 @@ function ProductList() {
                 {isLoading
                     ? Array.from({ length: 9 }).map((_, index) => <ProductSkeleton key={index} />)
                     : data?.items?.map((product, index) => (
-                          <ProductCard key={index} name={product.name} image={product.image} />
+                          <ProductCard key={index} code={product.code} name={product.name} image={product.image} />
                       ))}
             </div>
             <div className="mt-8">

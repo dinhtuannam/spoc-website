@@ -8,17 +8,18 @@ import React from 'react';
 // Thực phẩm ngủ ngon
 
 interface ProductCardProps {
+    code: string;
     name: string;
     image?: string;
 }
 
-function ProductCard({ name, image }: ProductCardProps) {
+function ProductCard({ code, name, image }: ProductCardProps) {
     const price: number = 100000;
     const url = image ? image : AppConstant.fallback;
 
     return (
         <Card className="overflow-hidden flex flex-col items-center py-4">
-            <Link href={`/san-pham/abc`} className="relative w-full aspect-square mb-4">
+            <Link href={`/san-pham/${code}`} className="relative w-full aspect-square mb-4">
                 <Image
                     src={url}
                     alt={'thực phẩm ngủ ngon'}

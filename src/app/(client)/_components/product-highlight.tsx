@@ -39,7 +39,7 @@ function ProductHighlight({ className }: ProductHighlightProps) {
                     {isLoading
                         ? Array.from({ length: take }).map((_, index) => <ProductSkeleton key={index} />)
                         : data.map((product, index) => (
-                              <ProductCard key={index} name={product.name} image={product.image} />
+                              <ProductCard code={product.code} key={index} name={product.name} image={product.image} />
                           ))}
                 </AppGrid>
             </div>
