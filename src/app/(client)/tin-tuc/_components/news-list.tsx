@@ -10,21 +10,9 @@ import Formatter from '@/helpers/format.helper';
 import NewsService from '@/services/news.service';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 
-interface NewsItem {
-    category: string;
-    title: string;
-    description: string;
-    image: string;
-    slug: string;
-}
-
-interface NewsListProps {
-    items: NewsItem[];
-}
-
-export function NewsList({ items }: NewsListProps) {
+export function NewsList() {
     const searchParams = useSearchParams();
     const category = searchParams.get(ParamConst.danh_muc);
     const page = searchParams.get(ParamConst.page);
