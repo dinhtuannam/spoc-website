@@ -2,6 +2,7 @@
 
 import NavMenu from './nav-menu';
 import Sidebar from './sidebar';
+import AppConstant from '@/constants/app.constant';
 import { cn } from '@/lib/utils';
 import { Phone } from 'lucide-react';
 import Link from 'next/link';
@@ -28,7 +29,7 @@ function Navbar() {
                             </div>
                             <div className="text-center">
                                 <h3 className="text-xs">TƯ VẤN NGAY</h3>
-                                <h1 className="text-sm font-semibold">0931 234 234</h1>
+                                <h1 className="text-sm font-semibold">{AppConstant.phone}</h1>
                             </div>
                         </div>
                     </div>

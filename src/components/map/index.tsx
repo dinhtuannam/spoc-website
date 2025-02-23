@@ -12,8 +12,8 @@ const Map: React.FC = () => {
     const map = useRef<LeafletMap | null>(null);
     const markerRef = useRef<Marker | null>(null);
 
-    const center = { lng: 106.665532, lat: 10.754365 }; // Vị trí trung tâm bản đồ
-    const markerPosition = { lng: 106.665532, lat: 10.754365 }; // Vị trí của Marker
+    const center = { lng: 106.78937852259811, lat: 10.803246 }; // Vị trí trung tâm bản đồ
+    const markerPosition = { lng: 106.78937852259811, lat: 10.80624641375325 }; // Vị trí của Marker
     const [zoom] = useState<number>(16);
 
     useEffect(() => {

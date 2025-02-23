@@ -1,3 +1,4 @@
+import AppConstant from '@/constants/app.constant';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -12,24 +13,24 @@ function CompanyInfo() {
             <div className="laptop:col-span-4 flex items-center">
                 <div className="laptop:pr-10 laptop:max-w-[90%]">
                     <h1 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold text-app-primary-blue mb-2">
-                        Công ty cổ phần SOPC
+                        {AppConstant.company}
                     </h1>
                     <p className="text-gray-800 mb-3 text-base tracking-wider">
                         Liên hệ qua địa chỉ hoặc trực tiếp bằng số điện thoại dưới đây
                     </p>
                     <div className="font-semibold mb-2 text-lg tracking-wider">
                         <strong className=" mr-2">Địa chỉ:</strong>
-                        <span className="text-app-primary">
-                            176 Hồng Bàng, Phường 12, Quận 5, Thành Phố Hồ Chí Minh
-                        </span>
+                        <span className="text-app-primary">{AppConstant.address}</span>
                     </div>
                     <div className="font-semibold mb-2 text-lg tracking-wider">
                         <strong className=" mr-2">Hotline:</strong>
-                        <span className="text-app-primary">0931 234 234</span>
+                        <span className="text-app-primary">
+                            {AppConstant.phone2} - {AppConstant.phone}
+                        </span>
                     </div>
                     <div className="font-semibold text-lg tracking-wider">
                         <strong className=" mr-2">Email:</strong>
-                        <span className="text-app-primary">sopc@com.vn</span>
+                        <span className="text-app-primary">{AppConstant.mail}</span>
                     </div>
                 </div>
             </div>

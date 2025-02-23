@@ -103,8 +103,8 @@ function BannerLienHe() {
                             LIÊN HỆ VỚI CHÚNG TÔI
                         </h1>
                         <p className="text-white/80 mb-8 tracking-wider text-lg text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            Liên hệ ngay với chúng tôi để nhận thông tin về các sản phẩm và các chương trình ưu đãi mới
+                            nhất
                         </p>
 
                         {/* Form */}

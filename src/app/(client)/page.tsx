@@ -45,7 +45,7 @@ export default function Home() {
             </FadeContent>
             <FadeContent blur={true} duration={600} easing="ease-out" initialOpacity={0}>
                 <Hero
-                    className="mt-4"
+                    className="mt-4 laptop:!py-0"
                     background="blue"
                     title="Đội ngũ cố vấn chuyên môn"
                     description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"

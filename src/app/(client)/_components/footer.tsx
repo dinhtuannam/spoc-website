@@ -3,7 +3,9 @@ import Image from 'next/image';
 import React from 'react';
 import './index.css';
 import FooterContact from './footer-contact';
+import AppConstant from '@/constants/app.constant';
 import { Separator } from '@radix-ui/react-separator';
+import Link from 'next/link';
 
 // Thêm revalidate cho ISR
 export const revalidate = 6200; // Revalidate mỗi 1 giờ
@@ -28,43 +30,57 @@ async function MainFooter() {
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 desktop:grid-cols-3 gap-2 desktop:gap-0 flex-1">
+                        <div className="grid grid-cols-1 desktop:grid-cols-3 gap-2 desktop:gap-10 flex-1">
                             <div className="mb-8 laptop:mb-">
                                 <h3 className="footer__content-title text-center desktop:text-left">
                                     Thông tin liên lạc
                                 </h3>
                                 <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
                                     <MailIcon className="min-w-[20px]" />
-                                    <p className="text-xs mobile:text-sm laptop:text-base">spoc@gmail.vn</p>
+                                    <p className="text-xs mobile:text-sm laptop:text-base">{AppConstant.mail}</p>
                                 </div>
                                 <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
                                     <PhoneIcon className="min-w-[20px]" />
-                                    <p className="text-xs mobile:text-sm laptop:text-base">0123 123 123</p>
+                                    <p className="text-xs mobile:text-sm laptop:text-base">{AppConstant.phone}</p>
                                 </div>
                                 <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
                                     <MapPinIcon className="min-w-[20px]" />
-                                    <p className="text-xs mobile:text-sm laptop:text-base">
-                                        123 Trần Hưng Đạo, P.12, Q.5, TP.HCM
-                                    </p>
+                                    <p className="text-xs mobile:text-sm laptop:text-base">{AppConstant.address}</p>
                                 </div>
                             </div>
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Về chúng tôi</h3>
                                 <ul className="footer__content-list">
-                                    <li>Giới thiệu</li>
-                                    <li>Đội ngũ chuyên gia</li>
-                                    <li>Tin tức</li>
-                                    <li>Liên hệ</li>
+                                    <li>
+                                        <Link href="/gioi-thieu">Giới thiệu</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/">Đội ngũ chuyên gia</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/tin-tuc">Tin tức</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/lien-he">Liên hệ</Link>
+                                    </li>
                                 </ul>
                             </div>
 
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Sản phẩm</h3>
                                 <ul className="footer__content-list">
-                                    <li>Về sản phẩm</li>
-                                    <li>Về nguyên liệu</li>
-                                    <li>Đồng phục doanh nghiệp</li>
-                                    <li>Tự thiết kế đồng phục</li>
+                                    <li>
+                                        <Link href="/san-pham">Về sản phẩm</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/san-pham">Về nguyên liệu</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/lien-he">Đồng phục doanh nghiệp</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/lien-he">Tự thiết kế đồng phục</Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
