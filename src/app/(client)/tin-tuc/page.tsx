@@ -3,6 +3,7 @@ import { NewsCategories } from './_components/news-categories';
 import { NewsList } from './_components/news-list';
 import { SubscribeForm } from './_components/subscribe-form';
 import { Breadcrumb } from '@/components/breadcrumb';
+import SearchBar from '@/components/input/search.input';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
@@ -38,8 +39,13 @@ function TinTuc() {
         <div className="page-container height-minus">
             <TinTucBanner />
 
-            <div className="app-padding mt-5 laptop:mt-10">
-                <Breadcrumb values={breadcrumb} />
+            <div className="app-padding mt-5 laptop:mt-10" id="news__scrollTo">
+                <div className="flex justify-between items-center">
+                    <Breadcrumb values={breadcrumb} />
+                    <div className="w-[300px]">
+                        <SearchBar />
+                    </div>
+                </div>
 
                 <div className="grid laptop:grid-cols-4 gap-6 laptop:gap-8 mt-6 laptop:mt-10">
                     {/* Left Sidebar */}
