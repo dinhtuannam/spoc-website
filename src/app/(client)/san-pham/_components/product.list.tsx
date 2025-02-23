@@ -46,7 +46,9 @@ function ProductList() {
                           <ProductCard key={index} name={product.name} image={product.image} />
                       ))}
             </div>
-            <div className="mt-8">{data && <PaginationCard data={data} scrollTo="product__scrollTo" />}</div>
+            <div className="mt-8">
+                {data && <PaginationCard data={data} scrollTo="product__scrollTo" size={9} sizes={[9, 18, 27, 36]} />}
+            </div>
         </div>
     );
 }

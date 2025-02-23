@@ -10,11 +10,11 @@ import { useMemo, useCallback } from 'react';
 interface PaginationCardProps {
     data: PaginatedData<any>;
     scrollTo?: string;
+    sizes?: number[];
+    size?: number;
 }
 
-const pageSizes = [10, 20, 30, 40, 50];
-
-function PaginationCard({ data, scrollTo }: PaginationCardProps) {
+function PaginationCard({ data, scrollTo, size = 10, sizes = [10, 20, 30, 40, 50] }: PaginationCardProps) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -23,7 +23,7 @@ function PaginationCard({ data, scrollTo }: PaginationCardProps) {
     const currentPage = useMemo(() => Number(searchParams.get(ParamConst.page)) || 1, [searchParams]);
 
     // Lấy pageSize từ URL param, mặc định là 10
-    const currentPageSize = useMemo(() => Number(searchParams.get(ParamConst.pageSize)) || 10, [searchParams]);
+    const currentPageSize = useMemo(() => Number(searchParams.get(ParamConst.pageSize)) || size, [searchParams]);
 
     const createQueryString = useCallback(
         (newParams: { [key: string]: string }) => {
@@ -123,7 +123,7 @@ function PaginationCard({ data, scrollTo }: PaginationCardProps) {
                         <SelectValue placeholder={currentPageSize} />
                     </SelectTrigger>
                     <SelectContent>
-                        {pageSizes.map((size) => (
+                        {sizes.map((size) => (
                             <SelectItem key={size} value={String(size)}>
                                 {size}
                             </SelectItem>
@@ -137,7 +137,9 @@ function PaginationCard({ data, scrollTo }: PaginationCardProps) {
             </div>
 
             <div className="flex items-center justify-center gap-1 sm:gap-2">
-                <span className="text-sm text-gray-500 hidden sm:block">{data.totalPages} trang</span>
+                <span className="text-sm text-gray-500 hidden sm:block">
+                    {data.pageIndex}/{data.totalPages} trang
+                </span>
                 <Button
                     variant="outline"
                     size="icon"
