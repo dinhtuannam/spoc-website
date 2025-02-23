@@ -8,4 +8,14 @@ export default class Formatter {
             year: 'numeric',
         });
     }
+
+    static paramNumber(param: string | null | undefined, fallback: number): number {
+        if (!param) return fallback;
+        return Number.isNaN(Number(param)) ? fallback : Number(param);
+    }
+
+    static paramStr(param: string | null | undefined, fallback: string): string {
+        if (!param) return fallback;
+        return param;
+    }
 }

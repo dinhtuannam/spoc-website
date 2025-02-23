@@ -11,7 +11,7 @@ import { useSearchParams } from 'next/navigation';
 
 export function NewsCategories() {
     const searchParams = useSearchParams();
-    const danhMuc = searchParams.get('danh_muc');
+    const danhMuc = searchParams.get(ParamConst.danh_muc);
 
     const { data = [], isLoading } = useQuery<NewsCategory[]>({
         queryKey: ['client/news-category'],

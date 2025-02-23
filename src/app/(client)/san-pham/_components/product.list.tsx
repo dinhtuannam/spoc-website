@@ -3,8 +3,11 @@
 import PaginationCard from '@/components/card/pagination.card';
 import ProductCard from '@/components/card/product.card';
 import ProductSkeleton from '@/components/skeleton/product.skeleton';
+import ParamConst from '@/constants/param.constant';
+import Formatter from '@/helpers/format.helper';
 import ProductService from '@/services/product.service';
 import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const products: Product[] = Array(6).fill({
@@ -16,12 +19,20 @@ const products: Product[] = Array(6).fill({
 });
 
 function ProductList() {
+    const searchParams = useSearchParams();
+    const category = searchParams.get(ParamConst.danh_muc);
+    const page = searchParams.get(ParamConst.page);
+    const size = searchParams.get(ParamConst.pageSize);
+    const query = searchParams.get(ParamConst.search);
+
     const { data, isLoading } = useQuery<PaginatedData<ProductOverview>>({
-        queryKey: ['client/product'],
+        queryKey: ['client/product', category, page, size, query],
         queryFn: () =>
             ProductService.search({
-                pageIndex: 1,
-                pageSize: 9,
+                pageIndex: Formatter.paramNumber(page, 1),
+                pageSize: Formatter.paramNumber(size, 9),
+                category: Formatter.paramStr(category, ''),
+                textSearch: Formatter.paramStr(query, ''),
             }),
         staleTime: 60 * 1000,
     });

@@ -1,5 +1,8 @@
-export default class ParamConst {
-    static danh_muc: string = 'danh_muc';
-    static search: string = 'q';
-    static page: string = 'trang';
-}
+const ParamConst = {
+    page: 'trang',
+    pageSize: 'so_luong',
+    danh_muc: 'danh_muc',
+    search: 'q',
+} as const;
+
+export default ParamConst;

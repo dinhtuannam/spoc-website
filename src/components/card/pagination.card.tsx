@@ -21,6 +21,9 @@ function PaginationCard({ data }: PaginationCardProps) {
     // Lấy trang hiện tại từ URL param, mặc định là 1
     const currentPage = useMemo(() => Number(searchParams.get(ParamConst.page)) || 1, [searchParams]);
 
+    // Lấy pageSize từ URL param, mặc định là 10
+    const currentPageSize = useMemo(() => Number(searchParams.get(ParamConst.pageSize)) || 10, [searchParams]);
+
     const createQueryString = useCallback(
         (newParams: { [key: string]: string }) => {
             const params = new URLSearchParams(searchParams.toString());
@@ -34,8 +37,8 @@ function PaginationCard({ data }: PaginationCardProps) {
 
     const handlePageChange = useCallback(
         (page: number) => {
-            const query = createQueryString({ trang: page.toString() });
-            router.push(`${pathname}?${query}`);
+            const query = createQueryString({ [ParamConst.page]: page.toString() });
+            router.replace(`${pathname}?${query}`, { scroll: false });
         },
         [createQueryString, pathname, router],
     );
@@ -43,10 +46,10 @@ function PaginationCard({ data }: PaginationCardProps) {
     const handlePageSizeChange = useCallback(
         (size: number) => {
             const query = createQueryString({
-                trang: '1',
-                so_luong: size.toString(),
+                [ParamConst.page]: '1',
+                [ParamConst.pageSize]: size.toString(),
             });
-            router.push(`${pathname}?${query}`);
+            router.replace(`${pathname}?${query}`, { scroll: false });
         },
         [createQueryString, pathname, router],
     );
@@ -109,9 +112,9 @@ function PaginationCard({ data }: PaginationCardProps) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2">
             <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-400">
                 <p className="hidden sm:block">Số bản ghi mỗi trang</p>
-                <Select value={String(data.pageSize)} onValueChange={(value) => handlePageSizeChange(Number(value))}>
+                <Select value={String(currentPageSize)} onValueChange={(value) => handlePageSizeChange(Number(value))}>
                     <SelectTrigger className="h-8 w-16">
-                        <SelectValue placeholder={data.pageSize} />
+                        <SelectValue placeholder={currentPageSize} />
                     </SelectTrigger>
                     <SelectContent>
                         {pageSizes.map((size) => (
