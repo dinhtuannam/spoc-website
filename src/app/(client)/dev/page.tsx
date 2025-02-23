@@ -1,7 +1,7 @@
 'use client';
 
 import PaginationCard from '@/components/card/pagination.card';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 function Dev() {
     // Mock data
@@ -34,7 +34,9 @@ function Dev() {
                     )}
                 </pre>
             </div>
-            <PaginationCard data={currentData} />
+            <Suspense>
+                <PaginationCard data={currentData} />
+            </Suspense>
         </div>
     );
 }
