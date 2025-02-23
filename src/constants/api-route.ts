@@ -14,6 +14,7 @@ export default class ApiRoute {
         static root: string = '/api/Product';
         static filter: string = `${this.root}/filter`;
         static pagination: string = `${this.root}/pagination`;
+        static search: string = `${this.root}/search`;
         static highlight = (take: number) => {
             return `${this.root}/highlight?take=${take}`;
         };

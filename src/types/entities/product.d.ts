@@ -13,3 +13,11 @@ type Product = {
     categoryId?: string;
     category?: Category;
 };
+
+type ProductOverview = {
+    id: string;
+    code: string;
+    name: string;
+    image?: string;
+    category?: string;
+};

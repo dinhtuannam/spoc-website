@@ -1,5 +1,6 @@
 'use client';
 
+import PaginationCard from '@/components/card/pagination.card';
 import ProductCard from '@/components/card/product.card';
 import ProductSkeleton from '@/components/skeleton/product.skeleton';
 import ProductService from '@/services/product.service';
@@ -15,9 +16,13 @@ const products: Product[] = Array(6).fill({
 });
 
 function ProductList() {
-    const { data = [], isLoading } = useQuery<Product[]>({
+    const { data, isLoading } = useQuery<PaginatedData<ProductOverview>>({
         queryKey: ['client/product'],
-        queryFn: () => ProductService.all(),
+        queryFn: () =>
+            ProductService.search({
+                pageIndex: 1,
+                pageSize: 9,
+            }),
         staleTime: 60 * 1000,
     });
 
@@ -28,10 +33,11 @@ function ProductList() {
             <div className="grid mobile:grid-cols-2 tablet:grid-cols-2 laptop:grid-cols-3 gap-6">
                 {isLoading
                     ? Array.from({ length: 9 }).map((_, index) => <ProductSkeleton key={index} />)
-                    : data.map((product, index) => (
+                    : data?.items?.map((product, index) => (
                           <ProductCard key={index} name={product.name} image={product.image} />
                       ))}
             </div>
+            <div className="mt-8">{data && <PaginationCard data={data} />}</div>
         </div>
     );
 }

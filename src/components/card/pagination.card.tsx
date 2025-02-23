@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import ParamConst from '@/constants/param.constant';
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, useCallback } from 'react';
@@ -18,7 +19,7 @@ function PaginationCard({ data }: PaginationCardProps) {
     const searchParams = useSearchParams();
 
     // Lấy trang hiện tại từ URL param, mặc định là 1
-    const currentPage = useMemo(() => Number(searchParams.get('trang')) || 1, [searchParams]);
+    const currentPage = useMemo(() => Number(searchParams.get(ParamConst.page)) || 1, [searchParams]);
 
     const createQueryString = useCallback(
         (newParams: { [key: string]: string }) => {
