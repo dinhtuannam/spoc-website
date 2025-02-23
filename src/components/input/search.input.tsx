@@ -24,7 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const query = searchParams.get(ParamConst.search);
-    const [text, setText] = useState(Formatter.paramStr(decodeURIComponent(query || ''), ''));
+    const [text, setText] = useState(Formatter.paramSearch(query));
 
     useEffect(() => {
         if (text !== Formatter.paramStr(decodeURIComponent(query || ''), '')) {

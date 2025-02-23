@@ -18,4 +18,9 @@ export default class Formatter {
         if (!param) return fallback;
         return param;
     }
+
+    static paramSearch(param: string | null | undefined): string {
+        if (!param) return '';
+        return decodeURIComponent(param || '');
+    }
 }

@@ -26,13 +26,13 @@ function ProductList() {
     const query = searchParams.get(ParamConst.search);
 
     const { data, isLoading } = useQuery<PaginatedData<ProductOverview>>({
-        queryKey: ['client/product', category, page, size, query],
+        queryKey: ['client/product', category, page, size, Formatter.paramSearch(query)],
         queryFn: () =>
             ProductService.search({
                 pageIndex: Formatter.paramNumber(page, 1),
                 pageSize: Formatter.paramNumber(size, 9),
                 category: Formatter.paramStr(category, ''),
-                textSearch: Formatter.paramStr(decodeURIComponent(query || ''), ''),
+                textSearch: Formatter.paramSearch(query),
             }),
         staleTime: 60 * 1000,
     });

@@ -6,10 +6,13 @@ import ProductCategoryService from '@/services/product-category.service';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, Menu } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 function ProductCategories() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const searchParams = useSearchParams();
+    const currentCategory = searchParams.get(ParamConst.danh_muc);
 
     const { data = [], isLoading } = useQuery<ProductCategory[]>({
         queryKey: ['client/product-category'],
@@ -56,10 +59,21 @@ function ProductCategories() {
                         <CollapsibleContent>
                             <div className="ml-1 pl-4 mt-2 border-l-2 border-gray-500">
                                 {data.map((item, idx) => (
-                                    <Link href={`/san-pham?${ParamConst.danh_muc}=${item.code}`} scroll={false}>
+                                    <Link
+                                        key={idx}
+                                        href={`/san-pham?${ParamConst.danh_muc}=${item.code}`}
+                                        scroll={false}
+                                    >
                                         <div
-                                            key={idx}
-                                            className="text-xl cursor-pointer hover:text-primary hover:underline transition mb-3"
+                                            className={`
+                                                text-xl cursor-pointer transition mb-3
+                                                 hover:text-app-primary-blue hover:underline
+                                                ${
+                                                    currentCategory === item.code
+                                                        ? 'text-app-primary-blue-hover font-semibold'
+                                                        : ''
+                                                }
+                                            `}
                                             onClick={() => {
                                                 if (window.innerWidth < 769) {
                                                     setIsMobileMenuOpen(false);
