@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import CacheConst from '@/constants/cache.const';
 import ParamConst from '@/constants/param.constant';
 import NewsCategoryService from '@/services/news-category.service';
 import { useQuery } from '@tanstack/react-query';
@@ -16,7 +17,7 @@ export function NewsCategories() {
     const { data = [], isLoading } = useQuery<NewsCategory[]>({
         queryKey: ['client/news-category'],
         queryFn: () => NewsCategoryService.menu(),
-        staleTime: 60 * 1000,
+        staleTime: CacheConst.query.category,
     });
 
     return (

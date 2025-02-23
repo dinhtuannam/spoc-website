@@ -1,6 +1,7 @@
 'use client';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import CacheConst from '@/constants/cache.const';
 import ParamConst from '@/constants/param.constant';
 import ProductCategoryService from '@/services/product-category.service';
 import { useQuery } from '@tanstack/react-query';
@@ -17,7 +18,7 @@ function ProductCategories() {
     const { data = [], isLoading } = useQuery<ProductCategory[]>({
         queryKey: ['client/product-category'],
         queryFn: () => ProductCategoryService.menu(),
-        staleTime: 60 * 1000,
+        staleTime: CacheConst.query.category,
     });
 
     return (

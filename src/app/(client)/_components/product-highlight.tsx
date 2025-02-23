@@ -4,6 +4,7 @@ import AppButton from '@/components/button/app.button';
 import ProductCard from '@/components/card/product.card';
 import AppGrid from '@/components/grid';
 import ProductSkeleton from '@/components/skeleton/product.skeleton';
+import CacheConst from '@/constants/cache.const';
 import { cn } from '@/lib/utils';
 import ProductService from '@/services/product.service';
 import { useQuery } from '@tanstack/react-query';
@@ -20,7 +21,7 @@ function ProductHighlight({ className }: ProductHighlightProps) {
     const { data = [], isLoading } = useQuery<ProductOverview[]>({
         queryKey: ['client/product-highlight'],
         queryFn: () => ProductService.highlight(take),
-        staleTime: 60 * 1000,
+        staleTime: CacheConst.query.list,
     });
 
     return (

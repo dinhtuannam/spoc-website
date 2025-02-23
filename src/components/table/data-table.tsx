@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import CacheConst from '@/constants/cache.const';
 import GeneratorHelper from '@/helpers/generator.helper';
 import { isEmpty } from '@/helpers/object.helper';
 import { randomString } from '@/helpers/string.helper';
@@ -133,7 +134,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
     const { data: paginate, isLoading: loading } = useQuery<PaginatedData<TData> | null>({
         queryKey: [api || fetch, defaultParam, ...dependency],
         queryFn: () => getPaginateData(api, defaultParam),
-        staleTime: 1000 * 10, // 10 giây
+        staleTime: CacheConst.query.table, // 10 giây
     });
 
     const data = React.useMemo(() => {

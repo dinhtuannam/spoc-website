@@ -2,6 +2,7 @@ import TinTucBanner from '../_components/banner';
 import { NewsCategories } from '../_components/news-categories';
 import { SubscribeForm } from '../_components/subscribe-form';
 import { Breadcrumb } from '@/components/breadcrumb';
+import CacheConst from '@/constants/cache.const';
 import Formatter from '@/helpers/format.helper';
 import { API_PATH } from '@/lib/axios';
 import React from 'react';
@@ -13,7 +14,7 @@ import React from 'react';
 
 async function getNews(id: string): Promise<News | null> {
     const res = await fetch(`${API_PATH}/api/News/code/${id}`, {
-        next: { revalidate: 60 }, // ISR: Cập nhật dữ liệu mỗi 60 giây
+        next: { revalidate: CacheConst.isr.page }, // ISR: Cập nhật dữ liệu mỗi 60 giây
     });
 
     if (!res.ok) return null;

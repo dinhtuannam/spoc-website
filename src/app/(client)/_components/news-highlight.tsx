@@ -5,6 +5,7 @@ import SectionHeader from '@/components/header/section.header';
 import VeritcalSlider from '@/components/section/vertical-slider.section';
 import NewsSkeleton from '@/components/skeleton/news.skeleton';
 import { CarouselItem } from '@/components/ui/carousel';
+import CacheConst from '@/constants/cache.const';
 import { cn } from '@/lib/utils';
 import NewsService from '@/services/news.service';
 import { useQuery } from '@tanstack/react-query';
@@ -20,7 +21,7 @@ function NewsHighlight({ className }: NewsHighlightProps) {
     const { data = [], isLoading } = useQuery<News[]>({
         queryKey: ['client/news-highlight'],
         queryFn: () => NewsService.highlight(take),
-        staleTime: 60 * 1000,
+        staleTime: CacheConst.query.list,
     });
 
     return (

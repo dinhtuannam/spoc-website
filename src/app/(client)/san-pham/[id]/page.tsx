@@ -3,11 +3,12 @@ import { RelatedProducts } from './_components/related-products';
 import { Breadcrumb } from '@/components/breadcrumb';
 import AppButton from '@/components/button/app.button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import CacheConst from '@/constants/cache.const';
 import { API_PATH } from '@/lib/axios';
 
 async function getProduct(id: string): Promise<ProductDetail | null> {
     const res = await fetch(`${API_PATH}/api/Product/code/${id}`, {
-        next: { revalidate: 60 }, // ISR: Cập nhật dữ liệu mỗi 60 giây
+        next: { revalidate: CacheConst.isr.page },
     });
 
     if (!res.ok) return null;

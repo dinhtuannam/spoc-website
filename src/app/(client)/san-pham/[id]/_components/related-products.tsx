@@ -3,6 +3,7 @@
 import ProductCard from '@/components/card/product.card';
 import AppGrid from '@/components/grid';
 import ProductSkeleton from '@/components/skeleton/product.skeleton';
+import CacheConst from '@/constants/cache.const';
 import ProductService from '@/services/product.service';
 import { useQuery } from '@tanstack/react-query';
 
@@ -18,7 +19,7 @@ export function RelatedProducts({ id = undefined, title, description }: RelatedP
     const { data = [], isLoading } = useQuery<ProductOverview[]>({
         queryKey: ['client/product-similiar', take, id],
         queryFn: () => ProductService.similiar(take, id),
-        staleTime: 60 * 1000,
+        staleTime: CacheConst.query.list,
     });
 
     return (

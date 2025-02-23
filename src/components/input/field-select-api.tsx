@@ -4,6 +4,7 @@ import ErrorLabel from '../label/error.label';
 import { Label } from '../ui/label';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Skeleton } from '../ui/skeleton';
+import CacheConst from '@/constants/cache.const';
 import { cn } from '@/lib/utils';
 import SelectService from '@/services/select.service';
 import { useQuery } from '@tanstack/react-query';
@@ -59,7 +60,7 @@ function FieldSelectApi<TData>({
     const { data = [], isLoading: apiLoading } = useQuery<SelectOption[]>({
         queryKey: [api],
         queryFn: () => SelectService.get<TData>(api, value, label),
-        staleTime: 10 * 1000,
+        staleTime: CacheConst.query.menu,
     });
 
     const handleChange = (value: string) => {
