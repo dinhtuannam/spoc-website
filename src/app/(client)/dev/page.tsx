@@ -3,7 +3,7 @@
 import PaginationCard from '@/components/card/pagination.card';
 import { useState } from 'react';
 
-function TestPagination() {
+function Dev() {
     // Mock data
     const mockData: PaginatedData<any> = {
         items: Array.from({ length: 100 }, (_, i) => ({ id: i + 1, name: `Item ${i + 1}` })),
@@ -15,27 +15,7 @@ function TestPagination() {
         hasNextPage: true,
     };
 
-    const [currentData, setCurrentData] = useState(mockData);
-
-    const handlePageChange = (page: number) => {
-        setCurrentData((prev) => ({
-            ...prev,
-            pageIndex: page,
-            hasPreviousPage: page > 1,
-            hasNextPage: page < prev.totalPages,
-        }));
-    };
-
-    const handlePageSizeChange = (size: number) => {
-        setCurrentData((prev) => ({
-            ...prev,
-            pageSize: size,
-            totalPages: Math.ceil(prev.totalRecords / size),
-            pageIndex: 1,
-            hasPreviousPage: false,
-            hasNextPage: true,
-        }));
-    };
+    const [currentData, _] = useState(mockData);
 
     return (
         <div className="p-8">
@@ -54,13 +34,9 @@ function TestPagination() {
                     )}
                 </pre>
             </div>
-            <PaginationCard
-                data={currentData}
-                onPageChange={handlePageChange}
-                onPageSizeChange={handlePageSizeChange}
-            />
+            <PaginationCard data={currentData} />
         </div>
     );
 }
 
-export default TestPagination;
+export default Dev;
