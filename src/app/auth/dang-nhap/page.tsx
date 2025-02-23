@@ -10,14 +10,58 @@ import { useState } from 'react';
 
 export const dynamic = 'force-static';
 
+interface FormErrors {
+    username?: string;
+    password?: string;
+}
+
 function DangNhap() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    const [errors, setErrors] = useState<FormErrors>({});
+
+    // Regex để kiểm tra ký tự hợp lệ (chỉ cho phép chữ và số)
+    const validCharacters = /^[a-zA-Z0-9]*$/;
+
+    const validate = (): boolean => {
+        const newErrors: FormErrors = {};
+
+        if (!username.trim()) {
+            newErrors.username = 'Vui lòng nhập tên đăng nhập';
+        }
+
+        if (!password.trim()) {
+            newErrors.password = 'Vui lòng nhập mật khẩu';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        // Chỉ cập nhật nếu value rỗng hoặc chỉ chứa ký tự hợp lệ
+        if (value === '' || validCharacters.test(value)) {
+            setUsername(value);
+            setErrors((prev) => ({ ...prev, username: undefined }));
+        }
+    };
+
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        // Chỉ cập nhật nếu value rỗng hoặc chỉ chứa ký tự hợp lệ
+        if (value === '' || validCharacters.test(value)) {
+            setPassword(value);
+            setErrors((prev) => ({ ...prev, password: undefined }));
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle login logic here
+        if (validate()) {
+            // Xử lý đăng nhập
+        }
     };
 
     return (
@@ -49,16 +93,17 @@ function DangNhap() {
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                        <Label htmlFor="email">Tên đăng nhập:</Label>
+                        <Label htmlFor="username">Tên đăng nhập</Label>
                         <Input
                             id="username"
                             type="text"
                             placeholder="Nhập tên đăng nhập..."
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="h-12"
+                            onChange={handleUsernameChange}
+                            className={errors.username ? 'border-red-500' : ''}
                             required
                         />
+                        {errors.username && <p className="text-sm text-red-500">{errors.username}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -73,10 +118,11 @@ function DangNhap() {
                             type="password"
                             placeholder="Nhập mật khẩu..."
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="h-12"
+                            onChange={handlePasswordChange}
+                            className={errors.password ? 'border-red-500' : ''}
                             required
                         />
+                        {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
                     </div>
 
                     <div className="flex items-center space-x-2">
