@@ -35,6 +35,7 @@ export function Breadcrumb({ values, className, container }: BreadcrumbProps) {
                                 <Link
                                     className={cn('hover:text-black font-semibold transition text-lg', className)}
                                     href={item.link}
+                                    prefetch
                                 >
                                     {item.title}
                                 </Link>

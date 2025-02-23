@@ -19,7 +19,7 @@ function ProductCard({ code, name, image }: ProductCardProps) {
 
     return (
         <Card className="overflow-hidden flex flex-col items-center py-4">
-            <Link href={`/san-pham/${code}`} className="relative w-full aspect-square mb-4">
+            <Link href={`/san-pham/${code}`} className="relative w-full aspect-square mb-4" prefetch>
                 <Image
                     src={url}
                     alt={'thực phẩm ngủ ngon'}

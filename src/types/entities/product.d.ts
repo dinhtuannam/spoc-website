@@ -21,3 +21,14 @@ type ProductOverview = {
     image?: string;
     category?: string;
 };
+
+type ProductDetail = {
+    id: string;
+    code: string;
+    name: string;
+    introduction: string;
+    description: string;
+    instruction: string;
+    category?: string;
+    images: string[];
+};
