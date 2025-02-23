@@ -17,7 +17,7 @@ interface ProductHighlightProps {
 }
 
 function ProductHighlight({ className }: ProductHighlightProps) {
-    const { data = [], isLoading } = useQuery<Product[]>({
+    const { data = [], isLoading } = useQuery<ProductOverview[]>({
         queryKey: ['client/product-highlight'],
         queryFn: () => ProductService.highlight(take),
         staleTime: 60 * 1000,

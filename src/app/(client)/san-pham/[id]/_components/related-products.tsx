@@ -2,23 +2,25 @@
 
 import ProductCard from '@/components/card/product.card';
 import AppGrid from '@/components/grid';
-
-interface RelatedProduct {
-    id: string;
-    name: string;
-    price: number;
-    unit: string;
-    image: string;
-}
+import ProductSkeleton from '@/components/skeleton/product.skeleton';
+import ProductService from '@/services/product.service';
+import { useQuery } from '@tanstack/react-query';
 
 interface RelatedProductsProps {
-    products: RelatedProduct[];
     title: string;
     description?: string;
-    link?: string;
+    id?: string;
 }
 
-export function RelatedProducts({ products, title, description, link }: RelatedProductsProps) {
+const take: number = 4;
+
+export function RelatedProducts({ id = undefined, title, description }: RelatedProductsProps) {
+    const { data = [], isLoading } = useQuery<ProductOverview[]>({
+        queryKey: ['client/product-similiar', take, id],
+        queryFn: () => ProductService.similiar(take, id),
+        staleTime: 60 * 1000,
+    });
+
     return (
         <div className="mt-10 laptop:mt-16">
             <div className="mb-6 laptop:mb-10 max-w-[60%] mx-auto">
@@ -28,9 +30,11 @@ export function RelatedProducts({ products, title, description, link }: RelatedP
                 {description && <h3 className="text-center mt-2">{description}</h3>}
             </div>
             <AppGrid>
-                {products.map((product, index) => (
-                    <ProductCard key={index} code={'abc'} name="Thực phẩm ngủ ngon" image="/images/product.png" />
-                ))}
+                {isLoading
+                    ? Array.from({ length: take }).map((_, index) => <ProductSkeleton key={index} />)
+                    : data.map((product, index) => (
+                          <ProductCard code={product.code} key={index} name={product.name} image={product.image} />
+                      ))}
             </AppGrid>
         </div>
     );

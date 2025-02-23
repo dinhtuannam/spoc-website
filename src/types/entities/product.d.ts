@@ -29,6 +29,7 @@ type ProductDetail = {
     introduction: string;
     description: string;
     instruction: string;
+    categoryId?: string;
     category?: string;
     images: string[];
 };

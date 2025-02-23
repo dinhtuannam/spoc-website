@@ -1,5 +1,4 @@
 import { ProductImages } from './_components/product-images';
-import { QuantityInput } from './_components/quantity-input';
 import { RelatedProducts } from './_components/related-products';
 import { Breadcrumb } from '@/components/breadcrumb';
 import AppButton from '@/components/button/app.button';
@@ -110,7 +109,7 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
                 </div>
 
                 {/* Related Products */}
-                <RelatedProducts products={relatedProducts} title="CÁC SẢN PHẨM KHÁC" />
+                {product && <RelatedProducts id={product.categoryId} title="CÁC SẢN PHẨM KHÁC" />}
             </div>
         </div>
     );
