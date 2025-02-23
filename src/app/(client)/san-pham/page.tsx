@@ -3,6 +3,7 @@ import ProductCategories from '@/app/(client)/san-pham/_components/product-categ
 import { Breadcrumb } from '@/components/breadcrumb';
 import SearchBar from '@/components/input/search.input';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 interface Product {
     id: string;
@@ -50,12 +51,16 @@ async function SanPham() {
                 className="app-padding flex mobile:flex-col tablet:flex-row justify-between items-center mt-5 laptop:mt-15 desktop:mt-20 mobile:gap-4"
             >
                 <Breadcrumb values={breadcrumb} />
-                <SearchBar className={'mobile:w-full tablet:max-w-xs'} placeHolder="Tìm kiếm sản phẩm ..." />
+                <Suspense>
+                    <SearchBar className={'mobile:w-full tablet:max-w-xs'} placeHolder="Tìm kiếm sản phẩm ..." />
+                </Suspense>
             </div>
 
             <div className="app-padding mobile:grid-cols-1 laptop:grid-cols-4 grid gap-8 my-8">
-                <ProductCategories />
-                <ProductList />
+                <Suspense>
+                    <ProductCategories />
+                    <ProductList />
+                </Suspense>
             </div>
         </div>
     );
