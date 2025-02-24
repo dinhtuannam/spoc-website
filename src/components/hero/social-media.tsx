@@ -67,16 +67,16 @@ const socialMediaData: SocialMediaItem[] = [
 // Main Component
 function SocialMediaHero() {
     return (
-        <section className="w-full bg-app-primary-blue text-white py-12 laptop:py-16 relative overflow-hidden app-padding">
+        <section className="w-full bg-app-primary-blue text-white py-8 tablet:py-12 laptop:py-16 relative overflow-hidden app-padding">
             <BackgroundImage />
 
             <div className="max-w-app-primary mx-auto relative">
-                <div className="laptop:max-w-[50%]">
-                    <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-8 tablet:mb-12">
+                <div className="laptop:max-w-[40%]">
+                    <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-4 tablet:mb-12">
                         Những con số biết nói
                     </h2>
 
-                    <div className="grid grid-cols-2 laptop:grid-cols-2 gap-6 tablet:gap-8">
+                    <div className="grid grid-cols-2 laptop:grid-cols-2 gap-x-1 gap-y-3 tablet:gap-x-6 tablet:gap-y-8">
                         {socialMediaData.map((item, index) => (
                             <div key={index} className="flex items-center space-x-4">
                                 <SocialMediaIcon src={item.icon} alt={`social media ${index + 1}`} />
