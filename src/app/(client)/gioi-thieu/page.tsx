@@ -1,20 +1,16 @@
 import NewsHighlight from '../_components/news-highlight';
 import FadeContent from '@/components/animate/fade-content';
-import NewsCard from '@/components/card/news.card';
-import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
 import SocialMediaHero from '@/components/hero/social-media';
-import VeritcalSlider from '@/components/section/vertical-slider.section';
-import { CarouselItem } from '@/components/ui/carousel';
 import Image from 'next/image';
 import React from 'react';
 
 export const revalidate = 3600;
 
 export const metadata = {
-    title: 'Giới thiệu - SOPC',
+    title: 'Giới thiệu - Nhãn Khoa Sài Gòn - SOPC',
     description:
-        'SOPC - Cung cấp các sản phẩm và dịch vụ chăm sóc mắt tiên tiến, an toàn và hiệu quả, nhằm cải thiện chất lượng cuộc sống cho mọi người',
+        'Công ty Cổ Phần Dược Phẩm Nhãn Khoa Sài Gòn (SOPC) là công ty dược phẩm nhãn khoa trẻ đầy nhiệt huyết, ra đời với sứ mệnh mang đến ánh sáng cho mọi đôi mắt. Chúng tôi cam kết cung cấp các sản phẩm chất lượng cao, an toàn và hiệu quả, giúp mọi người chăm sóc và bảo vệ đôi mắt của mình tốt nhất',
 };
 
 function GioiThieuPage() {

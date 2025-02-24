@@ -17,9 +17,9 @@ interface Product {
 export const revalidate = 3600; // Revalidate mỗi 1 giờ
 
 export const metadata = {
-    title: 'Sản phẩm - SOPC',
+    title: 'Sản phẩm - Nhãn Khoa Sài Gòn - SOPC',
     description:
-        'Khám phá các sản phẩm chăm sóc mắt chất lượng từ SOPC. Chúng tôi cung cấp đa dạng thuốc và thực phẩm bổ sung giúp bảo vệ và cải thiện sức khỏe đôi mắt của bạn.',
+        'Nhãn Khoa Sài Gòn - Khám phá các sản phẩm chăm sóc mắt chất lượng từ SOPC. Chúng tôi cung cấp đa dạng thuốc và thực phẩm bổ sung giúp bảo vệ và cải thiện sức khỏe đôi mắt của bạn.',
 };
 
 // Chuyển thành async function để hỗ trợ data fetching

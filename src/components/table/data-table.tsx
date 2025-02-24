@@ -233,7 +233,7 @@ const DataTableComponent = React.forwardRef<DataTableRef, DataTableProps<any, an
                     });
                 } else {
                     toast({
-                        //variant: 'success',
+                        variant: 'success',
                         title: 'Thông báo xóa',
                         description: `Xóa thành công ${deleteId.length} bản ghi`,
                         duration: 1500,

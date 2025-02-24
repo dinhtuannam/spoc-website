@@ -3,6 +3,7 @@ import { RelatedProducts } from './_components/related-products';
 import { Breadcrumb } from '@/components/breadcrumb';
 import AppButton from '@/components/button/app.button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import AppConstant from '@/constants/app.constant';
 import CacheConst from '@/constants/cache.const';
 import { API_PATH } from '@/lib/axios';
 
@@ -79,7 +80,10 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
                                 {/* <AppButton variant="outline" className="w-full text-sm laptop:text-base">
                                     Thêm vào giỏ hàng
                                 </AppButton> */}
-                                <AppButton className="w-full text-sm laptop:text-base uppercase tracking-wide">
+                                <AppButton
+                                    href={AppConstant.zalo}
+                                    className="w-full text-sm laptop:text-base uppercase tracking-wide"
+                                >
                                     liên hệ tư vấn
                                 </AppButton>
                             </div>

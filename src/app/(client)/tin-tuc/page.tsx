@@ -7,9 +7,9 @@ import SearchBar from '@/components/input/search.input';
 import { Suspense } from 'react';
 
 export const metadata = {
-    title: 'Tin tức - SOPC',
+    title: 'Tin tức - Nhãn Khoa Sài Gòn - SOPC',
     description:
-        'Cập nhật những tin tức mới nhất về SOPC, các sản phẩm chăm sóc mắt, kiến thức sức khỏe thị giác và các chương trình khuyến mãi hấp dẫn.',
+        'Cập nhật những tin tức mới nhất về Nhãn Khoa Sài Gòn - SOPC, các sản phẩm chăm sóc mắt, kiến thức sức khỏe thị giác và các chương trình khuyến mãi hấp dẫn.',
 };
 
 const breadcrumb: BreadcrumbItem[] = [

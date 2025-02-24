@@ -1,6 +1,9 @@
+'use client';
+
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-import React from 'react';
+import Link from 'next/link';
+import React, { Fragment } from 'react';
 
 interface AppButtonProps {
     children: React.ReactNode;
@@ -8,6 +11,8 @@ interface AppButtonProps {
     radius?: boolean;
     onClick?: () => void;
     disabled?: boolean;
+    href?: string;
+    link?: string;
     variant?: 'default' | 'outline';
 }
 
@@ -18,11 +23,20 @@ function AppButton({
     disabled = false,
     variant = 'default',
     radius = true,
+    href,
+    link,
 }: AppButtonProps) {
-    return (
+    const handleClick = () => {
+        if (href) {
+            window.open(href, '_blank');
+        }
+        onClick?.();
+    };
+
+    const button = (
         <Button
             disabled={disabled}
-            onClick={onClick}
+            onClick={handleClick}
             className={cn(
                 // Base styles
                 'transition-colors duration-200',
@@ -56,6 +70,15 @@ function AppButton({
         >
             {children}
         </Button>
+    );
+
+    // Nếu có `link`, bọc bằng `<Link>`
+    return link ? (
+        <Link href={link} prefetch>
+            {button}
+        </Link>
+    ) : (
+        <Fragment>{button}</Fragment>
     );
 }
 

@@ -1,29 +1,14 @@
 import NewsHighlight from './_components/news-highlight';
 import ProductHighlight from './_components/product-highlight';
-import { RelatedProducts } from '@/app/(client)/san-pham/[id]/_components/related-products';
 import FadeContent from '@/components/animate/fade-content';
 import Banner from '@/components/banner';
-import AppButton from '@/components/button/app.button';
 import CardSlider from '@/components/card-slider';
-import NewsCard from '@/components/card/news.card';
-import SectionHeader from '@/components/header/section.header';
 import Hero from '@/components/hero';
-import VeritcalSlider from '@/components/section/vertical-slider.section';
-import { CarouselItem } from '@/components/ui/carousel';
 import { trangChuData } from '@/datas/trang-chu.data';
-import Link from 'next/link';
 
 export const revalidate = 3600;
 
 export default function Home() {
-    const relatedProducts = Array(4).fill({
-        id: 'san-pham-khac',
-        name: 'Thực phẩm ngũ ngon',
-        price: 100000,
-        unit: 'Hộp',
-        image: '/images/product.png',
-    });
-
     return (
         <div className="page-container height-minus">
             <Banner images={trangChuData[1]} priority />
@@ -48,7 +33,7 @@ export default function Home() {
                     className="mt-4 laptop:!py-0"
                     background="blue"
                     title="Đội ngũ cố vấn chuyên môn"
-                    description="SPOC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
+                    description="SOPC là kênh cung cấp kiến thức sức khỏe bổ ích và sản phẩm hỗ trợ chất lượng"
                     img={trangChuData[4].url}
                     imgPosition="right"
                     link="/gioi-thieu"

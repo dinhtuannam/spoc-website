@@ -5,8 +5,8 @@ export const trangChuData = {
         '/templates/trang-chu/GiuDoiMat.png',
     ],
     2: {
-        title: 'Sáng Mắt  - Sang Tươi Lai',
-        des: 'SOPC là công ty dược phẩm nhãn khoa trẻ đầy nhiệt huyết, ra đời với sứ mệnh mang đến ánh sáng cho mọi đôi mắt. Chúng tôi cam kết cung cấp các sản phẩm chất lượng cao, an toàn và hiệu quả, giúp mọi người chăm sóc và bảo vệ đôi mắt của mình tốt nhất. Hãy cùng SOPC hướng tới một tương lai tươi sáng, nơi mọi người đều được tận hưởng cuộc sống với đôi mắt khỏe mạnh và rạng ngời.',
+        title: 'Sáng Mắt - Sáng Tương Lai',
+        des: 'Công ty Cổ Phần Dược Phẩm Nhãn Khoa Sài Gòn (SOPC) là công ty dược phẩm nhãn khoa trẻ đầy nhiệt huyết, ra đời với sứ mệnh mang đến ánh sáng cho mọi đôi mắt. Chúng tôi cam kết cung cấp các sản phẩm chất lượng cao, an toàn và hiệu quả, giúp mọi người chăm sóc và bảo vệ đôi mắt của mình tốt nhất. Hãy cùng SOPC hướng tới một tương lai tươi sáng, nơi mọi người đều được tận hưởng cuộc sống với đôi mắt khỏe mạnh và rạng ngời.',
         url: '/templates/trang-chu/section-1.png',
     },
     3: [

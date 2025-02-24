@@ -29,9 +29,7 @@ function ProductCard({ code, name, image }: ProductCardProps) {
             </Link>
             <h3 className="text-center font-medium mobile:text-sm tablet:text-base">{name}</h3>
             <div className="flex gap-1 mobile:text-sm tablet:text-base">
-                <p className="font-semibold">{price.toLocaleString()}đ</p>
-                <span className="font-bold">/</span>
-                <p>Hộp</p>
+                <p className="tracking-wide">Liên hệ</p>
             </div>
         </Card>
     );

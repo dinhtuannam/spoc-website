@@ -1,35 +1,9 @@
 'use client';
 
-import VideoModal from '../modal/video-modal';
-import { useVideo } from '@/contexts/video-context';
 import { trangChuData } from '@/datas/trang-chu.data';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-
-interface CardItem {
-    title: string;
-    description: string;
-    image: string;
-}
-
-const cardData: CardItem[] = [
-    {
-        title: 'TẦM NHÌN',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-        image: '/images/card-slider.jpeg',
-    },
-    {
-        title: 'SỨ MỆNH',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-        image: '/images/card-slider.jpeg',
-    },
-    {
-        title: 'GIÁ TRỊ CỐT LÕI',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-        image: '/images/card-slider.jpeg',
-    },
-];
 
 function CardSlider() {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -57,7 +31,7 @@ function CardSlider() {
                         Tầm nhìn, sứ mệnh, Giá trị cốt lõi
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                        POSC hướng đến trở thành thương hiệu hàng đầu trong chăm sóc mắt, cung cấp sản phẩm an toàn,
+                        SOPC hướng đến trở thành thương hiệu hàng đầu trong chăm sóc mắt, cung cấp sản phẩm an toàn,
                         chất lượng cao. Chúng tôi cam kết đổi mới, tận tâm và không ngừng cải tiến để bảo vệ thị lực
                         cộng đồng.
                     </p>

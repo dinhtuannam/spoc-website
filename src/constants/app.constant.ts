@@ -7,5 +7,6 @@ export default class AppConstant {
     static phone2: string = '0937 070 055';
     static address: string = '438 Liên Phường, Phước Long B, Thành Phố Thủ Đức, Thành Phố Hồ Chí Minh ';
     static company: string = 'Công ty Cổ Phần Dược Phẩm Nhãn Khoa Sài Gòn';
-    static mail: string = 'duocnhankhoasg@gmail.com';
+    static mail: string = 'nhankhoasaigonsopc@gmail.com';
+    static zalo: string = 'https://zalo.me/0971092298';
 }

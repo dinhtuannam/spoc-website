@@ -41,7 +41,9 @@ async function MainFooter() {
                                 </div>
                                 <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
                                     <PhoneIcon className="min-w-[20px]" />
-                                    <p className="text-xs mobile:text-sm laptop:text-base">{AppConstant.phone}</p>
+                                    <p className="text-xs mobile:text-sm laptop:text-base">
+                                        {AppConstant.phone} - {AppConstant.phone2}
+                                    </p>
                                 </div>
                                 <div className="flex items-center mt-4 gap-2 justify-center desktop:justify-start">
                                     <MapPinIcon className="min-w-[20px]" />
