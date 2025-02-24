@@ -57,29 +57,20 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
         <div className="page-container height-minus">
             <div className="app-padding mt-5 laptop:mt-10">
                 <Breadcrumb values={breadcrumb} />
-
-                {/* Product Overview */}
                 <div className="grid laptop:grid-cols-12 gap-6 laptop:gap-10 mt-6 laptop:mt-10">
-                    {/* Product Images - 7 cột */}
                     <div className="laptop:col-span-7">{product && <ProductImages images={product?.images} />}</div>
-
-                    {/* Product Info - 5 cột */}
                     <div className="laptop:col-span-5 space-y-6">
                         <h1 className="text-xl text-justify laptop:text-2xl font-bold text-app-primary-blue tracking-wide">
                             {product?.name}
                         </h1>
 
-                        <p className="text-base laptop:text-lg tracking-wide text-justify">{product?.introduction}</p>
-                        {/* <div className="flex items-center gap-2">
-                            <span className="font-semibold min-w-[90px]">SỐ LƯỢNG</span>
-                            <QuantityInput />
-                        </div> */}
+                        <div
+                            className="text-base laptop:text-lg tracking-wide text-justify"
+                            dangerouslySetInnerHTML={{ __html: product?.introduction ?? '' }}
+                        />
 
                         <div className="flex items-center gap-4">
                             <div className="grid mobile:grid-cols-2 gap-4 w-full">
-                                {/* <AppButton variant="outline" className="w-full text-sm laptop:text-base">
-                                    Thêm vào giỏ hàng
-                                </AppButton> */}
                                 <AppButton
                                     href={AppConstant.zalo}
                                     className="w-full text-sm laptop:text-base uppercase tracking-wide"
@@ -88,7 +79,6 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
                                 </AppButton>
                             </div>
                         </div>
-
                         <div className="space-y-4">
                             <Accordion type="single" collapsible defaultValue="usage" className="w-full">
                                 <AccordionItem value="desc" className="border-none">
@@ -96,7 +86,10 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
                                         MÔ TẢ SẢN PHẨM
                                     </AccordionTrigger>
                                     <AccordionContent className="text-gray-600 text-sm laptop:text-base">
-                                        <p className="tracking-wider text-justify">{product?.description}</p>
+                                        <div
+                                            className="tracking-wider text-justify"
+                                            dangerouslySetInnerHTML={{ __html: product?.description ?? '' }}
+                                        />
                                     </AccordionContent>
                                 </AccordionItem>
 
@@ -105,15 +98,16 @@ async function ChiTietSanPham({ params }: { params: { id: string } }) {
                                         HƯỚNG DẪN SỬ DỤNG
                                     </AccordionTrigger>
                                     <AccordionContent className="text-gray-600 text-sm laptop:text-base">
-                                        <p className="tracking-wider text-justify">{product?.instruction}</p>
+                                        <div
+                                            className="tracking-wider text-justify"
+                                            dangerouslySetInnerHTML={{ __html: product?.instruction ?? '' }}
+                                        />
                                     </AccordionContent>
                                 </AccordionItem>
                             </Accordion>
                         </div>
                     </div>
                 </div>
-
-                {/* Related Products */}
                 {product && <RelatedProducts id={product.categoryId} title="CÁC SẢN PHẨM KHÁC" />}
             </div>
         </div>
