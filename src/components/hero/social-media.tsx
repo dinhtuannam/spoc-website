@@ -1,11 +1,10 @@
-import CountUp from '../animate/count-up';
 import Image from 'next/image';
 import React from 'react';
 
 // Types
 interface SocialMediaItem {
     icon: string;
-    count: number;
+    count: string;
     description: string;
 }
 
@@ -20,17 +19,9 @@ const SocialMediaIcon = ({ src, alt }: { src: string; alt: string }) => (
     </div>
 );
 
-const SocialMediaContent = ({ count, description }: { count: number; description: string }) => (
+const SocialMediaContent = ({ count, description }: { count: string; description: string }) => (
     <div className="text-left">
-        <CountUp
-            suffix="+"
-            from={0}
-            to={count}
-            separator=","
-            direction="up"
-            duration={0.2}
-            className="count-up-text text-xl tablet:text-2xl laptop:text-3xl font-bold"
-        />
+        <p className="text-xl tablet:text-2xl laptop:text-3xl font-bold">{count}</p>
         {/* <h3 className="text-xl tablet:text-2xl laptop:text-3xl font-bold">{count}+</h3> */}
         <p className="text-xs tablet:text-sm laptop:text-base text-white/80 whitespace-pre-line">{description}</p>
     </div>
@@ -52,24 +43,24 @@ const BackgroundImage = () => (
 // Data
 const socialMediaData: SocialMediaItem[] = [
     {
-        icon: '/images/facebook.png',
-        count: 50000,
-        description: 'lượt theo dõi\ntrên Facebook',
+        icon: '/templates/gioi-thieu/cart.png',
+        count: '30+',
+        description: 'sản phẩm',
     },
     {
-        icon: '/images/tiktok.png',
-        count: 50000,
-        description: 'lượt theo dõi\ntrên Tiktok',
+        icon: '/templates/gioi-thieu/order.png',
+        count: '33245+',
+        description: 'sản phẩm đã bán',
     },
     {
-        icon: '/images/youtube.png',
-        count: 50000,
-        description: 'lượt theo dõi\ntrên Youtube',
+        icon: '/templates/gioi-thieu/exp.png',
+        count: '15',
+        description: 'kinh nghiệm',
     },
     {
-        icon: '/images/order.png',
-        count: 50000,
-        description: 'sản phẩm đã đến\ntay khách hàng',
+        icon: '/templates/gioi-thieu/cert.png',
+        count: '5',
+        description: 'chứng chỉ quốc tế',
     },
 ];
 
