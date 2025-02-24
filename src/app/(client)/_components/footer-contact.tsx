@@ -42,7 +42,7 @@ function FooterContact() {
 
                         {/* Input Section */}
                         <div className="w-full laptop:w-1/2">
-                            <div className="flex  mx-auto laptop:mx-0">
+                            <div className="flex mx-auto laptop:mx-0">
                                 <input
                                     type="text"
                                     value={input}
