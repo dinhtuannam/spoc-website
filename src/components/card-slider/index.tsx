@@ -28,7 +28,7 @@ function CardSlider() {
                 {/* Header */}
                 <div className="text-center mb-8 tablet:mb-12 app-padding">
                     <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold text-app-primary-blue mb-4">
-                        Tầm nhìn, sứ mệnh, Giá trị cốt lõi
+                        Tầm nhìn, Sứ mệnh, Giá trị cốt lõi
                     </h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
                         SOPC hướng đến trở thành thương hiệu hàng đầu trong chăm sóc mắt, cung cấp sản phẩm an toàn,

@@ -15,7 +15,15 @@ const SocialMediaIcon = ({ src, alt }: { src: string; alt: string }) => (
                     relative w-12 h-12 tablet:w-16 tablet:h-16 laptop:w-20 laptop:h-20 
                     bg-white rounded-full flex items-center justify-center"
     >
-        <Image src={src} alt={alt} width={40} height={40} className="laptop:w-full laptop:h-full object-cover" />
+        <Image
+            src={src}
+            alt={alt}
+            width={40}
+            height={40}
+            quality={100}
+            unoptimized={true}
+            className="laptop:w-full laptop:h-full object-cover"
+        />
     </div>
 );
 
@@ -71,7 +79,7 @@ function SocialMediaHero() {
             <BackgroundImage />
 
             <div className="max-w-app-primary mx-auto relative">
-                <div className="laptop:max-w-[40%]">
+                <div className="laptop:max-w-[50%] desktop:max-w-[40%]">
                     <h2 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold mb-4 tablet:mb-12">
                         Những con số biết nói
                     </h2>
