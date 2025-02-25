@@ -1,5 +1,5 @@
 const AppConstant = {
-    token: 'token',
+    token: 'sopc-token',
     userData: 'userData',
     maxImage: 6,
     maxHighlight: 8,
