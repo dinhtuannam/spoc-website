@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import ApiRoute from '@/constants/api-route';
 import AppConstant from '@/constants/app.constant';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 import { API } from '@/lib/axios';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
@@ -36,6 +37,7 @@ interface LoginResponse {
 function DangNhap() {
     const router = useRouter();
     const { toast } = useToast();
+    const { setUser } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -99,8 +101,7 @@ function DangNhap() {
                     sameSite: 'strict',
                 });
 
-                // Luôn lưu thông tin user (không phụ thuộc vào rememberMe)
-                localStorage.setItem(AppConstant.userData, JSON.stringify(userData));
+                setUser(userData);
 
                 toast({
                     variant: 'success',
@@ -109,7 +110,6 @@ function DangNhap() {
                     duration: 2000,
                 });
 
-                // Redirect sau khi toast hiển thị
                 setTimeout(() => {
                     router.replace('/admin');
                 }, 2000);
