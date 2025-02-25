@@ -99,10 +99,8 @@ function DangNhap() {
                     sameSite: 'strict',
                 });
 
-                // Lưu user data nếu chọn "Ghi nhớ"
-                if (rememberMe) {
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                }
+                // Luôn lưu thông tin user (không phụ thuộc vào rememberMe)
+                localStorage.setItem(AppConstant.userData, JSON.stringify(userData));
 
                 toast({
                     variant: 'success',
