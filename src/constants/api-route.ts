@@ -2,6 +2,9 @@ import { ComponentEnum } from '@/enums/component.enum';
 import { PageEnum } from '@/enums/page.enum';
 
 export default class ApiRoute {
+    static Auth = class {
+        static login:string = '/api/Auth/login'
+    }
     static Option = class {
         static highlight: string = '/api/Option/highlight';
     };
