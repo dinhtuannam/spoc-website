@@ -212,7 +212,7 @@ function DangNhap() {
                         className="w-full h-12 text-base bg-app-primary hover:bg-app-primary-hover"
                         disabled={loading}
                     >
-                        {loading ? 'ĐANG XỬ LÝ...' : 'ĐĂNG NHẬP'}
+                        {loading ? 'ĐANG XÁC THỰC THÔNG TIN...' : 'ĐĂNG NHẬP'}
                     </Button>
                 </form>
             </div>

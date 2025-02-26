@@ -1,5 +1,6 @@
 import AppConstant from '@/constants/app.constant';
 import Cookies from 'js-cookie';
+import { useEffect, useState } from 'react';
 
 interface UserData {
     id: string;
@@ -10,27 +11,32 @@ interface UserData {
 }
 
 export function useAuth() {
-    // Lấy thông tin user từ localStorage
-    const getUser = (): UserData | null => {
-        const data = localStorage.getItem(AppConstant.userData);
-        if (!data) return null;
-        return JSON.parse(data);
-    };
+    const [user, setUserState] = useState<UserData | null>(null);
+    const [isLoading, setIsLoading] = useState(true); // Thêm state loading
 
-    // Xử lý đăng xuất
-    const logout = () => {
-        Cookies.remove(AppConstant.token);
-        localStorage.removeItem(AppConstant.userData);
-        window.location.href = '/auth/dang-nhap';
-    };
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const data = localStorage.getItem(AppConstant.userData);
+            setUserState(data ? JSON.parse(data) : null);
+            setIsLoading(false);
+        }
+    }, []);
 
     const setUser = (data: any) => {
-        localStorage.setItem(AppConstant.userData, JSON.stringify(data));
+        if (typeof window !== 'undefined') {
+            localStorage.setItem(AppConstant.userData, JSON.stringify(data));
+            setUserState(data);
+        }
     };
 
-    return {
-        user: getUser(),
-        logout,
-        setUser,
+    const logout = () => {
+        if (typeof window !== 'undefined') {
+            Cookies.remove(AppConstant.token);
+            localStorage.removeItem(AppConstant.userData);
+            setUserState(null);
+            window.location.href = '/auth/dang-nhap';
+        }
     };
+
+    return { user, setUser, logout, isLoading };
 }

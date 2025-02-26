@@ -8,9 +8,22 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'www.matsaigon.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/**',
             },
         ],
-        domains: ['res.cloudinary.com', 'www.matsaigon.com'],
     },
 };
 

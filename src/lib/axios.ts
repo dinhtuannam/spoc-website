@@ -1,9 +1,6 @@
 import { useAuth } from '@/hooks/useAuth';
 import axios from 'axios';
 
-// import { getToken, removeTokens } from '@/helpers/storage.helper';
-const { logout } = useAuth();
-
 function getAxios(baseURL: string) {
     const ins = axios.create({
         baseURL,
@@ -23,7 +20,6 @@ function getAxios(baseURL: string) {
         (response) => response,
         (error) => {
             if (error.response && error.response.status === 401) {
-                logout();
                 window.location.href = '/auth/dang-nhap';
             }
             return Promise.reject(error);
