@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../globals.css';
+import StickyContact from '@/components/sticky/contact.sticky';
 
 const roboto = Roboto({ subsets: ['vietnamese'], weight: ['400', '500', '700', '900'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                 <QueryProvider>{children}</QueryProvider>
                 <Toaster />
 
+                <StickyContact />
                 <MainFooter />
             </body>
         </html>
