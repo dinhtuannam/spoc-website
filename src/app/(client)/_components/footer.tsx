@@ -4,14 +4,30 @@ import React from 'react';
 import './index.css';
 import FooterContact from './footer-contact';
 import AppConstant from '@/constants/app.constant';
+import CacheConst from '@/constants/cache.const';
+import ParamConst from '@/constants/param.constant';
+import { API_PATH } from '@/lib/axios';
 import { Separator } from '@radix-ui/react-separator';
 import Link from 'next/link';
 
-// Thêm revalidate cho ISR
-export const revalidate = 6200; // Revalidate mỗi 1 giờ
+const fallback: string[] = ['NHÓM THUỐC NHỎ MẮT', 'NHÓM THUỐC MỠ TRA MẮT', 'NHÓM THUỐC BỔ MẮT - THỰC PHẨM CHỨC NĂNG'];
+
+async function getCategory(): Promise<ProductCategory[] | null> {
+    const res = await fetch(
+        `${API_PATH}/api/ProductCategory/filter?Skip=0&TotalRecord=3&OrderCol=CreatedDate&OrderDir=desc`,
+        {
+            next: { revalidate: CacheConst.isr.page },
+        },
+    );
+
+    if (!res.ok) return null;
+    const tmp = await res.json();
+    return tmp.data;
+}
 
 async function MainFooter() {
-    // Có thể fetch data ở đây nếu cần
+    const data = await getCategory();
+
     return (
         <div className="flex flex-col items-center page-container relative mt-36">
             <FooterContact />
@@ -73,18 +89,29 @@ async function MainFooter() {
                             <div className="footer__content_item">
                                 <h3 className="footer__content-title">Sản phẩm</h3>
                                 <ul className="footer__content-list">
-                                    <li>
-                                        <Link href="/san-pham">Về sản phẩm</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/san-pham">Về nguyên liệu</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/lien-he">Đồng phục doanh nghiệp</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/lien-he">Tự thiết kế đồng phục</Link>
-                                    </li>
+                                    {data
+                                        ? data.map((item, idx) => {
+                                              return (
+                                                  <li>
+                                                      <Link
+                                                          prefetch
+                                                          key={idx}
+                                                          href={`/san-pham?${ParamConst.danh_muc}=${item.code}`}
+                                                      >
+                                                          {item.name}
+                                                      </Link>
+                                                  </li>
+                                              );
+                                          })
+                                        : fallback.map((item, idx) => {
+                                              return (
+                                                  <li>
+                                                      <Link prefetch href="/san-pham" key={idx}>
+                                                          {item}
+                                                      </Link>
+                                                  </li>
+                                              );
+                                          })}
                                 </ul>
                             </div>
                         </div>

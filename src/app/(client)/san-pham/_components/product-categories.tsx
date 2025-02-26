@@ -67,7 +67,7 @@ function ProductCategories() {
                                     >
                                         <div
                                             className={`
-                                                text-xl cursor-pointer transition mb-3
+                                                text-xl cursor-pointer transition mb-3 uppercase
                                                  hover:text-app-primary-blue hover:underline
                                                 ${
                                                     currentCategory === item.code

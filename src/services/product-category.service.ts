@@ -16,6 +16,21 @@ export default class ProductCategoryService {
         }
     }
 
+    static async filter(skip: number, take: number): Promise<ProductCategory[]> {
+        try {
+            const res = await API.get<ApiRes<ProductCategory[]>>(
+                `${ApiRoute.ProductCategory.filter}?Skip=${skip}&TotalRecord=${take}&OrderCol=CreatedDate&OrderDir=desc`,
+            );
+            if (!res.data.succeeded || !res.data.data) {
+                return [];
+            }
+            return res.data.data;
+        } catch (error) {
+            console.error('Lỗi khi gọi API:', error);
+            return [];
+        }
+    }
+
     static async menu(): Promise<ProductCategory[]> {
         try {
             const res = await API.get<ApiRes<ProductCategory[]>>(ApiRoute.ProductCategory.root);

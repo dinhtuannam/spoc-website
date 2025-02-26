@@ -32,7 +32,7 @@ function ProductHighlight({ className }: ProductHighlightProps) {
                         SẢN PHẨM BÁN CHẠY
                     </h2>
                     <h3 className="text-center mt-2">
-                        Sáng mắt - Sáng tương lại. Sản phẩm hỗ trợ thị lực từ SOPC, bảo vệ đôi mắt khỏe mạnh, chinh phục
+                        Sáng mắt - Sáng tương lai. Sản phẩm hỗ trợ thị lực từ SOPC, bảo vệ đôi mắt khỏe mạnh, chinh phục
                         mọi thử thách
                     </h3>
                 </div>
