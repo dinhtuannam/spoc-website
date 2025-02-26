@@ -28,45 +28,45 @@ interface MenuItem {
 
 // Menu Configuration
 const menuItems: MenuItem[] = [
-    {
-        title: 'Trang chủ',
-        icon: Home,
-        children: [
-            { title: 'Banner', url: '/admin/trang-chu/banner' },
-            { title: 'Section 1', url: '/admin/trang-chu/section-1' },
-            { title: 'Section 2', url: '/admin/trang-chu/section-2' },
-            { title: 'Section 3', url: '/admin/trang-chu/section-3' },
-        ],
-    },
-    {
-        title: 'Giới thiệu',
-        icon: Info,
-        children: [
-            { title: 'Banner', url: '/admin/gioi-thieu/banner' },
-            { title: 'Section 1', url: '/admin/gioi-thieu/section-1' },
-            { title: 'Section 2', url: '/admin/gioi-thieu/section-2' },
-            { title: 'Section 3', url: '/admin/gioi-thieu/section-3' },
-            { title: 'Section 4', url: '/admin/gioi-thieu/section-4' },
-        ],
-    },
-    {
-        title: 'Sản phẩm',
-        icon: ShoppingBag,
-        children: [
-            { title: 'Banner', url: '/admin/san-pham/banner' },
-            { title: 'Sản phẩm', url: '/admin/san-pham' },
-            { title: 'Thể loại', url: '/admin/san-pham/the-loai' },
-        ],
-    },
-    {
-        title: 'Tin tức',
-        icon: FileText,
-        children: [
-            { title: 'Banner', url: '/admin/tin-tuc/banner' },
-            { title: 'Tin tức', url: '/admin/tin-tuc' },
-            { title: 'Thể loại', url: '/admin/tin-tuc/the-loai' },
-        ],
-    },
+    // {
+    //     title: 'Trang chủ',
+    //     icon: Home,
+    //     children: [
+    //         { title: 'Banner', url: '/admin/trang-chu/banner' },
+    //         { title: 'Section 1', url: '/admin/trang-chu/section-1' },
+    //         { title: 'Section 2', url: '/admin/trang-chu/section-2' },
+    //         { title: 'Section 3', url: '/admin/trang-chu/section-3' },
+    //     ],
+    // },
+    // {
+    //     title: 'Giới thiệu',
+    //     icon: Info,
+    //     children: [
+    //         { title: 'Banner', url: '/admin/gioi-thieu/banner' },
+    //         { title: 'Section 1', url: '/admin/gioi-thieu/section-1' },
+    //         { title: 'Section 2', url: '/admin/gioi-thieu/section-2' },
+    //         { title: 'Section 3', url: '/admin/gioi-thieu/section-3' },
+    //         { title: 'Section 4', url: '/admin/gioi-thieu/section-4' },
+    //     ],
+    // },
+    // {
+    //     title: 'Sản phẩm',
+    //     icon: ShoppingBag,
+    //     children: [
+    //         { title: 'Banner', url: '/admin/san-pham/banner' },
+    //         { title: 'Sản phẩm', url: '/admin/san-pham' },
+    //         { title: 'Thể loại', url: '/admin/san-pham/the-loai' },
+    //     ],
+    // },
+    // {
+    //     title: 'Tin tức',
+    //     icon: FileText,
+    //     children: [
+    //         { title: 'Banner', url: '/admin/tin-tuc/banner' },
+    //         { title: 'Tin tức', url: '/admin/tin-tuc' },
+    //         { title: 'Thể loại', url: '/admin/tin-tuc/the-loai' },
+    //     ],
+    // },
     {
         title: 'Liên hệ',
         icon: Phone,

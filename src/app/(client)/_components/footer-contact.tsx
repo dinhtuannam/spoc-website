@@ -1,29 +1,53 @@
 'use client';
 
+import ApiRoute from '@/constants/api-route';
+import RegrexConst from '@/constants/regrex.constant';
 import { useToast } from '@/hooks/use-toast';
+import useCaller from '@/hooks/useCaller';
 import React, { useState } from 'react';
 
 function FooterContact() {
     const [input, setInput] = useState<string>('');
+    const { callApi, loading } = useCaller<any>();
     const { toast } = useToast();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!input) {
             toast({
-                variant: 'default',
+                variant: 'destructive',
                 title: 'Thông báo thao tác',
-                description: 'Vui lòng nhập số điện thoại',
+                description: 'Xin vui lòng nhập số điện thoại',
                 duration: 3000,
             });
             return;
+        } else if (!RegrexConst.isValidPhone(input)) {
+            toast({
+                variant: 'destructive',
+                title: 'Thông báo thao tác',
+                description: 'Số điện thoại không hợp lệ',
+                duration: 3000,
+            });
+            setInput('');
+            return;
         }
+
+        await callApi(
+            ApiRoute.Contact.root,
+            {
+                method: 'POST',
+                body: {
+                    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                    email: '',
+                    phone: input,
+                    fullname: '',
+                    content: 'Liên hệ số điện thoại tư vấn',
+                    ipAddress: '127',
+                },
+            },
+            'Gửi thông tin liên hệ thành công',
+        );
+
         setInput('');
-        toast({
-            variant: 'success',
-            title: 'Thông báo thao tác',
-            description: 'Gửi thông tin liên hệ thành công',
-            duration: 3000,
-        });
     };
 
     return (
@@ -51,10 +75,11 @@ function FooterContact() {
                                     className="flex-1 rounded-l-md p-3 text-black focus:outline-none focus:ring-2 focus:ring-orange-300 transition-all"
                                 />
                                 <button
+                                    disabled={loading}
                                     onClick={handleSubmit}
-                                    className="bg-app-primary-blue text-white px-2 laptop:px-4 py-3 rounded-r-md hover:bg-gray-800 transition-colors whitespace-nowrap"
+                                    className="bg-app-primary-blue text-white px-2 laptop:px-4 py-3 rounded-r-md hover:bg-app-primary-blue-hover transition-colors whitespace-nowrap"
                                 >
-                                    GỬI NGAY
+                                    {loading ? 'ĐANG GỬI' : 'GỬI NGAY'}
                                 </button>
                             </div>
                         </div>

@@ -2,6 +2,8 @@
 
 import AppButton from '@/components/button/app.button';
 import { Input } from '@/components/ui/input';
+import ApiRoute from '@/constants/api-route';
+import RegrexConst from '@/constants/regrex.constant';
 import { useToast } from '@/hooks/use-toast';
 import useCaller from '@/hooks/useCaller';
 import { cn } from '@/lib/utils';
@@ -25,7 +27,7 @@ const initialError = {
 
 function BannerLienHe() {
     const { toast } = useToast();
-    const { callApi } = useCaller<any>();
+    const { callApi, loading } = useCaller<any>();
     const { register, handleSubmit, reset } = useForm<ContactFormData>();
     const [error, setError] = useState(initialError);
 
@@ -38,22 +40,34 @@ function BannerLienHe() {
         });
     };
 
-    const onSubmit = (data: ContactFormData) => {
+    const onSubmit = async (data: ContactFormData) => {
         setError(initialError);
 
         if (!data.name) {
             setError((prev) => ({ ...prev, name: true }));
             showToast('Vui lòng nhập Họ và tên');
             return;
+        } else if (data.name.length < 2) {
+            setError((prev) => ({ ...prev, name: true }));
+            showToast('Họ và tên phải có ít nhất 2 kí tự');
+            return;
         }
         if (!data.email) {
             setError((prev) => ({ ...prev, email: true }));
             showToast('Vui lòng nhập Email');
             return;
+        } else if (!RegrexConst.isValidEmail(data.email)) {
+            setError((prev) => ({ ...prev, email: true }));
+            showToast('Email không hợp lệ');
+            return;
         }
         if (!data.phone) {
             setError((prev) => ({ ...prev, phone: true }));
             showToast('Vui lòng nhập Số điện thoại');
+            return;
+        } else if (!RegrexConst.isValidPhone) {
+            setError((prev) => ({ ...prev, phone: true }));
+            showToast('Số điện thoại không hợp lệ');
             return;
         }
         if (!data.content) {
@@ -62,14 +76,24 @@ function BannerLienHe() {
             return;
         }
 
+        await callApi(
+            ApiRoute.Contact.root,
+            {
+                method: 'POST',
+                body: {
+                    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                    email: data.email,
+                    phone: data.phone,
+                    fullname: data.name,
+                    content: data.content,
+                    ipAddress: '127',
+                },
+            },
+            'Gửi thông tin liên hệ thành công',
+        );
+
         setError(initialError);
         reset();
-        toast({
-            variant: 'success',
-            title: 'Thông báo thao tác',
-            description: 'Gửi thông tin liên hệ thành công',
-            duration: 3000,
-        });
     };
 
     return (
@@ -80,14 +104,13 @@ function BannerLienHe() {
             >
                 <div className="absolute inset-0 " />
             </div>
-
             <div className="absolute right-8 top-1/4 hidden laptop:block">
                 <div className="w-16 h-16 bg-[#4CAF50] rounded-lg rotate-45 opacity-60" />
             </div>
+            a
             <div className="absolute right-32 top-1/3 hidden laptop:block">
                 <div className="w-8 h-8 bg-[#4CAF50] rounded-full opacity-60" />
             </div>
-
             <div className="absolute inset-0">
                 <div className="w-full h-full max-w-app-primary mx-auto px-4 tablet:px-8 laptop:px-page-padding py-12">
                     <div className="text-white/80 mb-16 flex gap-2">
@@ -138,7 +161,9 @@ function BannerLienHe() {
                                 />
                             </div>
 
-                            <AppButton className="w-full !mt-10">GỬI NGAY</AppButton>
+                            <AppButton disabled={loading} className="w-full !mt-10">
+                                {loading ? 'ĐANG TIẾN HÀNH XỬ LÍ...' : 'GỬI NGAY'}
+                            </AppButton>
                         </form>
                     </div>
                 </div>
