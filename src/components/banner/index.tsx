@@ -17,14 +17,25 @@ function Banner({ images, priority = false }: BannerProps) {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
-        if (!api) {
-            return;
-        }
+        if (!api) return;
 
         api.on('select', () => {
             setCurrent(api.selectedScrollSnap());
         });
-    }, [api]);
+
+        const interval = setInterval(() => {
+            const totalSlides = api.scrollSnapList().length;
+            if (totalSlides === 0) return;
+
+            if (current === totalSlides - 1) {
+                api.scrollTo(0);
+            } else {
+                api.scrollNext();
+            }
+        }, 4000);
+
+        return () => clearInterval(interval);
+    }, [api, current]);
 
     return (
         <div className="relative">
