@@ -4,8 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import ApiRoute from '@/constants/api-route';
+import AppConstant from '@/constants/app.constant';
+import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
+import { API } from '@/lib/axios';
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export const dynamic = 'force-static';
@@ -15,11 +22,27 @@ interface FormErrors {
     password?: string;
 }
 
+interface LoginResponse {
+    id: string;
+    fullname: string;
+    avatar: string;
+    roleId: number;
+    roleName: string;
+    token: {
+        value: string;
+        validTo: string;
+    };
+}
+
 function DangNhap() {
+    const router = useRouter();
+    const { toast } = useToast();
+    const { setUser } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState<FormErrors>({});
+    const [loading, setLoading] = useState(false);
 
     // Regex để kiểm tra ký tự hợp lệ (chỉ cho phép chữ và số)
     const validCharacters = /^[a-zA-Z0-9]*$/;
@@ -57,10 +80,55 @@ function DangNhap() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            // Xử lý đăng nhập
+        if (!validate()) return;
+
+        try {
+            setLoading(true);
+            const res = await API.post<ApiRes<LoginResponse>>(ApiRoute.Auth.login, {
+                username: username.trim(),
+                password: password.trim(),
+            });
+
+            if (res.data.succeeded && res.data.data) {
+                const { token, ...userData } = res.data.data;
+
+                // Lưu token vào cookie
+                Cookies.set(AppConstant.token, token.value, {
+                    expires: new Date(token.validTo),
+                    secure: true,
+                    sameSite: 'strict',
+                });
+
+                setUser(userData);
+
+                toast({
+                    variant: 'success',
+                    title: 'Thành công',
+                    description: 'Đăng nhập thành công',
+                    duration: 2000,
+                });
+
+                setTimeout(() => {
+                    router.replace('/admin');
+                }, 2000);
+            } else {
+                toast({
+                    variant: 'destructive',
+                    title: 'Thông báo',
+                    description: res.data.errorMessage || 'Tên đăng nhập hoặc mật khẩu không chính xác',
+                });
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            toast({
+                variant: 'destructive',
+                title: 'Thông báo',
+                description: 'Có lỗi xảy ra, vui lòng thử lại sau',
+            });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -139,8 +207,12 @@ function DangNhap() {
                         </label>
                     </div>
 
-                    <Button type="submit" className="w-full h-12 text-base bg-app-primary hover:bg-app-primary-hover">
-                        ĐĂNG NHẬP
+                    <Button
+                        type="submit"
+                        className="w-full h-12 text-base bg-app-primary hover:bg-app-primary-hover"
+                        disabled={loading}
+                    >
+                        {loading ? 'ĐANG XÁC THỰC THÔNG TIN...' : 'ĐĂNG NHẬP'}
                     </Button>
                 </form>
             </div>

@@ -1,6 +1,5 @@
+import { useAuth } from '@/hooks/useAuth';
 import axios from 'axios';
-
-// import { getToken, removeTokens } from '@/helpers/storage.helper';
 
 function getAxios(baseURL: string) {
     const ins = axios.create({
@@ -21,8 +20,7 @@ function getAxios(baseURL: string) {
         (response) => response,
         (error) => {
             if (error.response && error.response.status === 401) {
-                //removeTokens();
-                window.location.href = '/auth/login';
+                window.location.href = '/auth/dang-nhap';
             }
             return Promise.reject(error);
         },
@@ -31,5 +29,7 @@ function getAxios(baseURL: string) {
     return ins;
 }
 
-export const API_PATH: string = `https://spoc-api.onrender.com`;
+const production = 'https://spoc-api.onrender.com';
+const dev = 'https://localhost:7204';
+export const API_PATH: string = production;
 export const API = getAxios(API_PATH);
